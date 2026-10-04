@@ -9,8 +9,11 @@ state={
 "sotHome":"0","sotAway":"0","cornersHome":"0","cornersAway":"0",
 "foulsHome":"0","foulsAway":"0","yellowHome":"0","yellowAway":"0","redHome":"0","redAway":"0",
 "event1":"00'  |","event2":"00'  |","event3":"00'  |","event4":"00'  |","event5":"00'  |",
-"match1":"MATCH 1  •  00:00","match2":"MATCH 2  •  00:00","match3":"MATCH 3  •  00:00",
-"match4":"MATCH 4  •  00:00","match5":"MATCH 5  •  00:00"
+"match1Home":"HOME 1","match1Away":"AWAY 1","match1HomeScore":0,"match1AwayScore":0,"match1Status":"00:00",
+"match2Home":"HOME 2","match2Away":"AWAY 2","match2HomeScore":0,"match2AwayScore":0,"match2Status":"00:00",
+"match3Home":"HOME 3","match3Away":"AWAY 3","match3HomeScore":0,"match3AwayScore":0,"match3Status":"00:00",
+"match4Home":"HOME 4","match4Away":"AWAY 4","match4HomeScore":0,"match4AwayScore":0,"match4Status":"00:00",
+"match5Home":"HOME 5","match5Away":"AWAY 5","match5HomeScore":0,"match5AwayScore":0,"match5Status":"00:00"
 }
 def _elapsed_now():
     elapsed=float(state.get("clockElapsed",0) or 0)
