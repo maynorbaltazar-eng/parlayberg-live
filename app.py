@@ -3,7 +3,7 @@ import os, threading
 app=Flask(__name__, static_folder='.')
 lock=threading.Lock()
 state={
-"homeTeam":"HOME TEAM","awayTeam":"AWAY TEAM","homeScore":0,"awayScore":0,"clock":"00:00",
+"homeTeam":"HOME TEAM","awayTeam":"AWAY TEAM","homeLogo":"","awayLogo":"","homeScore":0,"awayScore":0,"clock":"00:00",
 "possessionHome":"50","possessionAway":"50","shotsHome":"0","shotsAway":"0",
 "sotHome":"0","sotAway":"0","cornersHome":"0","cornersAway":"0",
 "foulsHome":"0","foulsAway":"0","yellowHome":"0","yellowAway":"0","redHome":"0","redAway":"0",
