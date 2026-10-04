@@ -7,7 +7,7 @@ h1{margin:0;color:#39ff7a}.box{background:#0b1a11;border:1px solid #2dff70;borde
 input{width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px;font-size:15px}
 button{padding:12px 16px;border:0;border-radius:9px;background:#2cff73;font-weight:800;cursor:pointer}.danger{background:#ff3b3b;color:white}
 .score{font-size:54px;font-weight:900;text-align:center;margin:10px}.muted{color:#a6b7ac}.ok{color:#39ff7a}.clockPanel{text-align:center;margin:14px 0;padding:14px;border:1px solid #335c43;border-radius:12px;background:#07110b}.clockBig{font-size:38px;font-weight:900;color:#39ff7a;margin-bottom:10px}.clockBtns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.warn{background:#ffc928;color:#111}.secondary{background:#183b26;color:#fff;border:1px solid #2cff73}
-label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{font-size:18px;font-weight:900;color:#39ff7a;margin-bottom:12px}.logoPreview{width:72px;height:72px;object-fit:contain;background:#07110b;border:1px solid #335c43;border-radius:10px;padding:6px;margin-top:8px}
+label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{font-size:18px;font-weight:900;color:#39ff7a;margin-bottom:12px}.matchCard{border:1px solid #335c43;background:#07110b;border-radius:12px;padding:14px;margin:12px 0}.matchEditGrid{display:grid;grid-template-columns:1fr 110px 1fr;gap:10px;align-items:end}.miniScore{font-size:28px;font-weight:900;text-align:center;margin:10px 0}.miniBtns{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.miniBtns button{padding:9px 11px}.logoPreview{width:72px;height:72px;object-fit:contain;background:#07110b;border:1px solid #335c43;border-radius:10px;padding:6px;margin-top:8px}
 @media(max-width:700px){.grid,.grid3{grid-template-columns:1fr}}
 </style></head><body><main>
 <div class="top"><div><h1>PARLAYBERG LIVE CONTROL</h1><div class="muted">TikTok Match Center</div></div><div id="status" class="ok"></div></div>
@@ -63,15 +63,87 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <input id="event1" placeholder="23' | GOAL - Home"><input id="event2"><input id="event3"><input id="event4"><input id="event5">
 </div></div>
 
-<div class="box"><div class="sectionTitle">Today's Matches</div><div class="grid">
-<input id="match1" placeholder="Team A vs Team B • 12:30"><input id="match2"><input id="match3"><input id="match4"><input id="match5">
-</div></div>
+<div class="box"><div class="sectionTitle">Today's Matches — Live Scoreboard</div>
+<div class="muted" style="margin-bottom:10px">Edit each matchup and use the score buttons during the live stream.</div>
+
+<div class="matchCard">
+<div class="matchEditGrid">
+<div><label>Match 1 Home</label><input id="match1Home"></div>
+<div><label>Status / Time</label><input id="match1Status" placeholder="LIVE 67'"></div>
+<div><label>Match 1 Away</label><input id="match1Away"></div>
+</div>
+<div class="miniScore"><span id="m1hs">0</span> - <span id="m1as">0</span></div>
+<div class="miniBtns">
+<button type="button" onclick="miniGoal(1,'Home',1)">HOME +1</button>
+<button type="button" class="danger" onclick="miniGoal(1,'Home',-1)">HOME -1</button>
+<button type="button" onclick="miniGoal(1,'Away',1)">AWAY +1</button>
+<button type="button" class="danger" onclick="miniGoal(1,'Away',-1)">AWAY -1</button>
+</div>
+</div>
+<div class="matchCard">
+<div class="matchEditGrid">
+<div><label>Match 2 Home</label><input id="match2Home"></div>
+<div><label>Status / Time</label><input id="match2Status" placeholder="LIVE 67'"></div>
+<div><label>Match 2 Away</label><input id="match2Away"></div>
+</div>
+<div class="miniScore"><span id="m2hs">0</span> - <span id="m2as">0</span></div>
+<div class="miniBtns">
+<button type="button" onclick="miniGoal(2,'Home',1)">HOME +1</button>
+<button type="button" class="danger" onclick="miniGoal(2,'Home',-1)">HOME -1</button>
+<button type="button" onclick="miniGoal(2,'Away',1)">AWAY +1</button>
+<button type="button" class="danger" onclick="miniGoal(2,'Away',-1)">AWAY -1</button>
+</div>
+</div>
+<div class="matchCard">
+<div class="matchEditGrid">
+<div><label>Match 3 Home</label><input id="match3Home"></div>
+<div><label>Status / Time</label><input id="match3Status" placeholder="LIVE 67'"></div>
+<div><label>Match 3 Away</label><input id="match3Away"></div>
+</div>
+<div class="miniScore"><span id="m3hs">0</span> - <span id="m3as">0</span></div>
+<div class="miniBtns">
+<button type="button" onclick="miniGoal(3,'Home',1)">HOME +1</button>
+<button type="button" class="danger" onclick="miniGoal(3,'Home',-1)">HOME -1</button>
+<button type="button" onclick="miniGoal(3,'Away',1)">AWAY +1</button>
+<button type="button" class="danger" onclick="miniGoal(3,'Away',-1)">AWAY -1</button>
+</div>
+</div>
+<div class="matchCard">
+<div class="matchEditGrid">
+<div><label>Match 4 Home</label><input id="match4Home"></div>
+<div><label>Status / Time</label><input id="match4Status" placeholder="LIVE 67'"></div>
+<div><label>Match 4 Away</label><input id="match4Away"></div>
+</div>
+<div class="miniScore"><span id="m4hs">0</span> - <span id="m4as">0</span></div>
+<div class="miniBtns">
+<button type="button" onclick="miniGoal(4,'Home',1)">HOME +1</button>
+<button type="button" class="danger" onclick="miniGoal(4,'Home',-1)">HOME -1</button>
+<button type="button" onclick="miniGoal(4,'Away',1)">AWAY +1</button>
+<button type="button" class="danger" onclick="miniGoal(4,'Away',-1)">AWAY -1</button>
+</div>
+</div>
+<div class="matchCard">
+<div class="matchEditGrid">
+<div><label>Match 5 Home</label><input id="match5Home"></div>
+<div><label>Status / Time</label><input id="match5Status" placeholder="LIVE 67'"></div>
+<div><label>Match 5 Away</label><input id="match5Away"></div>
+</div>
+<div class="miniScore"><span id="m5hs">0</span> - <span id="m5as">0</span></div>
+<div class="miniBtns">
+<button type="button" onclick="miniGoal(5,'Home',1)">HOME +1</button>
+<button type="button" class="danger" onclick="miniGoal(5,'Home',-1)">HOME -1</button>
+<button type="button" onclick="miniGoal(5,'Away',1)">AWAY +1</button>
+<button type="button" class="danger" onclick="miniGoal(5,'Away',-1)">AWAY -1</button>
+</div>
+</div>
+</div>
 
 <div class="box"><button onclick="saveAll()">UPDATE OVERLAY</button>
 <p class="muted">TikTok overlay URL:<br><b id="u" style="color:#39ff7a"></b></p></div>
 </main>
 <script>
-let s={};const fields=['homeTeam','awayTeam','homeLogo','awayLogo','clock','possessionHome','possessionAway','shotsHome','shotsAway','sotHome','sotAway','cornersHome','cornersAway','foulsHome','foulsAway','yellowHome','yellowAway','redHome','redAway','event1','event2','event3','event4','event5','match1','match2','match3','match4','match5'];
+let s={};const fields=['homeTeam','awayTeam','homeLogo','awayLogo','clock','possessionHome','possessionAway','shotsHome','shotsAway','sotHome','sotAway','cornersHome','cornersAway','foulsHome','foulsAway','yellowHome','yellowAway','redHome','redAway','event1','event2','event3','event4','event5',
+'match1Home','match1Away','match1Status','match2Home','match2Away','match2Status','match3Home','match3Away','match3Status','match4Home','match4Away','match4Status','match5Home','match5Away','match5Status'];
 async function load(){try{s=await fetch('/api/state?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());drawForm();drawLive();status.textContent='● Connected'}catch(e){status.textContent='Connection error'}}
 async function pollLive(){try{const live=await fetch('/api/state?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());s={...s,...live};drawLive()}catch(e){}}
 function previewLogo(inputId,imgId){const url=document.getElementById(inputId).value||'';const img=document.getElementById(imgId);img.src=url;img.style.visibility=url?'visible':'hidden'}
@@ -83,10 +155,11 @@ function pickLogo(fileInput,targetId,previewId){
 }
 function clearLogo(targetId,previewId,fileId){document.getElementById(targetId).value='';document.getElementById(fileId).value='';previewLogo(targetId,previewId)}
 function drawForm(){fields.forEach(k=>{const el=document.getElementById(k);if(el)el.value=s[k]??''});u.textContent=location.origin+'/overlay.html';previewLogo('homeLogo','homeLogoPreview');previewLogo('awayLogo','awayLogoPreview')}
-function drawLive(){hs.textContent=s.homeScore??0;as.textContent=s.awayScore??0;clock.value=s.clock||'00:00';clockBig.textContent=s.clock||'00:00';clockModeLabel.textContent=s.clockMode==='extra'?'EXTRA TIME • 90–120 MIN':'STANDARD 90 MIN'}
+function drawLive(){hs.textContent=s.homeScore??0;as.textContent=s.awayScore??0;clock.value=s.clock||'00:00';clockBig.textContent=s.clock||'00:00';clockModeLabel.textContent=s.clockMode==='extra'?'EXTRA TIME • 90–120 MIN':'STANDARD 90 MIN';for(let i=1;i<=5;i++){document.getElementById('m'+i+'hs').textContent=s['match'+i+'HomeScore']??0;document.getElementById('m'+i+'as').textContent=s['match'+i+'AwayScore']??0}}
 async function post(x){s=await fetch('/api/state',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(x)}).then(r=>r.json());drawForm();drawLive();status.textContent='● Overlay updated'}
 async function clockAction(action){try{s=await fetch('/api/clock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action})}).then(r=>r.json());drawLive();status.textContent='● Clock updated'}catch(e){status.textContent='Clock error'}}
 function saveAll(){let x={};fields.forEach(k=>{if(k!=='clock')x[k]=document.getElementById(k).value});post(x)}
 function goal(k,d){post({[k]:Math.max(0,(+s[k]||0)+d)})}
+function miniGoal(i,side,d){const k='match'+i+side+'Score';post({[k]:Math.max(0,(+s[k]||0)+d)})}
 load();setInterval(pollLive,1000);
 </script></body></html>
