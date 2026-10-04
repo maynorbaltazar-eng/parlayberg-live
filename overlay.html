@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Parlayberg Overlay</title>
+<style>html,body{margin:0;background:transparent;font-family:Arial;color:#fff;overflow:hidden}.w{width:720px;height:1280px;padding:24px;box-sizing:border-box}.brand,.score,.bottom{background:rgba(4,16,9,.94);border:3px solid #2cff73;border-radius:20px;box-shadow:0 0 20px rgba(44,255,115,.35);text-align:center}.brand{padding:18px;font-size:42px;font-weight:900}.live{color:#2cff73}.score{margin-top:16px;padding:18px;display:grid;grid-template-columns:1fr 160px 1fr;align-items:center;font-size:25px;font-weight:800}.n{font-size:58px}.clock{color:#2cff73;font-size:24px}.camera{height:760px;margin-top:16px;border:3px solid #2cff73;border-radius:20px;position:relative;background:transparent}.label{position:absolute;top:10px;left:14px;background:#06100b;padding:8px 12px;border-radius:16px;color:#2cff73;font-weight:800}.bottom{margin-top:16px;padding:18px;font-weight:800}</style>
+<div class="w"><div class="brand">PARLAYBERG <span class="live">● LIVE</span></div>
+<div class="score"><div id="h">HOME TEAM</div><div><div class="n"><span id="hs">0</span>-<span id="as">0</span></div><div id="clock" class="clock">00:00</div></div><div id="a">AWAY TEAM</div></div>
+<div class="camera"><div class="label">LIVE REACTION</div></div><div class="bottom">LIVE REACTION • ANALYSIS • SCORES<br><span class="live">FOLLOW PARLAYBERG</span></div></div>
+<script>
+const K='parlaybergState';
+function draw(){let s=JSON.parse(localStorage.getItem(K)||'{"homeTeam":"HOME TEAM","awayTeam":"AWAY TEAM","homeScore":0,"awayScore":0,"clock":"00:00"}');h.textContent=s.homeTeam;a.textContent=s.awayTeam;hs.textContent=s.homeScore;as.textContent=s.awayScore;clock.textContent=s.clock}
+draw(); setInterval(draw,500);
+</script>
