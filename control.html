@@ -7,7 +7,7 @@ h1{margin:0;color:#39ff7a}.box{background:#0b1a11;border:1px solid #2dff70;borde
 input{width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px;font-size:15px}
 button{padding:12px 16px;border:0;border-radius:9px;background:#2cff73;font-weight:800;cursor:pointer}.danger{background:#ff3b3b;color:white}
 .score{font-size:54px;font-weight:900;text-align:center;margin:10px}.muted{color:#a6b7ac}.ok{color:#39ff7a}
-label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{font-size:18px;font-weight:900;color:#39ff7a;margin-bottom:12px}
+label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{font-size:18px;font-weight:900;color:#39ff7a;margin-bottom:12px}.logoPreview{width:72px;height:72px;object-fit:contain;background:#07110b;border:1px solid #335c43;border-radius:10px;padding:6px;margin-top:8px}
 @media(max-width:700px){.grid,.grid3{grid-template-columns:1fr}}
 </style></head><body><main>
 <div class="top"><div><h1>PARLAYBERG LIVE CONTROL</h1><div class="muted">TikTok Match Center</div></div><div id="status" class="ok"></div></div>
@@ -15,6 +15,10 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div class="box">
 <div class="sectionTitle">Main Match</div>
 <div class="grid3"><div><label>Home team</label><input id="homeTeam"></div><div><label>Match clock</label><input id="clock"></div><div><label>Away team</label><input id="awayTeam"></div></div>
+<div class="grid" style="margin-top:10px">
+<div><label>Home team logo URL</label><input id="homeLogo" placeholder="https://.../logo.png" oninput="previewLogo('homeLogo','homeLogoPreview')"><img id="homeLogoPreview" class="logoPreview" alt="Home logo preview"></div>
+<div><label>Away team logo URL</label><input id="awayLogo" placeholder="https://.../logo.png" oninput="previewLogo('awayLogo','awayLogoPreview')"><img id="awayLogoPreview" class="logoPreview" alt="Away logo preview"></div>
+</div>
 <div class="score"><span id="hs">0</span> - <span id="as">0</span></div>
 <div style="text-align:center"><button onclick="goal('homeScore',1)">HOME +1</button><button class="danger" onclick="goal('homeScore',-1)">HOME -1</button><button onclick="goal('awayScore',1)">AWAY +1</button><button class="danger" onclick="goal('awayScore',-1)">AWAY -1</button></div>
 </div>
@@ -42,9 +46,10 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <p class="muted">TikTok overlay URL:<br><b id="u" style="color:#39ff7a"></b></p></div>
 </main>
 <script>
-let s={};const fields=['homeTeam','awayTeam','clock','possessionHome','possessionAway','shotsHome','shotsAway','sotHome','sotAway','cornersHome','cornersAway','foulsHome','foulsAway','yellowHome','yellowAway','redHome','redAway','event1','event2','event3','event4','event5','match1','match2','match3','match4','match5'];
+let s={};const fields=['homeTeam','awayTeam','homeLogo','awayLogo','clock','possessionHome','possessionAway','shotsHome','shotsAway','sotHome','sotAway','cornersHome','cornersAway','foulsHome','foulsAway','yellowHome','yellowAway','redHome','redAway','event1','event2','event3','event4','event5','match1','match2','match3','match4','match5'];
 async function load(){try{s=await fetch('/api/state?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());draw();status.textContent='● Connected'}catch(e){status.textContent='Connection error'}}
-function draw(){fields.forEach(k=>{if(document.getElementById(k))document.getElementById(k).value=s[k]??''});hs.textContent=s.homeScore??0;as.textContent=s.awayScore??0;u.textContent=location.origin+'/overlay.html'}
+function previewLogo(inputId,imgId){const url=document.getElementById(inputId).value.trim();const img=document.getElementById(imgId);img.src=url||'';img.style.visibility=url?'visible':'hidden'}
+function draw(){fields.forEach(k=>{if(document.getElementById(k))document.getElementById(k).value=s[k]??''});hs.textContent=s.homeScore??0;as.textContent=s.awayScore??0;u.textContent=location.origin+'/overlay.html';previewLogo('homeLogo','homeLogoPreview');previewLogo('awayLogo','awayLogoPreview')}
 async function post(x){await fetch('/api/state',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(x)});await load()}
 function saveAll(){let x={};fields.forEach(k=>x[k]=document.getElementById(k).value);post(x)}
 function goal(k,d){post({[k]:Math.max(0,(+s[k]||0)+d)})}
