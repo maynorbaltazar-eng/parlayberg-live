@@ -6,7 +6,7 @@ h1{margin:0;color:#39ff7a}.box{background:#0b1a11;border:1px solid #2dff70;borde
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 input{width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px;font-size:15px}
 button{padding:12px 16px;border:0;border-radius:9px;background:#2cff73;font-weight:800;cursor:pointer}.danger{background:#ff3b3b;color:white}
-.score{font-size:54px;font-weight:900;text-align:center;margin:10px}.muted{color:#a6b7ac}.ok{color:#39ff7a}
+.score{font-size:54px;font-weight:900;text-align:center;margin:10px}.muted{color:#a6b7ac}.ok{color:#39ff7a}.clockPanel{text-align:center;margin:14px 0;padding:14px;border:1px solid #335c43;border-radius:12px;background:#07110b}.clockBig{font-size:38px;font-weight:900;color:#39ff7a;margin-bottom:10px}.clockBtns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.warn{background:#ffc928;color:#111}.secondary{background:#183b26;color:#fff;border:1px solid #2cff73}
 label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{font-size:18px;font-weight:900;color:#39ff7a;margin-bottom:12px}.logoPreview{width:72px;height:72px;object-fit:contain;background:#07110b;border:1px solid #335c43;border-radius:10px;padding:6px;margin-top:8px}
 @media(max-width:700px){.grid,.grid3{grid-template-columns:1fr}}
 </style></head><body><main>
@@ -14,7 +14,20 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 
 <div class="box">
 <div class="sectionTitle">Main Match</div>
-<div class="grid3"><div><label>Home team</label><input id="homeTeam"></div><div><label>Match clock</label><input id="clock"></div><div><label>Away team</label><input id="awayTeam"></div></div>
+<div class="grid3"><div><label>Home team</label><input id="homeTeam"></div><div><label>Match clock</label><input id="clock" readonly></div><div><label>Away team</label><input id="awayTeam"></div></div>
+<div class="clockPanel">
+<div id="clockBig" class="clockBig">00:00</div>
+<div id="clockModeLabel" class="muted" style="margin-bottom:10px">STANDARD 90 MIN</div>
+<div class="clockBtns">
+<button type="button" onclick="clockAction('start')">▶ START</button>
+<button type="button" class="warn" onclick="clockAction('pause')">⏸ PAUSE</button>
+<button type="button" class="danger" onclick="clockAction('reset')">↺ RESET</button>
+<button type="button" class="secondary" onclick="clockAction('add_minute')">+1 MIN</button>
+<button type="button" class="secondary" onclick="clockAction('subtract_minute')">-1 MIN</button>
+<button type="button" class="warn" onclick="clockAction('extra')">⚽ START EXTRA TIME +30</button>
+</div>
+<div class="muted" style="margin-top:10px;font-size:12px">Standard mode runs past 90:00 as added time. Extra Time starts at 90:00, runs to 120:00, then continues as added time.</div>
+</div>
 <div class="grid" style="margin-top:10px">
 <div>
 <label>Home team logo</label>
@@ -68,9 +81,10 @@ function pickLogo(fileInput,targetId,previewId){
  reader.readAsDataURL(file);
 }
 function clearLogo(targetId,previewId,fileId){document.getElementById(targetId).value='';document.getElementById(fileId).value='';previewLogo(targetId,previewId)}
-function draw(){fields.forEach(k=>{if(document.getElementById(k))document.getElementById(k).value=s[k]??''});hs.textContent=s.homeScore??0;as.textContent=s.awayScore??0;u.textContent=location.origin+'/overlay.html';previewLogo('homeLogo','homeLogoPreview');previewLogo('awayLogo','awayLogoPreview')}
+function draw(){fields.forEach(k=>{if(document.getElementById(k))document.getElementById(k).value=s[k]??''});hs.textContent=s.homeScore??0;as.textContent=s.awayScore??0;clockBig.textContent=s.clock||'00:00';clockModeLabel.textContent=s.clockMode==='extra'?'EXTRA TIME • 90–120 MIN':'STANDARD 90 MIN';u.textContent=location.origin+'/overlay.html';previewLogo('homeLogo','homeLogoPreview');previewLogo('awayLogo','awayLogoPreview')}
 async function post(x){await fetch('/api/state',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(x)});await load()}
-function saveAll(){let x={};fields.forEach(k=>x[k]=document.getElementById(k).value);post(x)}
+async function clockAction(action){try{s=await fetch('/api/clock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action})}).then(r=>r.json());draw();status.textContent='● Clock updated'}catch(e){status.textContent='Clock error'}}
+function saveAll(){let x={};fields.forEach(k=>{if(k!=='clock')x[k]=document.getElementById(k).value});post(x)}
 function goal(k,d){post({[k]:Math.max(0,(+s[k]||0)+d)})}
-load();
+load();setInterval(load,1000);
 </script></body></html>
