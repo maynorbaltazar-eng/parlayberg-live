@@ -72,7 +72,8 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 </main>
 <script>
 let s={};const fields=['homeTeam','awayTeam','homeLogo','awayLogo','clock','possessionHome','possessionAway','shotsHome','shotsAway','sotHome','sotAway','cornersHome','cornersAway','foulsHome','foulsAway','yellowHome','yellowAway','redHome','redAway','event1','event2','event3','event4','event5','match1','match2','match3','match4','match5'];
-async function load(){try{s=await fetch('/api/state?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());draw();status.textContent='● Connected'}catch(e){status.textContent='Connection error'}}
+async function load(){try{s=await fetch('/api/state?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());drawForm();drawLive();status.textContent='● Connected'}catch(e){status.textContent='Connection error'}}
+async function pollLive(){try{const live=await fetch('/api/state?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());s={...s,...live};drawLive()}catch(e){}}
 function previewLogo(inputId,imgId){const url=document.getElementById(inputId).value||'';const img=document.getElementById(imgId);img.src=url;img.style.visibility=url?'visible':'hidden'}
 function pickLogo(fileInput,targetId,previewId){
  const file=fileInput.files&&fileInput.files[0]; if(!file)return;
@@ -81,10 +82,11 @@ function pickLogo(fileInput,targetId,previewId){
  reader.readAsDataURL(file);
 }
 function clearLogo(targetId,previewId,fileId){document.getElementById(targetId).value='';document.getElementById(fileId).value='';previewLogo(targetId,previewId)}
-function draw(){fields.forEach(k=>{const el=document.getElementById(k);if(el && document.activeElement!==el)el.value=s[k]??''});hs.textContent=s.homeScore??0;as.textContent=s.awayScore??0;clockBig.textContent=s.clock||'00:00';clockModeLabel.textContent=s.clockMode==='extra'?'EXTRA TIME • 90–120 MIN':'STANDARD 90 MIN';u.textContent=location.origin+'/overlay.html';previewLogo('homeLogo','homeLogoPreview');previewLogo('awayLogo','awayLogoPreview')}
-async function post(x){await fetch('/api/state',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(x)});await load()}
-async function clockAction(action){try{s=await fetch('/api/clock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action})}).then(r=>r.json());draw();status.textContent='● Clock updated'}catch(e){status.textContent='Clock error'}}
+function drawForm(){fields.forEach(k=>{const el=document.getElementById(k);if(el)el.value=s[k]??''});u.textContent=location.origin+'/overlay.html';previewLogo('homeLogo','homeLogoPreview');previewLogo('awayLogo','awayLogoPreview')}
+function drawLive(){hs.textContent=s.homeScore??0;as.textContent=s.awayScore??0;clock.value=s.clock||'00:00';clockBig.textContent=s.clock||'00:00';clockModeLabel.textContent=s.clockMode==='extra'?'EXTRA TIME • 90–120 MIN':'STANDARD 90 MIN'}
+async function post(x){s=await fetch('/api/state',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(x)}).then(r=>r.json());drawForm();drawLive();status.textContent='● Overlay updated'}
+async function clockAction(action){try{s=await fetch('/api/clock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action})}).then(r=>r.json());drawLive();status.textContent='● Clock updated'}catch(e){status.textContent='Clock error'}}
 function saveAll(){let x={};fields.forEach(k=>{if(k!=='clock')x[k]=document.getElementById(k).value});post(x)}
 function goal(k,d){post({[k]:Math.max(0,(+s[k]||0)+d)})}
-load();setInterval(load,1000);
+load();setInterval(pollLive,1000);
 </script></body></html>
