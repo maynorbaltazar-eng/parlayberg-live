@@ -81,7 +81,7 @@ function pickLogo(fileInput,targetId,previewId){
  reader.readAsDataURL(file);
 }
 function clearLogo(targetId,previewId,fileId){document.getElementById(targetId).value='';document.getElementById(fileId).value='';previewLogo(targetId,previewId)}
-function draw(){fields.forEach(k=>{if(document.getElementById(k))document.getElementById(k).value=s[k]??''});hs.textContent=s.homeScore??0;as.textContent=s.awayScore??0;clockBig.textContent=s.clock||'00:00';clockModeLabel.textContent=s.clockMode==='extra'?'EXTRA TIME • 90–120 MIN':'STANDARD 90 MIN';u.textContent=location.origin+'/overlay.html';previewLogo('homeLogo','homeLogoPreview');previewLogo('awayLogo','awayLogoPreview')}
+function draw(){fields.forEach(k=>{const el=document.getElementById(k);if(el && document.activeElement!==el)el.value=s[k]??''});hs.textContent=s.homeScore??0;as.textContent=s.awayScore??0;clockBig.textContent=s.clock||'00:00';clockModeLabel.textContent=s.clockMode==='extra'?'EXTRA TIME • 90–120 MIN':'STANDARD 90 MIN';u.textContent=location.origin+'/overlay.html';previewLogo('homeLogo','homeLogoPreview');previewLogo('awayLogo','awayLogoPreview')}
 async function post(x){await fetch('/api/state',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(x)});await load()}
 async function clockAction(action){try{s=await fetch('/api/clock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action})}).then(r=>r.json());draw();status.textContent='● Clock updated'}catch(e){status.textContent='Clock error'}}
 function saveAll(){let x={};fields.forEach(k=>{if(k!=='clock')x[k]=document.getElementById(k).value});post(x)}
