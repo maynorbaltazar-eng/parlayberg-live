@@ -4,7 +4,6 @@
 <div class="score"><div id="h">HOME TEAM</div><div><div class="n"><span id="hs">0</span>-<span id="as">0</span></div><div id="clock" class="clock">00:00</div></div><div id="a">AWAY TEAM</div></div>
 <div class="camera"><div class="label">LIVE REACTION</div></div><div class="bottom">LIVE REACTION • ANALYSIS • SCORES<br><span class="live">FOLLOW PARLAYBERG</span></div></div>
 <script>
-const K='parlaybergState';
-function draw(){let s=JSON.parse(localStorage.getItem(K)||'{"homeTeam":"HOME TEAM","awayTeam":"AWAY TEAM","homeScore":0,"awayScore":0,"clock":"00:00"}');h.textContent=s.homeTeam;a.textContent=s.awayTeam;hs.textContent=s.homeScore;as.textContent=s.awayScore;clock.textContent=s.clock}
-draw(); setInterval(draw,500);
+async function draw(){try{let s=await fetch('/api/state?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());h.textContent=s.homeTeam;a.textContent=s.awayTeam;hs.textContent=s.homeScore;as.textContent=s.awayScore;clock.textContent=s.clock}catch(e){}}
+draw();setInterval(draw,700);
 </script>
