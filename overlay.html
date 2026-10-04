@@ -29,10 +29,7 @@ repeating-linear-gradient(0deg,transparent 0 44px,rgba(48,255,113,.018) 45px);po
 .stat{display:grid;grid-template-columns:38px 1fr 38px;align-items:center;border-top:1px solid #1e7440;padding:5px 0;font-family:Arial,sans-serif;font-weight:800;font-size:11px;text-align:center}.stat .lab{font-size:10px;color:#ddd}
 .event{border-top:1px solid #1e7440;padding:5px 3px;font-family:Arial,sans-serif;font-size:11px;height:29px}
 .strip{height:48px;margin-top:8px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-weight:900;font-size:15px;letter-spacing:.4px}
-.lower{display:grid;grid-template-columns:1fr 190px;gap:9px;margin-top:8px;height:278px}.matches{border-radius:6px;padding:10px}.mrow{height:39px;border-top:1px solid #1e7440;display:flex;align-items:center;gap:8px;font-family:Arial,sans-serif;font-size:11px}.ball{font-size:19px}.mtext{flex:1}
-.follow{border-radius:6px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:
-linear-gradient(180deg,rgba(2,9,5,.97),rgba(3,29,12,.96)),radial-gradient(circle at 50% 85%,rgba(48,255,113,.25),transparent 30%)}
-.follow .small{font-size:24px;font-style:italic;transform:rotate(-5deg)}.follow .big{font-size:40px;color:var(--g);font-style:italic;transform:rotate(-5deg);text-shadow:0 0 12px var(--g2)}
+.lower{margin-top:8px;height:278px}.matches{height:100%;border-radius:6px;padding:10px}.mrow{height:43px;border-top:1px solid #1e7440;display:grid;grid-template-columns:1fr 64px 1fr 74px;align-items:center;gap:8px;font-family:Arial,sans-serif;font-size:12px}.mhome{text-align:right;font-weight:800}.maway{text-align:left;font-weight:800}.mscore{text-align:center;font-size:20px;font-weight:900;color:var(--g)}.mstatus{text-align:right;color:#d4e5d9;font-size:10px;font-weight:800}
 .footer{height:76px;margin-top:8px;border-radius:6px;display:grid;grid-template-columns:1fr 1.1fr 1fr;align-items:center;padding:0 18px}.social{font-family:Arial,sans-serif;font-weight:900;font-size:15px;letter-spacing:5px}.footbrand{text-align:center;font-size:32px;font-style:italic}.notify{text-align:right;font-family:Arial,sans-serif;font-size:11px;font-weight:900}
 </style></head><body>
 <div class="stage">
@@ -63,14 +60,9 @@ linear-gradient(180deg,rgba(2,9,5,.97),rgba(3,29,12,.96)),radial-gradient(circle
 <div class="strip frame">⚽ &nbsp; LIVE REACTION &nbsp; • &nbsp; ANALYSIS &nbsp; • &nbsp; SCORES &nbsp; • &nbsp; DAILY PICKS</div>
 
 <div class="lower">
-<div class="matches frame"><div class="ptitle">▣ &nbsp; TODAY'S MATCHES</div>
-<div class="mrow"><span class="ball">⚽</span><span id="m1" class="mtext">MATCH 1 • 00:00</span></div>
-<div class="mrow"><span class="ball">🏆</span><span id="m2" class="mtext">MATCH 2 • 00:00</span></div>
-<div class="mrow"><span class="ball">⚽</span><span id="m3" class="mtext">MATCH 3 • 00:00</span></div>
-<div class="mrow"><span class="ball">⚽</span><span id="m4" class="mtext">MATCH 4 • 00:00</span></div>
-<div class="mrow"><span class="ball">⚽</span><span id="m5" class="mtext">MATCH 5 • 00:00</span></div>
+<div class="matches frame"><div class="ptitle">▣ &nbsp; TODAY'S MATCHES — LIVE SCORES</div>
+<div class="mrow"><div id="m1h" class="mhome">HOME 1</div><div id="m1s" class="mscore">0 - 0</div><div id="m1a" class="maway">AWAY 1</div><div id="m1t" class="mstatus">00:00</div></div><div class="mrow"><div id="m2h" class="mhome">HOME 2</div><div id="m2s" class="mscore">0 - 0</div><div id="m2a" class="maway">AWAY 2</div><div id="m2t" class="mstatus">00:00</div></div><div class="mrow"><div id="m3h" class="mhome">HOME 3</div><div id="m3s" class="mscore">0 - 0</div><div id="m3a" class="maway">AWAY 3</div><div id="m3t" class="mstatus">00:00</div></div><div class="mrow"><div id="m4h" class="mhome">HOME 4</div><div id="m4s" class="mscore">0 - 0</div><div id="m4a" class="maway">AWAY 4</div><div id="m4t" class="mstatus">00:00</div></div><div class="mrow"><div id="m5h" class="mhome">HOME 5</div><div id="m5s" class="mscore">0 - 0</div><div id="m5a" class="maway">AWAY 5</div><div id="m5t" class="mstatus">00:00</div></div>
 </div>
-<div class="follow frame"><div class="small">FOLLOW FOR DAILY</div><div class="big">PICKS</div><div style="font-size:62px">⚽</div></div>
 </div>
 
 <div class="footer frame"><div class="social">♪ ▶ ◎</div><div class="footbrand">PARLAYBERG</div><div class="notify">🔔 TURN ON<br>NOTIFICATIONS</div></div>
@@ -86,7 +78,7 @@ setLogo('homeLogoImg','homeShield',s.homeLogo);setLogo('awayLogoImg','awayShield
 set('ph',(s.possessionHome||0)+'%');set('pa',(s.possessionAway||0)+'%');set('sh',s.shotsHome);set('sa',s.shotsAway);
 set('sth',s.sotHome);set('sta',s.sotAway);set('ch',s.cornersHome);set('ca',s.cornersAway);set('fh',s.foulsHome);set('fa',s.foulsAway);
 set('yh',s.yellowHome);set('ya',s.yellowAway);set('rh',s.redHome);set('ra',s.redAway);
-for(let i=1;i<=5;i++){set('e'+i,s['event'+i]);set('m'+i,s['match'+i])}
+for(let i=1;i<=5;i++){set('e'+i,s['event'+i]);set('m'+i+'h',s['match'+i+'Home']);set('m'+i+'a',s['match'+i+'Away']);set('m'+i+'s',(s['match'+i+'HomeScore']??0)+' - '+(s['match'+i+'AwayScore']??0));set('m'+i+'t',s['match'+i+'Status'])}
 }catch(e){}}
 draw();setInterval(draw,700);
 </script></body></html>
