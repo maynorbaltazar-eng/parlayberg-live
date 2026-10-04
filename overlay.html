@@ -1,9 +1,86 @@
-<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Parlayberg Overlay</title>
-<style>html,body{margin:0;background:transparent;font-family:Arial;color:#fff;overflow:hidden}.w{width:720px;height:1280px;padding:24px;box-sizing:border-box}.brand,.score,.bottom{background:rgba(4,16,9,.94);border:3px solid #2cff73;border-radius:20px;box-shadow:0 0 20px rgba(44,255,115,.35);text-align:center}.brand{padding:18px;font-size:42px;font-weight:900}.live{color:#2cff73}.score{margin-top:16px;padding:18px;display:grid;grid-template-columns:1fr 160px 1fr;align-items:center;font-size:25px;font-weight:800}.n{font-size:58px}.clock{color:#2cff73;font-size:24px}.camera{height:760px;margin-top:16px;border:3px solid #2cff73;border-radius:20px;position:relative;background:transparent}.label{position:absolute;top:10px;left:14px;background:#06100b;padding:8px 12px;border-radius:16px;color:#2cff73;font-weight:800}.bottom{margin-top:16px;padding:18px;font-weight:800}</style>
-<div class="w"><div class="brand">PARLAYBERG <span class="live">● LIVE</span></div>
-<div class="score"><div id="h">HOME TEAM</div><div><div class="n"><span id="hs">0</span>-<span id="as">0</span></div><div id="clock" class="clock">00:00</div></div><div id="a">AWAY TEAM</div></div>
-<div class="camera"><div class="label">LIVE REACTION</div></div><div class="bottom">LIVE REACTION • ANALYSIS • SCORES<br><span class="live">FOLLOW PARLAYBERG</span></div></div>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Parlayberg LIVE</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:transparent;font-family:Impact,Haettenschweiler,'Arial Narrow Bold',Arial,sans-serif;color:#fff;overflow:hidden}
+:root{--g:#30ff71;--g2:#00c84e;--dark:#050b07;--panel:rgba(3,12,7,.95)}
+.stage{width:720px;height:1280px;position:relative;padding:12px;background:
+radial-gradient(circle at 50% -10%,rgba(39,255,104,.22),transparent 34%),
+linear-gradient(180deg,rgba(0,0,0,.98),rgba(2,11,6,.96));overflow:hidden}
+.stage:before{content:"";position:absolute;inset:0;background:
+linear-gradient(115deg,transparent 0 46%,rgba(48,255,113,.035) 46% 47%,transparent 47%),
+repeating-linear-gradient(0deg,transparent 0 44px,rgba(48,255,113,.018) 45px);pointer-events:none}
+.frame{border:2px solid var(--g);box-shadow:0 0 12px rgba(48,255,113,.55),inset 0 0 12px rgba(48,255,113,.08);background:linear-gradient(180deg,rgba(7,18,11,.97),rgba(2,9,5,.97))}
+.hero{height:180px;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;width:210px;height:210px;top:0;border-radius:50%;filter:blur(6px);opacity:.24;background:radial-gradient(circle,var(--g),transparent 65%)}
+.hero:before{left:-70px}.hero:after{right:-70px}.mount{position:absolute;top:20px;font-size:90px;opacity:.12;letter-spacing:-20px;color:var(--g)}
+.crown{font-size:28px;line-height:1;margin-bottom:0}.brand{font-size:52px;font-style:italic;letter-spacing:-2px;text-shadow:0 0 12px #000,0 0 18px var(--g2);transform:skew(-6deg)}
+.livepill{display:inline-block;margin-top:3px;padding:5px 22px;border:2px solid var(--g);border-radius:8px;background:#031507;box-shadow:0 0 16px var(--g2);font-family:Arial,sans-serif;font-weight:900;font-size:26px;letter-spacing:2px}
+.livepill .dot{color:#ff2323}.sub{font-family:Arial,sans-serif;font-size:10px;letter-spacing:5px;margin-top:8px}
+.scoreboard{height:114px;display:grid;grid-template-columns:1fr 160px 1fr;align-items:center;border-radius:8px;padding:8px 14px;margin-top:2px}
+.team{font-size:22px;text-align:center}.shield{width:54px;height:62px;margin:0 auto 4px;background:linear-gradient(#f4f4f4,#aaa);clip-path:polygon(50% 0,92% 15%,88% 70%,50% 100%,12% 70%,8% 15%);border:3px solid #fff}
+.mid{text-align:center}.score{font-size:54px;line-height:.9;text-shadow:0 0 10px #000}.clock{margin-top:6px;display:inline-block;border:2px solid var(--g);padding:4px 17px;border-radius:8px;color:#fff;background:#07140c;font-family:Arial,sans-serif;font-weight:900}
+.main{display:grid;grid-template-columns:1fr 198px;gap:9px;height:455px;margin-top:9px}
+.camera{position:relative;border-radius:6px;background:transparent;border:3px solid var(--g);box-shadow:0 0 14px rgba(48,255,113,.65),inset 0 0 0 5px rgba(0,0,0,.6)}
+.camera:before{content:"LIVE REACTION";position:absolute;z-index:2;top:-15px;left:50%;transform:translateX(-50%);background:#07110b;border:2px solid var(--g);padding:5px 24px;border-radius:5px;font-family:Arial,sans-serif;font-size:13px;font-weight:900;white-space:nowrap}
+.side{display:grid;grid-template-rows:245px 1fr;gap:8px}.panel{border-radius:6px;padding:10px}.ptitle{font-size:21px;color:#fff;margin-bottom:7px}.ptitle span{color:var(--g)}
+.stat{display:grid;grid-template-columns:38px 1fr 38px;align-items:center;border-top:1px solid #1e7440;padding:5px 0;font-family:Arial,sans-serif;font-weight:800;font-size:11px;text-align:center}.stat .lab{font-size:10px;color:#ddd}
+.event{border-top:1px solid #1e7440;padding:5px 3px;font-family:Arial,sans-serif;font-size:11px;height:29px}
+.strip{height:48px;margin-top:8px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-weight:900;font-size:15px;letter-spacing:.4px}
+.lower{display:grid;grid-template-columns:1fr 190px;gap:9px;margin-top:8px;height:278px}.matches{border-radius:6px;padding:10px}.mrow{height:39px;border-top:1px solid #1e7440;display:flex;align-items:center;gap:8px;font-family:Arial,sans-serif;font-size:11px}.ball{font-size:19px}.mtext{flex:1}
+.follow{border-radius:6px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:
+linear-gradient(180deg,rgba(2,9,5,.97),rgba(3,29,12,.96)),radial-gradient(circle at 50% 85%,rgba(48,255,113,.25),transparent 30%)}
+.follow .small{font-size:24px;font-style:italic;transform:rotate(-5deg)}.follow .big{font-size:40px;color:var(--g);font-style:italic;transform:rotate(-5deg);text-shadow:0 0 12px var(--g2)}
+.footer{height:76px;margin-top:8px;border-radius:6px;display:grid;grid-template-columns:1fr 1.1fr 1fr;align-items:center;padding:0 18px}.social{font-family:Arial,sans-serif;font-weight:900;font-size:15px;letter-spacing:5px}.footbrand{text-align:center;font-size:32px;font-style:italic}.notify{text-align:right;font-family:Arial,sans-serif;font-size:11px;font-weight:900}
+</style></head><body>
+<div class="stage">
+<div class="hero"><div class="mount">▲▲▲</div><div><div class="crown">♛</div><div class="brand">PARLAYBERG</div><div class="livepill"><span class="dot">●</span> LIVE</div><div class="sub">FOOTBALL MATCH CENTER</div></div></div>
+
+<div class="scoreboard frame">
+<div class="team"><div class="shield"></div><div id="h">HOME TEAM</div></div>
+<div class="mid"><div class="score"><span id="hs">0</span> - <span id="as">0</span></div><div id="clock" class="clock">00:00</div></div>
+<div class="team"><div class="shield"></div><div id="a">AWAY TEAM</div></div>
+</div>
+
+<div class="main">
+<div class="camera"></div>
+<div class="side">
+<div class="panel frame"><div class="ptitle"><span>▥</span> LIVE STATS</div>
+<div class="stat"><b id="ph">50%</b><div class="lab">POSSESSION</div><b id="pa">50%</b></div>
+<div class="stat"><b id="sh">0</b><div class="lab">SHOTS</div><b id="sa">0</b></div>
+<div class="stat"><b id="sth">0</b><div class="lab">SHOTS ON TARGET</div><b id="sta">0</b></div>
+<div class="stat"><b id="ch">0</b><div class="lab">CORNERS</div><b id="ca">0</b></div>
+<div class="stat"><b id="fh">0</b><div class="lab">FOULS</div><b id="fa">0</b></div>
+<div class="stat"><b id="yh">0</b><div class="lab">YELLOW CARDS</div><b id="ya">0</b></div>
+<div class="stat"><b id="rh">0</b><div class="lab">RED CARDS</div><b id="ra">0</b></div>
+</div>
+<div class="panel frame"><div class="ptitle">⚽ <span>RECENT EVENTS</span></div>
+<div class="event" id="e1">00' |</div><div class="event" id="e2">00' |</div><div class="event" id="e3">00' |</div><div class="event" id="e4">00' |</div><div class="event" id="e5">00' |</div>
+</div></div></div>
+
+<div class="strip frame">⚽ &nbsp; LIVE REACTION &nbsp; • &nbsp; ANALYSIS &nbsp; • &nbsp; SCORES &nbsp; • &nbsp; DAILY PICKS</div>
+
+<div class="lower">
+<div class="matches frame"><div class="ptitle">▣ &nbsp; TODAY'S MATCHES</div>
+<div class="mrow"><span class="ball">⚽</span><span id="m1" class="mtext">MATCH 1 • 00:00</span></div>
+<div class="mrow"><span class="ball">🏆</span><span id="m2" class="mtext">MATCH 2 • 00:00</span></div>
+<div class="mrow"><span class="ball">⚽</span><span id="m3" class="mtext">MATCH 3 • 00:00</span></div>
+<div class="mrow"><span class="ball">⚽</span><span id="m4" class="mtext">MATCH 4 • 00:00</span></div>
+<div class="mrow"><span class="ball">⚽</span><span id="m5" class="mtext">MATCH 5 • 00:00</span></div>
+</div>
+<div class="follow frame"><div class="small">FOLLOW FOR DAILY</div><div class="big">PICKS</div><div style="font-size:62px">⚽</div></div>
+</div>
+
+<div class="footer frame"><div class="social">♪ ▶ ◎</div><div class="footbrand">PARLAYBERG</div><div class="notify">🔔 TURN ON<br>NOTIFICATIONS</div></div>
+</div>
+
 <script>
-async function draw(){try{let s=await fetch('/api/state?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());h.textContent=s.homeTeam;a.textContent=s.awayTeam;hs.textContent=s.homeScore;as.textContent=s.awayScore;clock.textContent=s.clock}catch(e){}}
+async function draw(){try{
+let s=await fetch('/api/state?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());
+const set=(id,v)=>document.getElementById(id).textContent=v??'';
+set('h',s.homeTeam);set('a',s.awayTeam);set('hs',s.homeScore);set('as',s.awayScore);set('clock',s.clock);
+set('ph',(s.possessionHome||0)+'%');set('pa',(s.possessionAway||0)+'%');set('sh',s.shotsHome);set('sa',s.shotsAway);
+set('sth',s.sotHome);set('sta',s.sotAway);set('ch',s.cornersHome);set('ca',s.cornersAway);set('fh',s.foulsHome);set('fa',s.foulsAway);
+set('yh',s.yellowHome);set('ya',s.yellowAway);set('rh',s.redHome);set('ra',s.redAway);
+for(let i=1;i<=5;i++){set('e'+i,s['event'+i]);set('m'+i,s['match'+i])}
+}catch(e){}}
 draw();setInterval(draw,700);
-</script>
+</script></body></html>
