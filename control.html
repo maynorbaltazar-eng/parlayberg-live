@@ -5,16 +5,27 @@ main{max-width:980px;margin:auto}.top{display:flex;justify-content:space-between
 h1{margin:0;color:#39ff7a}.box{background:#0b1a11;border:1px solid #2dff70;border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 0 20px #00ff6630}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 input{width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px;font-size:15px}
-button{padding:12px 16px;border:0;border-radius:9px;background:#2cff73;font-weight:800;cursor:pointer}.danger{background:#ff3b3b;color:white}
+button{padding:12px 16px;border:0;border-radius:9px;background:#2cff73;font-weight:800;cursor:pointer;min-height:44px}.danger{background:#ff3b3b;color:white}.blue{background:#2491ff;color:white}.purple{background:#9b5cff;color:white}.chip{padding:9px 12px;font-size:13px}.activeMode{outline:3px solid #fff;outline-offset:2px}
 .score{font-size:54px;font-weight:900;text-align:center;margin:10px}.muted{color:#a6b7ac}.ok{color:#39ff7a}.clockPanel{text-align:center;margin:14px 0;padding:14px;border:1px solid #335c43;border-radius:12px;background:#07110b}.clockBig{font-size:38px;font-weight:900;color:#39ff7a;margin-bottom:10px}.clockBtns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.warn{background:#ffc928;color:#111}.secondary{background:#183b26;color:#fff;border:1px solid #2cff73}
 label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{font-size:18px;font-weight:900;color:#39ff7a;margin-bottom:12px}.matchCard{border:1px solid #335c43;background:#07110b;border-radius:12px;padding:14px;margin:12px 0}.matchEditGrid{display:grid;grid-template-columns:1fr 110px 1fr;gap:10px;align-items:end}.miniScore{font-size:28px;font-weight:900;text-align:center;margin:10px 0}.miniBtns{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.miniBtns button{padding:9px 11px}.logoPreview{width:72px;height:72px;object-fit:contain;background:#07110b;border:1px solid #335c43;border-radius:10px;padding:6px;margin-top:8px}
-@media(max-width:700px){.grid,.grid3{grid-template-columns:1fr}}
+@media(max-width:700px){body{padding:10px}main{max-width:100%}.box{padding:13px;margin:10px 0}.grid,.grid3,.matchEditGrid{grid-template-columns:1fr}.clockBtns,.miniBtns{justify-content:stretch}.clockBtns button,.miniBtns button{flex:1 1 45%}.score{font-size:44px}.sectionTitle{font-size:17px}}
 </style></head><body><main>
 <div class="top"><div><h1>PARLAYBERG LIVE CONTROL</h1><div class="muted">TikTok Match Center</div></div><div id="status" class="ok"></div></div>
 
 <div class="box">
 <div class="sectionTitle">Main Match</div>
 <div class="grid3"><div><label>Home team</label><input id="homeTeam"></div><div><label>Match clock</label><input id="clock" readonly></div><div><label>Away team</label><input id="awayTeam"></div></div>
+<div class="grid" style="margin-top:10px">
+<div><label>Quick Home Preset</label><select id="homePreset" onchange="applyPreset('home',this.value)" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="">Choose team...</option></select></div>
+<div><label>Quick Away Preset</label><select id="awayPreset" onchange="applyPreset('away',this.value)" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="">Choose team...</option></select></div>
+</div>
+<div style="margin-top:12px"><label>Quick Match Status</label><div class="clockBtns">
+<button type="button" class="chip secondary" onclick="setStatus('PRE')">PRE</button>
+<button type="button" class="chip" onclick="setStatus('LIVE')">LIVE</button>
+<button type="button" class="chip warn" onclick="setStatus('HT')">HT</button>
+<button type="button" class="chip purple" onclick="setStatus('ET')">ET</button>
+<button type="button" class="chip danger" onclick="setStatus('FT')">FT</button>
+</div></div>
 <div class="clockPanel">
 <div id="clockBig" class="clockBig">00:00</div>
 <div id="clockModeLabel" class="muted" style="margin-bottom:10px">STANDARD 90 MIN</div>
@@ -24,7 +35,9 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <button type="button" class="danger" onclick="clockAction('reset')">↺ RESET</button>
 <button type="button" class="secondary" onclick="clockAction('add_minute')">+1 MIN</button>
 <button type="button" class="secondary" onclick="clockAction('subtract_minute')">-1 MIN</button>
-<button type="button" class="warn" onclick="clockAction('extra')">⚽ START EXTRA TIME +30</button>
+<button type="button" class="warn" onclick="clockAction('halftime')">⏱ HALFTIME 45:00</button>
+<button type="button" class="blue" onclick="clockAction('second_half')">▶ 2ND HALF 45:00</button>
+<button type="button" class="purple" onclick="clockAction('extra')">⚽ EXTRA TIME +30</button>
 </div>
 <div class="muted" style="margin-top:10px;font-size:12px">Standard mode runs past 90:00 as added time. Extra Time starts at 90:00, runs to 120:00, then continues as added time.</div>
 </div>
@@ -45,7 +58,10 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 </div>
 </div>
 <div class="score"><span id="hs">0</span> - <span id="as">0</span></div>
-<div style="text-align:center"><button onclick="goal('homeScore',1)">HOME +1</button><button class="danger" onclick="goal('homeScore',-1)">HOME -1</button><button onclick="goal('awayScore',1)">AWAY +1</button><button class="danger" onclick="goal('awayScore',-1)">AWAY -1</button></div>
+<div style="text-align:center"><button onclick="goalWithEvent('home',1)">⚽ HOME GOAL</button><button class="danger" onclick="goal('homeScore',-1)">HOME -1</button><button onclick="goalWithEvent('away',1)">⚽ AWAY GOAL</button><button class="danger" onclick="goal('awayScore',-1)">AWAY -1</button></div>
+<div style="margin-top:12px;text-align:center"><div class="sectionTitle" style="font-size:15px">Quick Events</div>
+<div class="clockBtns"><button type="button" class="warn" onclick="quickEvent('home','YELLOW')">🟨 HOME</button><button type="button" class="warn" onclick="quickEvent('away','YELLOW')">🟨 AWAY</button><button type="button" class="danger" onclick="quickEvent('home','RED')">🟥 HOME</button><button type="button" class="danger" onclick="quickEvent('away','RED')">🟥 AWAY</button></div></div>
+<div class="clockPanel" style="margin-top:14px"><div class="sectionTitle">Penalty Shootout Mode</div><div class="clockBtns"><button id="penaltyToggle" type="button" class="purple" onclick="togglePenalty()">ENABLE PENALTIES</button><button type="button" onclick="penaltyGoal('Home',1)">HOME PEN +1</button><button type="button" onclick="penaltyGoal('Away',1)">AWAY PEN +1</button><button type="button" class="danger" onclick="penaltyGoal('Home',-1)">HOME PEN -1</button><button type="button" class="danger" onclick="penaltyGoal('Away',-1)">AWAY PEN -1</button></div><div class="score" style="font-size:32px"><span id="phs">0</span> - <span id="pas">0</span></div></div>
 </div>
 
 <div class="box"><div class="sectionTitle">Live Stats</div>
@@ -138,10 +154,14 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 </div>
 </div>
 
+<div class="box"><div class="sectionTitle">Saved Match Templates</div>
+<div class="grid"><div><label>Template name</label><input id="templateName" placeholder="El Clasico, Honduras vs Mexico..."></div><div><label>Saved templates</label><select id="templateSelect" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"></select></div></div>
+<div class="clockBtns" style="margin-top:10px"><button type="button" onclick="saveTemplate()">💾 SAVE TEMPLATE</button><button type="button" class="blue" onclick="loadTemplate()">📂 LOAD TEMPLATE</button><button type="button" class="danger" onclick="deleteTemplate()">🗑 DELETE</button></div></div>
 <div class="box"><button onclick="saveAll()">UPDATE OVERLAY</button>
 <p class="muted">TikTok overlay URL:<br><b id="u" style="color:#39ff7a"></b></p></div>
 </main>
 <script>
+const PRESETS=['Argentina','Brazil','Mexico','Honduras','USA','Spain','France','England','Portugal','Germany','Italy','Netherlands','Colombia','Uruguay','Real Madrid','Barcelona','Manchester United','Manchester City','Arsenal','Chelsea','Liverpool','Bayern Munich','Inter Milan','AC Milan','PSG','Juventus'];
 let s={};const fields=['homeTeam','awayTeam','homeLogo','awayLogo','clock','possessionHome','possessionAway','shotsHome','shotsAway','sotHome','sotAway','cornersHome','cornersAway','foulsHome','foulsAway','yellowHome','yellowAway','redHome','redAway','event1','event2','event3','event4','event5',
 'match1Home','match1Away','match1Status','match2Home','match2Away','match2Status','match3Home','match3Away','match3Status','match4Home','match4Away','match4Status','match5Home','match5Away','match5Status'];
 async function load(){try{s=await fetch('/api/state?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());drawForm();drawLive();status.textContent='● Connected'}catch(e){status.textContent='Connection error'}}
@@ -155,11 +175,11 @@ function pickLogo(fileInput,targetId,previewId){
 }
 function clearLogo(targetId,previewId,fileId){document.getElementById(targetId).value='';document.getElementById(fileId).value='';previewLogo(targetId,previewId)}
 function drawForm(){fields.forEach(k=>{const el=document.getElementById(k);if(el)el.value=s[k]??''});u.textContent=location.origin+'/overlay.html';previewLogo('homeLogo','homeLogoPreview');previewLogo('awayLogo','awayLogoPreview')}
-function drawLive(){hs.textContent=s.homeScore??0;as.textContent=s.awayScore??0;clock.value=s.clock||'00:00';clockBig.textContent=s.clock||'00:00';clockModeLabel.textContent=s.clockMode==='extra'?'EXTRA TIME • 90–120 MIN':'STANDARD 90 MIN';for(let i=1;i<=5;i++){document.getElementById('m'+i+'hs').textContent=s['match'+i+'HomeScore']??0;document.getElementById('m'+i+'as').textContent=s['match'+i+'AwayScore']??0}}
+function drawLive(){hs.textContent=s.homeScore??0;as.textContent=s.awayScore??0;phs.textContent=s.penaltyHome??0;pas.textContent=s.penaltyAway??0;clock.value=s.clock||'00:00';clockBig.textContent=(s.matchStatus&&s.matchStatus!=='LIVE'&&s.matchStatus!=='PRE'?s.matchStatus+' • ':'')+(s.clock||'00:00');clockModeLabel.textContent=s.clockMode==='extra'?'EXTRA TIME • 90–120 MIN':(s.matchStatus||'PRE')+' • STANDARD 90 MIN';penaltyToggle.textContent=s.penaltyMode?'DISABLE PENALTIES':'ENABLE PENALTIES';penaltyToggle.classList.toggle('activeMode',!!s.penaltyMode);for(let i=1;i<=5;i++){document.getElementById('m'+i+'hs').textContent=s['match'+i+'HomeScore']??0;document.getElementById('m'+i+'as').textContent=s['match'+i+'AwayScore']??0}}
 async function post(x){s=await fetch('/api/state',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(x)}).then(r=>r.json());drawForm();drawLive();status.textContent='● Overlay updated'}
 async function clockAction(action){try{s=await fetch('/api/clock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action})}).then(r=>r.json());drawLive();status.textContent='● Clock updated'}catch(e){status.textContent='Clock error'}}
 function saveAll(){let x={};fields.forEach(k=>{if(k!=='clock')x[k]=document.getElementById(k).value});post(x)}
 function goal(k,d){post({[k]:Math.max(0,(+s[k]||0)+d)})}
 function miniGoal(i,side,d){const k='match'+i+side+'Score';post({[k]:Math.max(0,(+s[k]||0)+d)})}
-load();setInterval(pollLive,1000);
+initPresets();refreshTemplates();load();setInterval(pollLive,1000);
 </script></body></html>
