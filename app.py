@@ -143,14 +143,12 @@ def live_sync():
     if not fixture_id:
         return jsonify({"ok":False,"error":"Choose a live fixture first"}),400
     try:
-        payload=_sportmonks_get(f"/fixtures/{fixture_id}",{"include":"participants;scores;periods;state;events;statistics"})
+        payload=_sportmonks_get(f"/fixtures/{fixture_id}",{"include":"participants;scores;periods;state"})
         f=payload.get("data") or {}
         p=f.get("participants") or []
         home=next((x for x in p if (x.get("meta") or {}).get("location")=="home"),{})
         away=next((x for x in p if (x.get("meta") or {}).get("location")=="away"),{})
         sc=_current_score(f.get("scores"))
-        events=_format_events(f.get("events"))
-        stats=f.get("statistics") or []
         with lock:
             state["liveDataMode"]=True
             state["liveFixtureId"]=fixture_id
@@ -161,21 +159,6 @@ def live_sync():
             if away.get("image_path"): state["awayLogo"]=away.get("image_path")
             state["homeScore"]=sc["home"]; state["awayScore"]=sc["away"]
             state["matchStatus"]=_status_from_fixture(f)
-            state["possessionHome"]=str(_stat_value(stats,45,"home"))
-            state["possessionAway"]=str(_stat_value(stats,45,"away"))
-            state["shotsHome"]=str(_stat_value(stats,42,"home"))
-            state["shotsAway"]=str(_stat_value(stats,42,"away"))
-            state["sotHome"]=str(_stat_value(stats,86,"home"))
-            state["sotAway"]=str(_stat_value(stats,86,"away"))
-            state["cornersHome"]=str(_stat_value(stats,34,"home"))
-            state["cornersAway"]=str(_stat_value(stats,34,"away"))
-            state["foulsHome"]=str(_stat_value(stats,56,"home"))
-            state["foulsAway"]=str(_stat_value(stats,56,"away"))
-            state["yellowHome"]=str(_stat_value(stats,84,"home"))
-            state["yellowAway"]=str(_stat_value(stats,84,"away"))
-            state["redHome"]=str(_stat_value(stats,83,"home"))
-            state["redAway"]=str(_stat_value(stats,83,"away"))
-            for i,ev in enumerate(events,1): state[f"event{i}"]=ev
             return jsonify({"ok":True,"state":_snapshot()})
     except Exception as e:
         return jsonify({"ok":False,"error":str(e)}),500
