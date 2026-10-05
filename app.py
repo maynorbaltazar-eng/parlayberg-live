@@ -3,8 +3,8 @@ import os, threading, time
 app=Flask(__name__, static_folder='.')
 lock=threading.Lock()
 state={
-"homeTeam":"HOME TEAM","awayTeam":"AWAY TEAM","homeLogo":"","awayLogo":"","homeScore":0,"awayScore":0,"clock":"00:00",
-"clockElapsed":0,"clockRunning":False,"clockLastStarted":None,"clockMode":"standard",
+"homeTeam":"HOME TEAM","awayTeam":"AWAY TEAM","homeLogo":"","awayLogo":"","homeScore":0,"awayScore":0,"clock":"00:00","matchStatus":"PRE",
+"clockElapsed":0,"clockRunning":False,"clockLastStarted":None,"clockMode":"standard","penaltyMode":False,"penaltyHome":0,"penaltyAway":0,
 "possessionHome":"50","possessionAway":"50","shotsHome":"0","shotsAway":"0",
 "sotHome":"0","sotAway":"0","cornersHome":"0","cornersAway":"0",
 "foulsHome":"0","foulsAway":"0","yellowHome":"0","yellowAway":"0","redHome":"0","redAway":"0",
@@ -59,16 +59,34 @@ def clock_action():
             state["clockElapsed"]=elapsed
             state["clockLastStarted"]=None
             state["clockRunning"]=False
+            if state.get("matchStatus")=="LIVE": state["matchStatus"]="PAUSED"
         elif action=="reset":
             state["clockElapsed"]=0
             state["clockLastStarted"]=None
             state["clockRunning"]=False
             state["clockMode"]="standard"
+            state["matchStatus"]="PRE"
+            state["penaltyMode"]=False
+            state["penaltyHome"]=0
+            state["penaltyAway"]=0
+        elif action=="halftime":
+            state["clockElapsed"]=2700
+            state["clockLastStarted"]=None
+            state["clockRunning"]=False
+            state["clockMode"]="standard"
+            state["matchStatus"]="HT"
+        elif action=="second_half":
+            state["clockElapsed"]=2700
+            state["clockLastStarted"]=now
+            state["clockRunning"]=True
+            state["clockMode"]="standard"
+            state["matchStatus"]="LIVE"
         elif action=="extra":
             state["clockElapsed"]=5400
             state["clockLastStarted"]=now
             state["clockRunning"]=True
             state["clockMode"]="extra"
+            state["matchStatus"]="ET"
         elif action=="add_minute":
             state["clockElapsed"]=elapsed+60
             state["clockLastStarted"]=now if state.get("clockRunning") else None
