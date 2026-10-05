@@ -13,6 +13,17 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div class="top"><div><h1>PARLAYBERG LIVE CONTROL</h1><div class="muted">TikTok Match Center</div></div><div id="status" class="ok"></div></div>
 
 <div class="box">
+<div class="sectionTitle">Automatic Live Data</div>
+<div class="muted" style="margin-bottom:10px">Connect a Sportmonks live fixture to automatically update teams, logos, score, match clock, stats and recent events.</div>
+<div class="grid">
+<div><label>Live fixture</label><select id="liveFixtureSelect" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="">Load live matches first...</option></select></div>
+<div><label>Auto sync</label><select id="liveAuto" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="off">Off</option><option value="on">Every 5 seconds</option></select></div>
+</div>
+<div class="clockBtns" style="margin-top:10px"><button type="button" class="blue" onclick="loadLiveFixtures()">🔄 LOAD LIVE MATCHES</button><button type="button" onclick="syncSelectedFixture()">⚡ CONNECT / SYNC NOW</button><button type="button" class="danger" onclick="stopLiveData()">STOP AUTO DATA</button></div>
+<div id="liveDataStatus" class="muted" style="margin-top:10px">Not connected.</div>
+</div>
+
+<div class="box">
 <div class="sectionTitle">Main Match</div>
 <div class="grid3"><div><label>Home team</label><input id="homeTeam"></div><div><label>Match clock</label><input id="clock" readonly></div><div><label>Away team</label><input id="awayTeam"></div></div>
 <div class="grid" style="margin-top:10px">
@@ -181,5 +192,10 @@ async function clockAction(action){try{s=await fetch('/api/clock',{method:'POST'
 function saveAll(){let x={};fields.forEach(k=>{if(k!=='clock')x[k]=document.getElementById(k).value});post(x)}
 function goal(k,d){post({[k]:Math.max(0,(+s[k]||0)+d)})}
 function miniGoal(i,side,d){const k='match'+i+side+'Score';post({[k]:Math.max(0,(+s[k]||0)+d)})}
+let liveSyncBusy=false;
+async function loadLiveFixtures(){liveDataStatus.textContent='Loading live matches...';try{const r=await fetch('/api/live/inplay',{cache:'no-store'}).then(x=>x.json());if(!r.ok)throw new Error(r.error||'Unable to load live matches');liveFixtureSelect.innerHTML='<option value="">Choose a live match...</option>';r.fixtures.forEach(f=>{const o=document.createElement('option');o.value=f.id;o.textContent=(f.home+' '+f.homeScore+'-'+f.awayScore+' '+f.away+' • '+(f.clock||f.status||'LIVE'));liveFixtureSelect.appendChild(o)});liveDataStatus.textContent=r.fixtures.length?('Found '+r.fixtures.length+' live matches.'):'No live matches found on your current Sportmonks plan.'}catch(e){liveDataStatus.textContent='Live API error: '+e.message}}
+async function syncSelectedFixture(){const id=liveFixtureSelect.value||s.liveFixtureId;if(!id){liveDataStatus.textContent='Choose a live match first.';return}if(liveSyncBusy)return;liveSyncBusy=true;try{const r=await fetch('/api/live/sync',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fixture_id:id})}).then(x=>x.json());if(!r.ok)throw new Error(r.error||'Sync failed');s=r.state;drawForm();drawLive();liveDataStatus.textContent='● AUTO DATA CONNECTED • '+s.homeTeam+' vs '+s.awayTeam+' • '+(s.clock||'')}catch(e){liveDataStatus.textContent='Live sync error: '+e.message}finally{liveSyncBusy=false}}
+async function stopLiveData(){await fetch('/api/live/stop',{method:'POST'});liveAuto.value='off';liveDataStatus.textContent='Automatic live data stopped. Manual controls are active.'}
+setInterval(()=>{if(liveAuto.value==='on' && liveFixtureSelect.value)syncSelectedFixture()},5000);
 initPresets();refreshTemplates();load();setInterval(pollLive,1000);
 </script></body></html>
