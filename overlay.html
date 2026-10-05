@@ -17,7 +17,7 @@ repeating-linear-gradient(0deg,transparent 0 44px,rgba(48,255,113,.018) 45px);po
 .livepill .dot{color:#ff2323}.sub{font-family:Arial,sans-serif;font-size:10px;letter-spacing:5px;margin-top:8px}
 .scoreboard{height:114px;display:grid;grid-template-columns:1fr 160px 1fr;align-items:center;border-radius:8px;padding:8px 14px;margin-top:2px}
 .team{font-size:22px;text-align:center}.shield{width:64px;height:64px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center}.shield img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 5px rgba(255,255,255,.35))}.shield.fallback{background:linear-gradient(#f4f4f4,#aaa);clip-path:polygon(50% 0,92% 15%,88% 70%,50% 100%,12% 70%,8% 15%);border:3px solid #fff}
-.mid{text-align:center}.score{font-size:54px;line-height:.9;text-shadow:0 0 10px #000}.clock{margin-top:6px;display:inline-block;border:2px solid var(--g);padding:4px 17px;border-radius:8px;color:#fff;background:#07140c;font-family:Arial,sans-serif;font-weight:900}
+.mid{text-align:center}.score{font-size:54px;line-height:.9;text-shadow:0 0 10px #000}.matchstatus{font-family:Arial,sans-serif;font-size:10px;color:var(--g);font-weight:900;letter-spacing:1px;margin-bottom:3px}.pens{display:none;font-family:Arial,sans-serif;font-size:11px;color:#ffd84a;font-weight:900;margin-top:4px}.clock{margin-top:6px;display:inline-block;border:2px solid var(--g);padding:4px 17px;border-radius:8px;color:#fff;background:#07140c;font-family:Arial,sans-serif;font-weight:900}
 .main{display:grid;grid-template-columns:1fr 198px;gap:9px;height:455px;margin-top:9px}
 .camera{position:relative;border-radius:6px;background:transparent;border:3px solid var(--g);box-shadow:0 0 14px rgba(48,255,113,.65),inset 0 0 0 5px rgba(0,0,0,.6);overflow:hidden}
 .camera:before{content:"LIVE REACTION";position:absolute;z-index:5;top:-15px;left:50%;transform:translateX(-50%);background:#07110b;border:2px solid var(--g);padding:5px 24px;border-radius:5px;font-family:Arial,sans-serif;font-size:13px;font-weight:900;white-space:nowrap}
@@ -37,7 +37,7 @@ repeating-linear-gradient(0deg,transparent 0 44px,rgba(48,255,113,.018) 45px);po
 
 <div class="scoreboard frame">
 <div class="team"><div id="homeShield" class="shield fallback"><img id="homeLogoImg" alt=""></div><div id="h">HOME TEAM</div></div>
-<div class="mid"><div class="score"><span id="hs">0</span> - <span id="as">0</span></div><div id="clock" class="clock">00:00</div></div>
+<div class="mid"><div id="matchStatus" class="matchstatus">PRE</div><div class="score"><span id="hs">0</span> - <span id="as">0</span></div><div id="clock" class="clock">00:00</div><div id="pens" class="pens">PENS <span id="phs">0</span> - <span id="pas">0</span></div></div>
 <div class="team"><div id="awayShield" class="shield fallback"><img id="awayLogoImg" alt=""></div><div id="a">AWAY TEAM</div></div>
 </div>
 
@@ -72,7 +72,7 @@ repeating-linear-gradient(0deg,transparent 0 44px,rgba(48,255,113,.018) 45px);po
 async function draw(){try{
 let s=await fetch('/api/state?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());
 const set=(id,v)=>document.getElementById(id).textContent=v??'';
-set('h',s.homeTeam);set('a',s.awayTeam);set('hs',s.homeScore);set('as',s.awayScore);set('clock',s.clock);
+set('h',s.homeTeam);set('a',s.awayTeam);set('hs',s.homeScore);set('as',s.awayScore);set('clock',s.clock);set('matchStatus',s.matchStatus||'');set('phs',s.penaltyHome||0);set('pas',s.penaltyAway||0);document.getElementById('pens').style.display=s.penaltyMode?'block':'none';
 const setLogo=(imgId,shieldId,url)=>{const img=document.getElementById(imgId),sh=document.getElementById(shieldId);if(url){img.src=url;img.style.display='block';sh.classList.remove('fallback');img.onerror=()=>{img.style.display='none';sh.classList.add('fallback')}}else{img.removeAttribute('src');img.style.display='none';sh.classList.add('fallback')}};
 setLogo('homeLogoImg','homeShield',s.homeLogo);setLogo('awayLogoImg','awayShield',s.awayLogo);
 set('ph',(s.possessionHome||0)+'%');set('pa',(s.possessionAway||0)+'%');set('sh',s.shotsHome);set('sa',s.shotsAway);
