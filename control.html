@@ -7,7 +7,7 @@ h1{margin:0;color:#39ff7a}.box{background:#0b1a11;border:1px solid #2dff70;borde
 input{width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px;font-size:15px}
 button{padding:12px 16px;border:0;border-radius:9px;background:#2cff73;font-weight:800;cursor:pointer;min-height:44px}.danger{background:#ff3b3b;color:white}.blue{background:#2491ff;color:white}.purple{background:#9b5cff;color:white}.chip{padding:9px 12px;font-size:13px}.activeMode{outline:3px solid #fff;outline-offset:2px}
 .score{font-size:54px;font-weight:900;text-align:center;margin:10px}.muted{color:#a6b7ac}.ok{color:#39ff7a}.clockPanel{text-align:center;margin:14px 0;padding:14px;border:1px solid #335c43;border-radius:12px;background:#07110b}.clockBig{font-size:38px;font-weight:900;color:#39ff7a;margin-bottom:10px}.clockBtns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.warn{background:#ffc928;color:#111}.secondary{background:#183b26;color:#fff;border:1px solid #2cff73}
-label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{font-size:18px;font-weight:900;color:#39ff7a;margin-bottom:12px}.matchCard{border:1px solid #335c43;background:#07110b;border-radius:12px;padding:14px;margin:12px 0}.matchEditGrid{display:grid;grid-template-columns:1fr 110px 1fr;gap:10px;align-items:end}.miniScore{font-size:28px;font-weight:900;text-align:center;margin:10px 0}.miniBtns{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.miniBtns button{padding:9px 11px}.logoPreview{width:72px;height:72px;object-fit:contain;background:#07110b;border:1px solid #335c43;border-radius:10px;padding:6px;margin-top:8px}.predCard{border:1px solid #335c43;background:#07110b;border-radius:12px;padding:14px;margin:12px 0}.predGrid{display:grid;grid-template-columns:1.25fr 1fr 1.25fr .7fr .7fr .8fr .65fr;gap:8px;align-items:end}.predProgress{height:10px;background:#183b26;border-radius:999px;overflow:hidden;margin-top:10px}.predProgress>div{height:100%;background:#2cff73;width:0}.predHead{display:flex;justify-content:space-between;gap:10px;align-items:center}.predTools{display:flex;gap:6px;flex-wrap:wrap}.predTools button{padding:8px 10px;min-height:38px}.toggleRow{display:flex;gap:8px;align-items:center}
+label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{font-size:18px;font-weight:900;color:#39ff7a;margin-bottom:12px}.matchCard{border:1px solid #335c43;background:#07110b;border-radius:12px;padding:14px;margin:12px 0}.matchEditGrid{display:grid;grid-template-columns:1fr 110px 1fr;gap:10px;align-items:end}.miniScore{font-size:28px;font-weight:900;text-align:center;margin:10px 0}.miniBtns{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.miniBtns button{padding:9px 11px}.logoPreview{width:72px;height:72px;object-fit:contain;background:#07110b;border:1px solid #335c43;border-radius:10px;padding:6px;margin-top:8px}.predCard{border:1px solid #335c43;background:#07110b;border-radius:12px;padding:14px;margin:12px 0}.predGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;align-items:end}.predProgress{height:10px;background:#183b26;border-radius:999px;overflow:hidden;margin-top:10px}.predProgress>div{height:100%;background:#2cff73;width:0}.predHead{display:flex;justify-content:space-between;gap:10px;align-items:center}.predTools{display:flex;gap:6px;flex-wrap:wrap}.predTools button{padding:8px 10px;min-height:38px}.toggleRow{display:flex;gap:8px;align-items:center}
 @media(max-width:700px){body{padding:10px}main{max-width:100%}.box{padding:13px;margin:10px 0}.grid,.grid3,.matchEditGrid,.predGrid{grid-template-columns:1fr}.clockBtns,.miniBtns{justify-content:stretch}.clockBtns button,.miniBtns button{flex:1 1 45%}.score{font-size:44px}.sectionTitle{font-size:17px}}
 </style></head><body><main>
 <div class="top"><div><h1>PARLAYBERG LIVE CONTROL</h1><div class="muted">TikTok Match Center</div></div><div id="status" class="ok"></div></div>
@@ -71,12 +71,17 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 1</div><label class="toggleRow"><input id="pred1Enabled" type="checkbox" style="width:auto"> Show</label></div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred1Match" placeholder="France vs Italy"></div>
+<div><label>Flag / Icon</label><input id="pred1Icon" placeholder="🇫🇷"></div>
+<div><label>Live status</label><input id="pred1Status" placeholder="86' • LIVE"></div>
+<div><label>Home score</label><input id="pred1HomeScore" type="number" min="0" step="1"></div>
+<div><label>Away score</label><input id="pred1AwayScore" type="number" min="0" step="1"></div>
 <div><label>Market</label><select id="pred1Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
 <div><label>Pick</label><input id="pred1Pick" placeholder="Over 1.5 Goals"></div>
 <div><label>Current</label><input id="pred1Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred1Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred1Unit" placeholder="Goals"></div>
 <div><label>Odds</label><input id="pred1Odds" placeholder="-110"></div>
+<div><label>% override</label><input id="pred1Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 <div><label>Result</label><select id="pred1Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
@@ -89,12 +94,17 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 2</div><label class="toggleRow"><input id="pred2Enabled" type="checkbox" style="width:auto"> Show</label></div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred2Match" placeholder="France vs Italy"></div>
+<div><label>Flag / Icon</label><input id="pred2Icon" placeholder="🇫🇷"></div>
+<div><label>Live status</label><input id="pred2Status" placeholder="86' • LIVE"></div>
+<div><label>Home score</label><input id="pred2HomeScore" type="number" min="0" step="1"></div>
+<div><label>Away score</label><input id="pred2AwayScore" type="number" min="0" step="1"></div>
 <div><label>Market</label><select id="pred2Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
 <div><label>Pick</label><input id="pred2Pick" placeholder="Over 1.5 Goals"></div>
 <div><label>Current</label><input id="pred2Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred2Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred2Unit" placeholder="Goals"></div>
 <div><label>Odds</label><input id="pred2Odds" placeholder="-110"></div>
+<div><label>% override</label><input id="pred2Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 <div><label>Result</label><select id="pred2Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
@@ -107,12 +117,17 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 3</div><label class="toggleRow"><input id="pred3Enabled" type="checkbox" style="width:auto"> Show</label></div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred3Match" placeholder="France vs Italy"></div>
+<div><label>Flag / Icon</label><input id="pred3Icon" placeholder="🇫🇷"></div>
+<div><label>Live status</label><input id="pred3Status" placeholder="86' • LIVE"></div>
+<div><label>Home score</label><input id="pred3HomeScore" type="number" min="0" step="1"></div>
+<div><label>Away score</label><input id="pred3AwayScore" type="number" min="0" step="1"></div>
 <div><label>Market</label><select id="pred3Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
 <div><label>Pick</label><input id="pred3Pick" placeholder="Over 1.5 Goals"></div>
 <div><label>Current</label><input id="pred3Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred3Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred3Unit" placeholder="Goals"></div>
 <div><label>Odds</label><input id="pred3Odds" placeholder="-110"></div>
+<div><label>% override</label><input id="pred3Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 <div><label>Result</label><select id="pred3Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
@@ -125,12 +140,17 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 4</div><label class="toggleRow"><input id="pred4Enabled" type="checkbox" style="width:auto"> Show</label></div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred4Match" placeholder="France vs Italy"></div>
+<div><label>Flag / Icon</label><input id="pred4Icon" placeholder="🇫🇷"></div>
+<div><label>Live status</label><input id="pred4Status" placeholder="86' • LIVE"></div>
+<div><label>Home score</label><input id="pred4HomeScore" type="number" min="0" step="1"></div>
+<div><label>Away score</label><input id="pred4AwayScore" type="number" min="0" step="1"></div>
 <div><label>Market</label><select id="pred4Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
 <div><label>Pick</label><input id="pred4Pick" placeholder="Over 1.5 Goals"></div>
 <div><label>Current</label><input id="pred4Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred4Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred4Unit" placeholder="Goals"></div>
 <div><label>Odds</label><input id="pred4Odds" placeholder="-110"></div>
+<div><label>% override</label><input id="pred4Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 <div><label>Result</label><select id="pred4Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
@@ -143,12 +163,17 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 5</div><label class="toggleRow"><input id="pred5Enabled" type="checkbox" style="width:auto"> Show</label></div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred5Match" placeholder="France vs Italy"></div>
+<div><label>Flag / Icon</label><input id="pred5Icon" placeholder="🇫🇷"></div>
+<div><label>Live status</label><input id="pred5Status" placeholder="86' • LIVE"></div>
+<div><label>Home score</label><input id="pred5HomeScore" type="number" min="0" step="1"></div>
+<div><label>Away score</label><input id="pred5AwayScore" type="number" min="0" step="1"></div>
 <div><label>Market</label><select id="pred5Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
 <div><label>Pick</label><input id="pred5Pick" placeholder="Over 1.5 Goals"></div>
 <div><label>Current</label><input id="pred5Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred5Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred5Unit" placeholder="Goals"></div>
 <div><label>Odds</label><input id="pred5Odds" placeholder="-110"></div>
+<div><label>% override</label><input id="pred5Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 <div><label>Result</label><select id="pred5Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
@@ -161,12 +186,17 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 6</div><label class="toggleRow"><input id="pred6Enabled" type="checkbox" style="width:auto"> Show</label></div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred6Match" placeholder="France vs Italy"></div>
+<div><label>Flag / Icon</label><input id="pred6Icon" placeholder="🇫🇷"></div>
+<div><label>Live status</label><input id="pred6Status" placeholder="86' • LIVE"></div>
+<div><label>Home score</label><input id="pred6HomeScore" type="number" min="0" step="1"></div>
+<div><label>Away score</label><input id="pred6AwayScore" type="number" min="0" step="1"></div>
 <div><label>Market</label><select id="pred6Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
 <div><label>Pick</label><input id="pred6Pick" placeholder="Over 1.5 Goals"></div>
 <div><label>Current</label><input id="pred6Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred6Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred6Unit" placeholder="Goals"></div>
 <div><label>Odds</label><input id="pred6Odds" placeholder="-110"></div>
+<div><label>% override</label><input id="pred6Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 <div><label>Result</label><select id="pred6Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
@@ -179,12 +209,17 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 7</div><label class="toggleRow"><input id="pred7Enabled" type="checkbox" style="width:auto"> Show</label></div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred7Match" placeholder="France vs Italy"></div>
+<div><label>Flag / Icon</label><input id="pred7Icon" placeholder="🇫🇷"></div>
+<div><label>Live status</label><input id="pred7Status" placeholder="86' • LIVE"></div>
+<div><label>Home score</label><input id="pred7HomeScore" type="number" min="0" step="1"></div>
+<div><label>Away score</label><input id="pred7AwayScore" type="number" min="0" step="1"></div>
 <div><label>Market</label><select id="pred7Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
 <div><label>Pick</label><input id="pred7Pick" placeholder="Over 1.5 Goals"></div>
 <div><label>Current</label><input id="pred7Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred7Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred7Unit" placeholder="Goals"></div>
 <div><label>Odds</label><input id="pred7Odds" placeholder="-110"></div>
+<div><label>% override</label><input id="pred7Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 <div><label>Result</label><select id="pred7Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
@@ -197,12 +232,17 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 8</div><label class="toggleRow"><input id="pred8Enabled" type="checkbox" style="width:auto"> Show</label></div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred8Match" placeholder="France vs Italy"></div>
+<div><label>Flag / Icon</label><input id="pred8Icon" placeholder="🇫🇷"></div>
+<div><label>Live status</label><input id="pred8Status" placeholder="86' • LIVE"></div>
+<div><label>Home score</label><input id="pred8HomeScore" type="number" min="0" step="1"></div>
+<div><label>Away score</label><input id="pred8AwayScore" type="number" min="0" step="1"></div>
 <div><label>Market</label><select id="pred8Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
 <div><label>Pick</label><input id="pred8Pick" placeholder="Over 1.5 Goals"></div>
 <div><label>Current</label><input id="pred8Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred8Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred8Unit" placeholder="Goals"></div>
 <div><label>Odds</label><input id="pred8Odds" placeholder="-110"></div>
+<div><label>% override</label><input id="pred8Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 <div><label>Result</label><select id="pred8Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
@@ -298,7 +338,7 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 const PRESETS=['Argentina','Brazil','Mexico','Honduras','USA','Spain','France','England','Portugal','Germany','Italy','Netherlands','Colombia','Uruguay','Real Madrid','Barcelona','Manchester United','Manchester City','Arsenal','Chelsea','Liverpool','Bayern Munich','Inter Milan','AC Milan','PSG','Juventus'];
 let s={};const fields=['homeTeam','awayTeam','homeLogo','awayLogo','clock',
 'match1Home','match1Away','match1Status','match2Home','match2Away','match2Status','match3Home','match3Away','match3Status','match4Home','match4Away','match4Status','match5Home','match5Away','match5Status',
-'pred1Match','pred1Market','pred1Pick','pred1Current','pred1Target','pred1Unit','pred1Odds','pred1Result','pred2Match','pred2Market','pred2Pick','pred2Current','pred2Target','pred2Unit','pred2Odds','pred2Result','pred3Match','pred3Market','pred3Pick','pred3Current','pred3Target','pred3Unit','pred3Odds','pred3Result','pred4Match','pred4Market','pred4Pick','pred4Current','pred4Target','pred4Unit','pred4Odds','pred4Result','pred5Match','pred5Market','pred5Pick','pred5Current','pred5Target','pred5Unit','pred5Odds','pred5Result','pred6Match','pred6Market','pred6Pick','pred6Current','pred6Target','pred6Unit','pred6Odds','pred6Result','pred7Match','pred7Market','pred7Pick','pred7Current','pred7Target','pred7Unit','pred7Odds','pred7Result','pred8Match','pred8Market','pred8Pick','pred8Current','pred8Target','pred8Unit','pred8Odds','pred8Result'];
+'pred1Match','pred1Icon','pred1Status','pred1HomeScore','pred1AwayScore','pred1Percent','pred1Market','pred1Pick','pred1Current','pred1Target','pred1Unit','pred1Odds','pred1Result','pred2Match','pred2Icon','pred2Status','pred2HomeScore','pred2AwayScore','pred2Percent','pred2Market','pred2Pick','pred2Current','pred2Target','pred2Unit','pred2Odds','pred2Result','pred3Match','pred3Icon','pred3Status','pred3HomeScore','pred3AwayScore','pred3Percent','pred3Market','pred3Pick','pred3Current','pred3Target','pred3Unit','pred3Odds','pred3Result','pred4Match','pred4Icon','pred4Status','pred4HomeScore','pred4AwayScore','pred4Percent','pred4Market','pred4Pick','pred4Current','pred4Target','pred4Unit','pred4Odds','pred4Result','pred5Match','pred5Icon','pred5Status','pred5HomeScore','pred5AwayScore','pred5Percent','pred5Market','pred5Pick','pred5Current','pred5Target','pred5Unit','pred5Odds','pred5Result','pred6Match','pred6Icon','pred6Status','pred6HomeScore','pred6AwayScore','pred6Percent','pred6Market','pred6Pick','pred6Current','pred6Target','pred6Unit','pred6Odds','pred6Result','pred7Match','pred7Icon','pred7Status','pred7HomeScore','pred7AwayScore','pred7Percent','pred7Market','pred7Pick','pred7Current','pred7Target','pred7Unit','pred7Odds','pred7Result','pred8Match','pred8Icon','pred8Status','pred8HomeScore','pred8AwayScore','pred8Percent','pred8Market','pred8Pick','pred8Current','pred8Target','pred8Unit','pred8Odds','pred8Result'];
 async function load(){try{s=await fetch('/api/state?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());drawForm();drawLive();status.textContent='● Connected'}catch(e){status.textContent='Connection error'}}
 async function pollLive(){try{const live=await fetch('/api/state?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());s={...s,...live};drawLive()}catch(e){}}
 function previewLogo(inputId,imgId){const url=document.getElementById(inputId).value||'';const img=document.getElementById(imgId);img.src=url;img.style.visibility=url?'visible':'hidden'}
@@ -320,7 +360,7 @@ function goal(k,d){post({[k]:Math.max(0,(+s[k]||0)+d)})}
 function miniGoal(i,side,d){const k='match'+i+side+'Score';post({[k]:Math.max(0,(+s[k]||0)+d)})}
 function predStep(i,d){const el=document.getElementById('pred'+i+'Current');el.value=Math.max(0,(+el.value||0)+d);updatePredPreview(i)}
 function copyMainMatch(i){document.getElementById('pred'+i+'Match').value=(document.getElementById('homeTeam').value||'HOME')+' vs '+(document.getElementById('awayTeam').value||'AWAY')}
-function initPredListeners(){for(let i=1;i<=8;i++){['Current','Target','Pick','Unit','Odds','Result','Market'].forEach(sfx=>{const el=document.getElementById('pred'+i+sfx);if(el)el.addEventListener('input',()=>updatePredPreview(i))})}}
+function initPredListeners(){for(let i=1;i<=8;i++){['Current','Target','Pick','Unit','Odds','Percent','Result','Market'].forEach(sfx=>{const el=document.getElementById('pred'+i+sfx);if(el)el.addEventListener('input',()=>updatePredPreview(i))})}}
 function initPresets(){for(const id of ['homePreset','awayPreset']){const el=document.getElementById(id);if(!el)continue;PRESETS.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;el.appendChild(o)})}}
 function applyPreset(side,name){if(name)document.getElementById(side+'Team').value=name}
 function setStatus(v){post({matchStatus:v})}
