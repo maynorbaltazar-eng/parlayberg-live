@@ -337,7 +337,7 @@ function setStatus(v){post({matchStatus:v})}
 function togglePenalty(){post({penaltyMode:!s.penaltyMode})}
 function penaltyGoal(side,d){const k='penalty'+side;post({[k]:Math.max(0,(+s[k]||0)+d),penaltyMode:true})}
 function goalWithEvent(side,d){const k=side==='home'?'homeScore':'awayScore';goal(k,d)}
-function quickEvent(side,type){status.textContent='Quick events are no longer shown on the overlay.'}
+function quickEvent(side,type){const k=type==='YELLOW'?(side==='home'?'yellowHome':'yellowAway'):(side==='home'?'redHome':'redAway');const next=Math.max(0,(+s[k]||0)+1);post({[k]:next});status.textContent='● '+type+' card added to '+(side==='home'?(s.homeTeam||'home'):(s.awayTeam||'away'))}
 function refreshTemplates(){const sel=document.getElementById('templateSelect');if(sel)sel.innerHTML='<option>Current layout</option>'}
 function saveTemplate(){status.textContent='Templates are currently stored through your controller values.'}
 function loadTemplate(){status.textContent='Use UPDATE OVERLAY after loading your saved controller values.'}
