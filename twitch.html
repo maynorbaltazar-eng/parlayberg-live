@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BergPicks Twitch Match Center</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:transparent;color:#f4fff7;font-family:Arial,Helvetica,sans-serif}
+:root{--green:#35fa79;--mint:#a4ffc0;--border:rgba(53,250,121,.7)}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;padding:26px 30px 22px;background:transparent;transform-origin:top left}
+.panel{background:linear-gradient(135deg,rgba(4,17,9,.98),rgba(2,10,6,.96));border:2px solid var(--border);border-radius:22px;box-shadow:0 0 22px rgba(33,235,105,.19)}
+.top{height:168px;display:grid;grid-template-columns:210px 1fr 320px 1fr 210px;align-items:center;padding:15px 28px;gap:10px}
+.time{font-size:48px;font-weight:900;letter-spacing:-2px;text-align:center}.timeLabel{font-size:14px;color:var(--mint);letter-spacing:2px;text-align:center;font-weight:900}
+.team{display:flex;align-items:center;justify-content:center;gap:18px;min-width:0}.team.away{flex-direction:row-reverse}
+.teamLogo{width:95px;height:95px;object-fit:contain;flex:none}.logoFallback{width:95px;height:95px;flex:none;display:grid;place-items:center;border-radius:20px;background:#173021;color:var(--green);font-size:45px}
+.teamName{font-size:31px;font-weight:900;max-width:275px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.cards{color:#e7ffe9;font-size:18px;margin-top:7px}
+.center{text-align:center}.status{color:var(--green);font-size:15px;font-weight:900;letter-spacing:3px}.score{font-size:76px;font-weight:900;line-height:1.12;letter-spacing:2px}
+.brandTop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}.brandTop b{font-size:30px;letter-spacing:1px}.brandTop span{color:var(--mint);font-size:14px;letter-spacing:2px}
+.content{display:grid;grid-template-columns:1160px 1fr;gap:18px;height:797px;margin-top:18px}
+.cameraPanel{height:100%;position:relative;border:4px solid var(--green);border-radius:24px;box-shadow:0 0 22px rgba(53,250,121,.34);background:transparent;overflow:hidden}
+.camTitle{position:absolute;top:0;left:50%;transform:translateX(-50%);padding:10px 34px;background:#07190e;border:2px solid var(--green);border-top:0;border-radius:0 0 15px 15px;font-size:18px;font-weight:900;letter-spacing:2px}
+.cameraCorner{position:absolute;bottom:20px;left:24px;background:rgba(2,14,7,.83);padding:10px 18px;border-radius:12px;font-weight:900;color:var(--mint);letter-spacing:1px}
+.right{height:100%;display:flex;flex-direction:column;gap:12px;min-width:0}
+.banner{height:150px;border-radius:20px;overflow:hidden;background:#020b06;border:2px solid var(--border)}
+.banner img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;background:#020b06}
+.analysis{flex:1;min-height:0;padding:20px 18px;display:flex;flex-direction:column}
+.analysisHeader{display:flex;align-items:center;justify-content:space-between;padding:0 4px 16px;border-bottom:1px solid rgba(53,250,121,.35)}
+.analysisTitle{font-size:25px;font-weight:900;letter-spacing:1px}.count{font-size:14px;font-weight:800;color:var(--mint)}
+#matches{display:flex;flex-direction:column;gap:11px;padding-top:16px;flex:1}
+.match{border:1px solid rgba(53,250,121,.3);background:rgba(16,40,24,.66);border-radius:17px;padding:15px 17px;min-height:117px;display:flex;align-items:center;gap:14px}
+.flags{width:46px;flex:none;display:flex;flex-direction:column;align-items:center;gap:5px}
+.flag{width:42px;height:32px;font-size:28px;display:grid;place-items:center;overflow:hidden;border-radius:5px;background:#183221}.flag img{width:100%;height:100%;object-fit:contain}
+.details{min-width:0;flex:1}.matchName{font-size:21px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.note{font-size:15px;color:#c8e7d2;margin-top:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rightScore{text-align:right;flex:none}.smallScore{font-size:30px;font-weight:900}.pill{display:inline-block;font-size:12px;letter-spacing:1px;color:var(--mint);background:#0e3a22;border:1px solid rgba(53,250,121,.4);padding:5px 9px;border-radius:9px;margin-bottom:7px}
+.empty{color:#badac3;font-size:19px;text-align:center;margin:auto}
+.footer{margin-top:17px;height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:16px;letter-spacing:1px;color:var(--mint)}
+.footer strong{color:#fff}
+</style></head><body>
+<div id="stage">
+<header class="top panel">
+  <div><div class="timeLabel">MATCH CLOCK</div><div class="time" id="clock">00:00</div></div>
+  <div class="team"><div id="homeLogoBox" class="logoFallback">⚽</div><div><div class="teamName" id="homeTeam">HOME TEAM</div><div class="cards" id="homeCards"></div></div></div>
+  <div class="center"><div class="status" id="status">PRE</div><div class="score"><span id="homeScore">0</span> – <span id="awayScore">0</span></div><div id="penalties" style="font-size:16px;color:#ffd966;display:none"></div></div>
+  <div class="team away"><div id="awayLogoBox" class="logoFallback">⚽</div><div><div class="teamName" id="awayTeam">AWAY TEAM</div><div class="cards" id="awayCards"></div></div></div>
+  <div class="brandTop"><b>BERGPICKS</b><span>LIVE MATCH CENTER</span></div>
+</header>
+<div class="content">
+  <section class="cameraPanel" aria-label="Transparent area for OBS camera source"><div class="camTitle">LIVE REACTION</div><div class="cameraCorner">SOCCER • COMMENTARY • ANALYSIS</div></section>
+  <aside class="right">
+    <div class="banner"><img src="/bergpicks-header.jpg.png" alt="BergPicks"></div>
+    <section class="analysis panel">
+      <div class="analysisHeader"><div class="analysisTitle">MATCH ANALYSIS</div><div class="count" id="matchCount">0 MATCHES</div></div>
+      <div id="matches"><div class="empty">Add matches from the controller</div></div>
+    </section>
+  </aside>
+</div>
+<footer class="footer panel"><span><strong>BERGPICKS</strong> • Live soccer discussion</span><span>Scores and commentary updated manually • No match footage</span></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+function resize(){const scale=Math.min(innerWidth/1920,innerHeight/1080);$('stage').style.transform='scale('+scale+')';$('stage').style.left=Math.max(0,(innerWidth-1920*scale)/2)+'px';$('stage').style.top=Math.max(0,(innerHeight-1080*scale)/2)+'px'}
+addEventListener('resize',resize);resize();
+function txt(id,value){$(id).textContent=value??''}
+function logo(id,url){const box=$(id);box.replaceChildren();if(typeof url==='string'&&/^(https?:\/\/|data:image\/)/i.test(url)){const img=document.createElement('img');img.className='teamLogo';img.alt='Team logo';img.src=url;img.onerror=()=>{box.replaceChildren();box.className='logoFallback';box.textContent='⚽'};box.className='';box.appendChild(img)}else{box.className='logoFallback';box.textContent='⚽'}}
+function flag(node,value){const div=document.createElement('div');div.className='flag';if(typeof value==='string'&&/^https?:\/\//i.test(value)){const img=document.createElement('img');img.alt='Flag';img.src=value;div.appendChild(img)}else{div.textContent=value||'⚽'}node.appendChild(div)}
+function cards(y,r){return (+y?'🟨 '+y+'  ':'')+(+r?'🟥 '+r:'')}
+async function refresh(){try{
+const response=await fetch('/api/state?t='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('State unavailable');
+const s=await response.json();
+txt('clock',s.clock||'00:00');txt('homeTeam',s.homeTeam||'HOME TEAM');txt('awayTeam',s.awayTeam||'AWAY TEAM');txt('homeScore',s.homeScore??0);txt('awayScore',s.awayScore??0);txt('status',s.matchStatus||'PRE');
+txt('homeCards',cards(s.yellowHome,s.redHome));txt('awayCards',cards(s.yellowAway,s.redAway));
+logo('homeLogoBox',s.homeLogo);logo('awayLogoBox',s.awayLogo);
+$('penalties').style.display=s.penaltyMode?'block':'none';txt('penalties','PENALTIES '+(s.penaltyHome||0)+' – '+(s.penaltyAway||0));
+const active=[];for(let i=1;i<=8;i++)if(s['pred'+i+'Enabled'])active.push(i);
+txt('matchCount',active.length+' MATCHES');
+const pageCount=Math.max(1,Math.ceil(active.length/4));const page=Math.floor(Date.now()/9000)%pageCount;
+const selected=active.slice(page*4,page*4+4);const root=$('matches');root.replaceChildren();
+if(!selected.length){const d=document.createElement('div');d.className='empty';d.textContent='Add matches from the controller';root.appendChild(d)}
+for(const i of selected){
+const row=document.createElement('article');row.className='match';
+const flags=document.createElement('div');flags.className='flags';flag(flags,s['pred'+i+'Icon']);if(s['pred'+i+'Icon2'])flag(flags,s['pred'+i+'Icon2']);row.appendChild(flags);
+const details=document.createElement('div');details.className='details';
+const name=document.createElement('div');name.className='matchName';name.textContent=s['pred'+i+'Match']||'MATCH '+i;details.appendChild(name);
+const note=document.createElement('div');note.className='note';note.textContent=[s['pred'+i+'Market'],s['pred'+i+'Pick']].filter(Boolean).join(' • ');details.appendChild(note);row.appendChild(details);
+const right=document.createElement('div');right.className='rightScore';
+const status=document.createElement('div');status.className='pill';status.textContent=s['pred'+i+'Status']||'MATCH';right.appendChild(status);
+const score=document.createElement('div');score.className='smallScore';score.textContent=(s['pred'+i+'HomeScore']??0)+' – '+(s['pred'+i+'AwayScore']??0);right.appendChild(score);row.appendChild(right);root.appendChild(row);
+}
+}catch(e){console.warn('Match center update:',e.message)}}
+refresh();setInterval(refresh,1000);
+</script></body></html>
