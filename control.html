@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Parlayberg Control</title>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BergPicks Match Center Controller</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#07110b;color:#fff;font-family:Arial,Helvetica,sans-serif;padding:22px}
 main{max-width:980px;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
@@ -81,11 +81,11 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Current</label><input id="pred1Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred1Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred1Unit" placeholder="Goals"></div>
-<div><label>Odds</label><input id="pred1Odds" placeholder="-110"></div>
+
 <div><label>% override</label><input id="pred1Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
-<div><label>Result</label><select id="pred1Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
+
 <div class="predTools"><button type="button" onclick="predStep(1,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(1,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(1)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred1Bar"></div></div>
@@ -105,11 +105,11 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Current</label><input id="pred2Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred2Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred2Unit" placeholder="Goals"></div>
-<div><label>Odds</label><input id="pred2Odds" placeholder="-110"></div>
+
 <div><label>% override</label><input id="pred2Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
-<div><label>Result</label><select id="pred2Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
+
 <div class="predTools"><button type="button" onclick="predStep(2,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(2,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(2)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred2Bar"></div></div>
@@ -129,11 +129,11 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Current</label><input id="pred3Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred3Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred3Unit" placeholder="Goals"></div>
-<div><label>Odds</label><input id="pred3Odds" placeholder="-110"></div>
+
 <div><label>% override</label><input id="pred3Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
-<div><label>Result</label><select id="pred3Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
+
 <div class="predTools"><button type="button" onclick="predStep(3,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(3,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(3)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred3Bar"></div></div>
@@ -153,11 +153,11 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Current</label><input id="pred4Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred4Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred4Unit" placeholder="Goals"></div>
-<div><label>Odds</label><input id="pred4Odds" placeholder="-110"></div>
+
 <div><label>% override</label><input id="pred4Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
-<div><label>Result</label><select id="pred4Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
+
 <div class="predTools"><button type="button" onclick="predStep(4,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(4,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(4)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred4Bar"></div></div>
@@ -177,11 +177,11 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Current</label><input id="pred5Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred5Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred5Unit" placeholder="Goals"></div>
-<div><label>Odds</label><input id="pred5Odds" placeholder="-110"></div>
+
 <div><label>% override</label><input id="pred5Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
-<div><label>Result</label><select id="pred5Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
+
 <div class="predTools"><button type="button" onclick="predStep(5,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(5,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(5)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred5Bar"></div></div>
@@ -201,11 +201,11 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Current</label><input id="pred6Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred6Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred6Unit" placeholder="Goals"></div>
-<div><label>Odds</label><input id="pred6Odds" placeholder="-110"></div>
+
 <div><label>% override</label><input id="pred6Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
-<div><label>Result</label><select id="pred6Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
+
 <div class="predTools"><button type="button" onclick="predStep(6,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(6,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(6)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred6Bar"></div></div>
@@ -225,11 +225,11 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Current</label><input id="pred7Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred7Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred7Unit" placeholder="Goals"></div>
-<div><label>Odds</label><input id="pred7Odds" placeholder="-110"></div>
+
 <div><label>% override</label><input id="pred7Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
-<div><label>Result</label><select id="pred7Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
+
 <div class="predTools"><button type="button" onclick="predStep(7,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(7,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(7)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred7Bar"></div></div>
@@ -249,11 +249,11 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Current</label><input id="pred8Current" type="number" step="0.1" min="0"></div>
 <div><label>Target</label><input id="pred8Target" type="number" step="0.1" min="0"></div>
 <div><label>Unit</label><input id="pred8Unit" placeholder="Goals"></div>
-<div><label>Odds</label><input id="pred8Odds" placeholder="-110"></div>
+
 <div><label>% override</label><input id="pred8Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
-<div><label>Result</label><select id="pred8Result" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option value="AUTO">AUTO</option><option value="PENDING">PENDING</option><option value="HIT">HIT ✓</option><option value="LOST">LOST ✕</option></select></div>
+
 <div class="predTools"><button type="button" onclick="predStep(8,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(8,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(8)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred8Bar"></div></div>
@@ -368,7 +368,7 @@ function goal(k,d){post({[k]:Math.max(0,(+s[k]||0)+d)})}
 function miniGoal(i,side,d){const k='match'+i+side+'Score';post({[k]:Math.max(0,(+s[k]||0)+d)})}
 function predStep(i,d){const el=document.getElementById('pred'+i+'Current');el.value=Math.max(0,(+el.value||0)+d);updatePredPreview(i)}
 function copyMainMatch(i){document.getElementById('pred'+i+'Match').value=(document.getElementById('homeTeam').value||'HOME')+' vs '+(document.getElementById('awayTeam').value||'AWAY')}
-function initPredListeners(){for(let i=1;i<=8;i++){['Current','Target','Pick','Unit','Odds','Percent','Result','Market'].forEach(sfx=>{const el=document.getElementById('pred'+i+sfx);if(el)el.addEventListener('input',()=>updatePredPreview(i))})}}
+function initPredListeners(){for(let i=1;i<=8;i++){['Current','Target','Pick','Unit','Percent','Market'].forEach(sfx=>{const el=document.getElementById('pred'+i+sfx);if(el)el.addEventListener('input',()=>updatePredPreview(i))})}}
 function initPresets(){for(const id of ['homePreset','awayPreset']){const el=document.getElementById(id);if(!el)continue;PRESETS.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;el.appendChild(o)})}}
 function applyPreset(side,name){if(name)document.getElementById(side+'Team').value=name}
 function setStatus(v){post({matchStatus:v})}
