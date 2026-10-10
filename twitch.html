@@ -24,12 +24,12 @@
 .analysisHeader{display:flex;align-items:center;justify-content:space-between;padding:0 4px 16px;border-bottom:1px solid rgba(53,250,121,.35)}
 .analysisTitle{font-size:25px;font-weight:900;letter-spacing:1px}.count{font-size:14px;font-weight:800;color:var(--mint)}
 #matches{display:flex;flex-direction:column;gap:11px;padding-top:16px;flex:1}
-.match{border:1px solid rgba(53,250,121,.3);background:rgba(16,40,24,.66);border-radius:17px;padding:15px 17px;min-height:117px;display:flex;align-items:center;gap:14px}
+.match{border:1px solid rgba(53,250,121,.3);background:rgba(16,40,24,.66);border-radius:17px;padding:11px 13px;min-height:117px;display:grid;grid-template-columns:54px minmax(0,1fr) 54px;align-items:center;gap:12px}
 .flags{width:46px;flex:none;display:flex;flex-direction:column;align-items:center;gap:5px}
-.flag{width:42px;height:32px;font-size:28px;display:grid;place-items:center;overflow:hidden;border-radius:5px;background:#183221}.flag img{width:100%;height:100%;object-fit:contain}
-.details{min-width:0;flex:1}.matchName{font-size:21px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.note{font-size:15px;color:#c8e7d2;margin-top:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rightScore{text-align:right;flex:none}.smallScore{font-size:30px;font-weight:900}.pill{display:inline-block;font-size:12px;letter-spacing:1px;color:var(--mint);background:#0e3a22;border:1px solid rgba(53,250,121,.4);padding:5px 9px;border-radius:9px;margin-bottom:7px}
+.flag{width:52px;height:52px;font-size:32px;display:grid;place-items:center;overflow:hidden;border-radius:10px;background:#183221}.flag img{width:100%;height:100%;object-fit:contain}
+.details{min-width:0;text-align:center}.matchName{font-size:20px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.note{font-size:13px;color:#c8e7d2;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rightScore{text-align:right;flex:none}.smallScore{font-size:26px;font-weight:900;line-height:1.05;margin-top:4px}.pill{display:inline-block;font-size:12px;letter-spacing:1px;color:var(--mint);background:#0e3a22;border:1px solid rgba(53,250,121,.4);padding:5px 9px;border-radius:9px;margin-bottom:7px}
 .empty{color:#badac3;font-size:19px;text-align:center;margin:auto}
 .footer{margin-top:17px;height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:16px;letter-spacing:1px;color:var(--mint)}
 .footer strong{color:#fff}
@@ -76,13 +76,12 @@ const selected=active.slice(page*4,page*4+4);const root=$('matches');root.replac
 if(!selected.length){const d=document.createElement('div');d.className='empty';d.textContent='Add matches from the controller';root.appendChild(d)}
 for(const i of selected){
 const row=document.createElement('article');row.className='match';
-const flags=document.createElement('div');flags.className='flags';flag(flags,s['pred'+i+'Icon']);if(s['pred'+i+'Icon2'])flag(flags,s['pred'+i+'Icon2']);row.appendChild(flags);
+const home=document.createElement('div');flag(home,s['pred'+i+'Icon']);row.appendChild(home);
 const details=document.createElement('div');details.className='details';
 const name=document.createElement('div');name.className='matchName';name.textContent=s['pred'+i+'Match']||'MATCH '+i;details.appendChild(name);
-const note=document.createElement('div');note.className='note';note.textContent=[s['pred'+i+'Market'],s['pred'+i+'Pick']].filter(Boolean).join(' • ');details.appendChild(note);row.appendChild(details);
-const right=document.createElement('div');right.className='rightScore';
-const status=document.createElement('div');status.className='pill';status.textContent=s['pred'+i+'Status']||'MATCH';right.appendChild(status);
-const score=document.createElement('div');score.className='smallScore';score.textContent=(s['pred'+i+'HomeScore']??0)+' – '+(s['pred'+i+'AwayScore']??0);right.appendChild(score);row.appendChild(right);root.appendChild(row);
+const score=document.createElement('div');score.className='smallScore';score.textContent=(s['pred'+i+'HomeScore']??0)+' – '+(s['pred'+i+'AwayScore']??0);details.appendChild(score);
+const note=document.createElement('div');note.className='note';note.textContent=[s['pred'+i+'Market'],s['pred'+i+'Pick'],s['pred'+i+'Status']].filter(Boolean).join(' • ');details.appendChild(note);row.appendChild(details);
+const away=document.createElement('div');flag(away,s['pred'+i+'Icon2']||'⚽');row.appendChild(away);
 }
 }catch(e){console.warn('Match center update:',e.message)}}
 refresh();setInterval(refresh,1000);
