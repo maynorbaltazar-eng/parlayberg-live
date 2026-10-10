@@ -82,6 +82,7 @@ const name=document.createElement('div');name.className='matchName';name.textCon
 const score=document.createElement('div');score.className='smallScore';score.textContent=(s['pred'+i+'HomeScore']??0)+' – '+(s['pred'+i+'AwayScore']??0);details.appendChild(score);
 const note=document.createElement('div');note.className='note';note.textContent=[s['pred'+i+'Market'],s['pred'+i+'Pick'],s['pred'+i+'Status']].filter(Boolean).join(' • ');details.appendChild(note);row.appendChild(details);
 const away=document.createElement('div');flag(away,s['pred'+i+'Icon2']||'⚽');row.appendChild(away);
+root.appendChild(row);
 }
 }catch(e){console.warn('Match center update:',e.message)}}
 refresh();setInterval(refresh,1000);
