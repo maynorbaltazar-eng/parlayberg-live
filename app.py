@@ -2,6 +2,14 @@ from flask import Flask, request, jsonify, send_from_directory
 import os, threading, time, requests
 app=Flask(__name__, static_folder='.')
 lock=threading.Lock()
+
+@app.after_request
+def add_no_cache_headers(response):
+    if request.path.endswith('.html') or request.path.startswith('/api/'):
+        response.headers['Cache-Control']='no-store, no-cache, must-revalidate, max-age=0'
+        response.headers['Pragma']='no-cache'
+        response.headers['Expires']='0'
+    return response
 state={
 "homeTeam":"HOME TEAM","awayTeam":"AWAY TEAM","homeLogo":"","awayLogo":"","homeScore":0,"awayScore":0,"clock":"00:00","matchStatus":"PRE","liveDataMode":False,"liveFixtureId":"","liveClock":"",
 "clockElapsed":0,"clockRunning":False,"clockLastStarted":None,"clockMode":"standard","penaltyMode":False,"penaltyHome":0,"penaltyAway":0,
