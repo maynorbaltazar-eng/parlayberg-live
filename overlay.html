@@ -1,8 +1,8 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Parlayberg LIVE</title>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BergPicks Match Center</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;background:transparent;font-family:Arial,Helvetica,sans-serif;color:#fff;overflow:hidden}
 :root{--g:#30ff71;--g2:#00c84e;--dark:#050b07;--panel:rgba(3,12,7,.96)}
-.stage{width:720px;height:1280px;position:relative;padding:8px 10px;background:linear-gradient(180deg,rgba(0,0,0,.98),rgba(2,10,6,.96) 82%,rgba(0,0,0,0));overflow:hidden}
+.stage{width:720px;height:1280px;position:relative;padding:8px 10px;background:transparent;overflow:hidden}
 .frame{border:2px solid var(--g);box-shadow:0 0 14px rgba(48,255,113,.58),inset 0 0 12px rgba(48,255,113,.07);background:linear-gradient(180deg,rgba(7,18,11,.98),rgba(2,9,5,.98))}
 .scoreboard{height:150px;display:grid;grid-template-columns:95px 1fr 150px 1fr;align-items:center;border-radius:20px;padding:8px 12px;position:relative}
 .clockBox{font-size:28px;font-weight:900;text-align:center;white-space:nowrap}
@@ -20,7 +20,7 @@
 .sportsRow{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08);border-radius:15px;padding:8px 10px;margin:7px 4px 0;min-height:104px}
 .sportsTop{display:grid;grid-template-columns:48px 1fr auto auto;gap:9px;align-items:center}
 .flagStack{display:flex;flex-direction:column;gap:3px;align-items:center}.flagSlot{width:42px;height:29px;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#142018;font-size:25px}.flagSlot img{width:100%;height:100%;object-fit:cover}
-.sportsMatch{font-size:15px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sportsStatus{background:#d61f35;padding:5px 8px;border-radius:7px;font-size:13px;font-weight:900;white-space:nowrap}.sportsScore{font-size:16px;font-weight:900;background:#223028;border-radius:6px;padding:5px 8px;color:#fff;white-space:nowrap}
+.sportsMatch{font-size:15px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sportsStatus{background:#154b30;padding:5px 8px;border-radius:7px;font-size:13px;font-weight:900;white-space:nowrap}.sportsScore{font-size:16px;font-weight:900;background:#223028;border-radius:6px;padding:5px 8px;color:#fff;white-space:nowrap}
 .sportsPickLine{display:grid;grid-template-columns:48px 1fr auto;gap:9px;align-items:center;margin-top:4px}.marketIcon{width:30px;height:30px;border-radius:8px;background:#26342b;display:flex;align-items:center;justify-content:center;color:#d9e6dc;font-weight:900;margin:auto}.sportsPick{font-size:15px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sportsPct{font-size:17px;font-weight:900;color:var(--g);text-align:right}
 .sportsProgress{height:8px;background:#334238;border-radius:999px;overflow:visible;margin:6px 66px 0 57px;position:relative}.sportsProgress>div{height:100%;background:var(--g);border-radius:999px}.targetMarker{position:absolute;top:50%;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:#fff;color:#111;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 0 8px rgba(255,255,255,.35)}
 .sportsMeta{font-size:9px;color:#c9d3cd;margin:3px 66px 0 57px;display:flex;justify-content:space-between}.sportsRow.hit{box-shadow:inset 0 0 0 1px rgba(48,255,113,.35)}.sportsRow.lost{opacity:.65}.sportsRow.lost .sportsProgress>div{background:#d44}.pageDots{font-size:9px;color:#9cb0a2;text-align:center;margin-top:4px}
@@ -60,7 +60,7 @@
 <div class="lower">
 <div class="matches frame sportsbookBoard">
   <div class="predBrandWide"><img src="/bergpicks-header.jpg.png" alt="BergPicks"></div>
-  <div class="sportsHead"><div>BERGPICKS LIVE PICKS</div><div id="slipCount">0 / 0 HIT</div></div>
+  <div class="sportsHead"><div>BERGMATCHES MATCH ANALYSIS</div><div id="slipCount">0 / 0 HIT</div></div>
   <div class="slipProgress"><div id="slipBar"></div></div>
   <div id="sportsRows"></div>
   <div id="pageDots" class="pageDots"></div>
@@ -99,13 +99,16 @@ for(const i of visible){
   const st=mode==='AUTO'?(tar>0&&cur>=tar?'HIT':'PENDING'):mode;
   const row=document.createElement('div');row.className='sportsRow '+(st==='HIT'?'hit':st==='LOST'?'lost':'');
   const icon1=s['pred'+i+'Icon']||'⚽',icon2=s['pred'+i+'Icon2']||'',match=s['pred'+i+'Match']||('MATCH '+i),status=s['pred'+i+'Status']||'LIVE',hs=s['pred'+i+'HomeScore']??0,as=s['pred'+i+'AwayScore']??0;
-  const market=s['pred'+i+'Market']||'',pick=s['pred'+i+'Pick']||'',odds=s['pred'+i+'Odds']?(' • '+s['pred'+i+'Odds']):'';
+  const market=s['pred'+i+'Market']||'',pick=s['pred'+i+'Pick']||'';
   const renderIcon=v=>/^https?:|^data:image\//.test(v)?('<img src="'+v+'" alt="">'):v;
   const markerPct=Math.max(3,Math.min(97,pct));
-  row.innerHTML='<div class="sportsTop"><div class="flagStack"><div class="flagSlot">'+renderIcon(icon1)+'</div>'+(icon2?'<div class="flagSlot">'+renderIcon(icon2)+'</div>':'')+'</div><div class="sportsMatch">'+match+'</div><div class="sportsStatus">'+status+'</div><div class="sportsScore">'+hs+' &nbsp; '+as+'</div></div><div class="sportsPickLine"><div class="marketIcon">'+(st==='HIT'?'✓':st==='LOST'?'✕':'%')+'</div><div class="sportsPick">'+pick+'<div style="font-size:11px;font-weight:500;color:#c9d3cd;margin-top:1px">'+market+odds+'</div></div><div class="sportsPct">'+Math.round(pct)+'%</div></div><div class="sportsProgress"><div style="width:'+(st==='HIT'?100:pct)+'%"></div><div class="targetMarker" style="left:'+markerPct+'%">'+(cur||0)+'</div></div><div class="sportsMeta"><span>0</span><span>Target '+tar+' '+(s['pred'+i+'Unit']||'')+' • '+st+'</span></div>';
+  const safe=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const flag=v=>/^https?:\\/\\//.test(v)?'<img src="'+safe(v)+'" alt="">':safe(v);
+  row.className='sportsRow';
+  row.innerHTML='<div class="sportsTop"><div class="flagStack"><div class="flagSlot">'+flag(icon1)+'</div>'+(icon2?'<div class="flagSlot">'+flag(icon2)+'</div>':'')+'</div><div class="sportsMatch">'+safe(match)+'</div><div class="sportsStatus">'+safe(status)+'</div><div class="sportsScore">'+safe(hs)+' – '+safe(as)+'</div></div><div class="sportsPickLine"><div class="marketIcon">⚽</div><div class="sportsPick">'+safe(pick)+'<div style="font-size:11px;font-weight:500;color:#c9d3cd;margin-top:1px">'+safe(market)+'</div></div><div class="sportsPct">'+safe(cur)+' / '+safe(tar)+'</div></div><div class="sportsProgress"><div style="width:'+pct+'%"></div></div><div class="sportsMeta"><span>Match tracker</span><span>'+safe(s['pred'+i+'Unit']||'Goals')+' • '+safe(status)+'</span></div>';
   rows.appendChild(row);
 }
-set('slipCount',hitCount+' / '+enabled.length+' HIT');document.getElementById('slipBar').style.width=(enabled.length?Math.round(hitCount/enabled.length*100):0)+'%';set('pageDots',pageCount>1?('PICKS '+(start+1)+'-'+Math.min(start+pageSize,enabled.length)+' OF '+enabled.length):'');
+set('slipCount',enabled.length+' MATCHES');document.getElementById('slipBar').style.width='100%';set('pageDots',pageCount>1?('MATCHES '+(start+1)+'-'+Math.min(start+pageSize,enabled.length)+' OF '+enabled.length):'');
 }catch(e){}}
 draw();setInterval(draw,700);
 </script></body></html>
