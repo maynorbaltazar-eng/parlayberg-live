@@ -104,7 +104,7 @@ for(const i of visible){
   const renderIcon=v=>/^https?:|^data:image\//.test(v)?('<img src="'+v+'" alt="">'):v;
   const markerPct=Math.max(3,Math.min(97,pct));
   const safe=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-  const flag=v=>/^https?:\\/\\//.test(v)?'<img src="'+safe(v)+'" alt="">':safe(v);
+  const flag=v=>/^(https?:\/\/|\/assets\/teams\/|data:image\/)/i.test(v)?'<img src="'+safe(v)+'" alt="">':safe(v);
   row.className='sportsRow';
   row.innerHTML='<div class="sportsTop"><div class="flagSlot">'+flag(icon1)+'</div><div><div class="sportsMatch">'+safe(match)+'</div><div class="sportsScore">'+safe(hs)+' – '+safe(as)+'</div></div><div class="flagSlot">'+flag(icon2||'⚽')+'</div></div><div class="sportsPickLine"><div class="sportsPick">'+safe(pick)+'<div style="font-size:11px;font-weight:500;color:#c9d3cd;margin-top:1px">'+safe(market)+' • '+safe(status)+'</div></div><div class="sportsPct">'+safe(cur)+' / '+safe(tar)+'</div></div><div class="sportsProgress"><div style="width:'+pct+'%"></div></div><div class="sportsMeta"><span>Match tracker</span><span>'+safe(s['pred'+i+'Unit']||'Goals')+'</span></div>';
   rows.appendChild(row);
