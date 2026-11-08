@@ -5,7 +5,17 @@ For browser-source use, set 720 x 1280.
 
 Run the Flask app (`pip install -r requirements.txt`, then `python app.py`). The controller and overlays synchronize through `/api/state`; serve them from the same app. State is held in server memory and resets when the process restarts.
 
-### Soccer team selector
+## Prediction board
+
+### Outcome picks
+
+Each prediction row has a **Prediction type**, matching outcome controls, a period, and a **Result**. Choose Match winner (home/draw/away), Double chance, Draw no bet, Total goals, Both teams to score, Team total goals, Exact score, Team clean sheet, Total corners, Player to score, or Custom outcome. The selected team names come from that row's logo selectors or its match name. Over/under lines accept nonnegative whole and half numbers; exact scores require whole numbers from 0 to 99. Player and custom outcomes require text.
+
+Outcome picks remain **Pending** until you select **Won**, **Lost**, or **Void** and click **UPDATE OVERLAY**. Changing a pick resets its result to Pending. A live lead, goal counter, final-looking score, or status label does not settle an outcome automatically. For Draw no bet, mark Void yourself if the relevant period ends in a draw. Full match means 90 minutes plus stoppage; other period choices are first half, second half, and extra time only.
+
+The existing **Score / statistic tracker** mode retains its automatic Current/Target behavior; manual results also work for trackers. Old saved rows load in tracker mode with their original values. The existing `predNResult` uses `HIT` for the UI's Won label; structured picks are stored as an optional `predNSelection` object. Pick descriptions are also written to the existing Market/Pick fields for compatibility. Both overlays use the shared display/result rules in `prediction-picks.js`. No external market connection is required.
+
+### Team logos
 
 Each of the eight Predictions Board rows has separate home/away logo searches and team dropdowns using the same 194-team catalog. Select both teams to preview the logos without entering image addresses. A blank/default match title is filled from the selected names; custom match titles are retained. Click **UPDATE OVERLAY** to publish through the existing `predNIcon` / `predNIcon2` fields. Searching alone does not change the row, and Clear logo affects only that side. **USE MAIN MATCH** copies both team names and logos into that prediction. Existing emoji and custom image values remain available under **Custom icon (optional)** and survive loading/saving. Local catalog logos render in both TikTok and Twitch prediction panels.
 

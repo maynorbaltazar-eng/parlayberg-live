@@ -20,7 +20,9 @@ function setup(failCatalog=false){
   return {ok:true,json:async()=>({...server})};
  };
  vm.createContext(context);
+ vm.runInContext(fs.readFileSync(path.join(root,'prediction-picks.js'),'utf8'),context);
  vm.runInContext(fs.readFileSync(path.join(root,'team-selector.js'),'utf8'),context);
+ vm.runInContext(fs.readFileSync(path.join(root,'prediction-pick-controller.js'),'utf8'),context);
  vm.runInContext(html.match(/<script>\s*([\s\S]*?)<\/script>/)[1],context);
  return {context,elements,posts,run:code=>vm.runInContext(code,context)};
 }
@@ -129,6 +131,49 @@ test('all curated assets are local PNGs, unique and nonempty',()=>{
   assert.equal(data.subarray(0,8).toString('hex'),'89504e470d0a1a0a',team.name);
   assert(data.readUInt32BE(16)>0 && data.readUInt32BE(20)>0,team.name);
  }
+});
+test('structured winner picks save, reload, reset results on edits and leave other rows untouched',async()=>{
+ const t=setup();await settle();
+ t.run('applyPredictionPreset(1,"Home","Arsenal");applyPredictionPreset(1,"Away","Barcelona")');
+ t.elements.pred1PickType.value='winner';t.elements.pred1PickType.change();
+ assert.equal(t.elements.pred1PickOutcome.children.length,3);
+ assert.equal(t.elements.pred1CurrentLegacyBox.hidden,true);
+ t.elements.pred1PickOutcome.value='away';t.elements.pred1PickOutcome.input();
+ t.elements.pred1Current.value=9;t.elements.pred1Target.value=1;
+ assert.equal(t.run('predStatus(1)'),'PENDING');
+ t.elements.pred1Result.value='HIT';t.elements.pred1Result.change();
+ await t.run('saveAll()');await settle();
+ assert.equal(t.posts[0].pred1Selection.market,'winner');
+ assert.equal(t.posts[0].pred1Selection.outcome,'away');
+ assert.equal(t.posts[0].pred1Selection.homeName,'Arsenal');
+ assert.equal(t.posts[0].pred1Pick,'Barcelona to win');
+ assert.equal(t.posts[0].pred1Result,'HIT');
+ assert.equal(t.posts[0].pred2Selection,null);
+ t.elements.pred1PickType.value='';await t.run('load()');
+ assert.equal(t.elements.pred1PickType.value,'winner');
+ assert.equal(t.elements.pred1PickOutcome.value,'away');
+ assert.equal(t.elements.pred1Result.value,'HIT');
+ t.elements.pred1PickOutcome.value='draw';t.elements.pred1PickOutcome.input();
+ assert.equal(t.elements.pred1Result.value,'PENDING');
+ t.elements.pred1PickType.value='';t.elements.pred1PickType.change();
+ assert.equal(t.elements.pred1CurrentLegacyBox.hidden,false);
+ assert.equal(t.elements.pred1Result.value,'AUTO');
+});
+test('total-goal lines and exact scores validate before any state request',async()=>{
+ const t=setup();await settle();
+ t.elements.pred8PickType.value='goals';t.elements.pred8PickType.change();
+ t.elements.pred8PickLine.value='';await t.run('saveAll()');await settle();
+ assert.equal(t.posts.length,0);
+ assert(t.elements.status.textContent.includes('Prediction 8'));
+ t.elements.pred8PickLine.value='3.5';
+ t.elements.pred8PickOutcome.value='under';await t.run('saveAll()');await settle();
+ assert.equal(t.posts[0].pred8Pick,'Under 3.5 goals');
+ t.elements.pred8PickType.value='exact_score';t.elements.pred8PickType.change();
+ t.elements.pred8PickExactHome.value='1.5';await t.run('saveAll()');await settle();
+ assert.equal(t.posts.length,1);
+ t.elements.pred8PickExactHome.value='2';t.elements.pred8PickExactAway.value='1';
+ await t.run('saveAll()');await settle();
+ assert.equal(t.posts.at(-1).pred8Selection.exactHome,'2');
 });
 test('all nine leagues are complete and original saved logo paths remain valid',()=>{
  const counts={'Premier League':20,'La Liga':20,'Serie A':20,'Ligue 1':18,'Bundesliga':18,'Eredivisie':18,'Liga Portugal':18,'MLS':30,'Liga MX':18};

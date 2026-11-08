@@ -67,9 +67,19 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 </div>
 
 <div class="box"><div class="sectionTitle">Predictions Board</div>
-<div class="muted">Search and select both teams to add logos automatically — no image addresses needed. Click UPDATE OVERLAY to save. Custom flags and icons are optional. Enable as many rows as you need. For goal/corner/player targets, AUTO marks the pick HIT when Current reaches Target. You can override any row to PENDING, HIT, or LOST.</div>
+<div class="muted">Search and select both teams to add logos automatically — no image addresses needed. Click UPDATE OVERLAY to save. Choose an outcome or keep a score/statistic tracker. Outcome picks use manual results; trackers can use automatic targets. Logos, flags and icons are optional.</div>
 <div class="predCard" id="predCard1">
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 1</div><label class="toggleRow"><input id="pred1Enabled" type="checkbox" style="width:auto"> Show</label></div>
+<div class="predGrid predictionPickPanel" style="margin-top:10px">
+<div><label for="pred1PickType">Prediction type</label><select id="pred1PickType" class="predictionTeamSelect"><option value="">Score / statistic tracker</option><option value="winner">Match winner</option><option value="double_chance">Double chance</option><option value="draw_no_bet">Draw no bet</option><option value="goals">Total goals</option><option value="btts">Both teams to score</option><option value="team_goals">Team total goals</option><option value="exact_score">Exact score</option><option value="clean_sheet">Team clean sheet</option><option value="corners">Total corners</option><option value="player_goal">Player to score</option><option value="custom">Custom outcome</option></select></div>
+<div id="pred1PickOutcomeBox" hidden><label for="pred1PickOutcome">Your outcome</label><select id="pred1PickOutcome" class="predictionTeamSelect"></select></div>
+<div id="pred1PickTeamBox" hidden><label for="pred1PickTeam">Team</label><select id="pred1PickTeam" class="predictionTeamSelect"><option value="home">Home team</option><option value="away">Away team</option></select></div>
+<div id="pred1PickLineBox" hidden><label for="pred1PickLine">Over / under line</label><input id="pred1PickLine" type="number" min="0" step="0.5" value="2.5"></div>
+<div id="pred1PickExactBox" hidden><label for="pred1PickExactHome">Exact home score</label><input id="pred1PickExactHome" type="number" min="0" max="99" step="1" value="0"><label for="pred1PickExactAway">Exact away score</label><input id="pred1PickExactAway" type="number" min="0" max="99" step="1" value="0"></div>
+<div id="pred1PickTextBox" hidden><label for="pred1PickText">Player name / custom outcome</label><input id="pred1PickText" maxlength="160" placeholder="Player name or your own outcome"></div>
+<div id="pred1PickPeriodBox" hidden><label for="pred1PickPeriod">Period</label><select id="pred1PickPeriod" class="predictionTeamSelect"><option value="full">90 minutes + stoppage</option><option value="first">First half</option><option value="second">Second half</option><option value="extra">Extra time only</option></select></div>
+<div><label for="pred1Result">Result</label><select id="pred1Result" class="predictionTeamSelect"><option value="AUTO">Auto tracker / Pending pick</option><option value="PENDING">Pending</option><option value="HIT">Won</option><option value="LOST">Lost</option><option value="VOID">Void</option></select></div>
+</div><div class="muted" style="font-size:12px;margin-top:6px">Your own picks. Mark the result when known; match-winner picks do not settle from a live lead. Full match means 90 minutes plus stoppage time.</div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred1Match" placeholder="France vs Italy"></div>
 <div><label for="pred1HomeSearch">Home team logo</label><input id="pred1HomeSearch" type="search" placeholder="Search team or league" autocomplete="off" aria-controls="pred1HomePreset"><select id="pred1HomePreset" class="predictionTeamSelect" aria-label="Prediction 1 home team" onchange="applyPredictionPreset(1,'Home',this.value)"><option value="">Choose team…</option></select><div id="pred1HomeSearchStatus" class="muted" role="status"></div><div class="predictionLogoTools"><div id="pred1HomeLogoPreview" class="predictionLogoPreview" aria-label="Home logo preview"></div><button type="button" class="secondary chip" onclick="clearPredictionLogo(1,'Home')">Clear logo</button></div><details><summary>Custom icon (optional)</summary><label for="pred1Icon">Flag, emoji or custom image</label><input id="pred1Icon" placeholder="⚽" oninput="refreshPredictionLogo(1,'Home')"></details></div>
@@ -77,23 +87,33 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Live status</label><input id="pred1Status" placeholder="86' • LIVE"></div>
 <div><label>Home score</label><input id="pred1HomeScore" type="number" min="0" step="1"></div>
 <div><label>Away score</label><input id="pred1AwayScore" type="number" min="0" step="1"></div>
-<div><label>Match statistic</label><select id="pred1Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
-<div><label>Analysis note</label><input id="pred1Pick" placeholder="Goal tracker or match commentary"></div>
-<div><label>Current</label><input id="pred1Current" type="number" step="0.1" min="0"></div>
-<div><label>Target</label><input id="pred1Target" type="number" step="0.1" min="0"></div>
-<div><label>Unit</label><input id="pred1Unit" placeholder="Goals"></div>
+<div id="pred1MarketLegacyBox"><label>Match statistic</label><select id="pred1Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
+<div id="pred1PickLegacyBox"><label>Analysis note</label><input id="pred1Pick" placeholder="Goal tracker or match commentary"></div>
+<div id="pred1CurrentLegacyBox"><label>Current</label><input id="pred1Current" type="number" step="0.1" min="0"></div>
+<div id="pred1TargetLegacyBox"><label>Target</label><input id="pred1Target" type="number" step="0.1" min="0"></div>
+<div id="pred1UnitLegacyBox"><label>Unit</label><input id="pred1Unit" placeholder="Goals"></div>
 
-<div><label>% override</label><input id="pred1Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
+<div id="pred1PercentLegacyBox"><label>% override</label><input id="pred1Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 
-<div class="predTools"><button type="button" onclick="predStep(1,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(1,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(1)">USE MAIN MATCH</button></div>
+<div class="predTools"><button type="button" id="pred1StepUp" onclick="predStep(1,1)">+1 CURRENT</button><button type="button" class="secondary" id="pred1StepDown" onclick="predStep(1,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(1)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred1Bar"></div></div>
 <div id="pred1Preview" class="muted" style="font-size:12px;margin-top:6px"></div>
 </div>
 <div class="predCard" id="predCard2">
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 2</div><label class="toggleRow"><input id="pred2Enabled" type="checkbox" style="width:auto"> Show</label></div>
+<div class="predGrid predictionPickPanel" style="margin-top:10px">
+<div><label for="pred2PickType">Prediction type</label><select id="pred2PickType" class="predictionTeamSelect"><option value="">Score / statistic tracker</option><option value="winner">Match winner</option><option value="double_chance">Double chance</option><option value="draw_no_bet">Draw no bet</option><option value="goals">Total goals</option><option value="btts">Both teams to score</option><option value="team_goals">Team total goals</option><option value="exact_score">Exact score</option><option value="clean_sheet">Team clean sheet</option><option value="corners">Total corners</option><option value="player_goal">Player to score</option><option value="custom">Custom outcome</option></select></div>
+<div id="pred2PickOutcomeBox" hidden><label for="pred2PickOutcome">Your outcome</label><select id="pred2PickOutcome" class="predictionTeamSelect"></select></div>
+<div id="pred2PickTeamBox" hidden><label for="pred2PickTeam">Team</label><select id="pred2PickTeam" class="predictionTeamSelect"><option value="home">Home team</option><option value="away">Away team</option></select></div>
+<div id="pred2PickLineBox" hidden><label for="pred2PickLine">Over / under line</label><input id="pred2PickLine" type="number" min="0" step="0.5" value="2.5"></div>
+<div id="pred2PickExactBox" hidden><label for="pred2PickExactHome">Exact home score</label><input id="pred2PickExactHome" type="number" min="0" max="99" step="1" value="0"><label for="pred2PickExactAway">Exact away score</label><input id="pred2PickExactAway" type="number" min="0" max="99" step="1" value="0"></div>
+<div id="pred2PickTextBox" hidden><label for="pred2PickText">Player name / custom outcome</label><input id="pred2PickText" maxlength="160" placeholder="Player name or your own outcome"></div>
+<div id="pred2PickPeriodBox" hidden><label for="pred2PickPeriod">Period</label><select id="pred2PickPeriod" class="predictionTeamSelect"><option value="full">90 minutes + stoppage</option><option value="first">First half</option><option value="second">Second half</option><option value="extra">Extra time only</option></select></div>
+<div><label for="pred2Result">Result</label><select id="pred2Result" class="predictionTeamSelect"><option value="AUTO">Auto tracker / Pending pick</option><option value="PENDING">Pending</option><option value="HIT">Won</option><option value="LOST">Lost</option><option value="VOID">Void</option></select></div>
+</div><div class="muted" style="font-size:12px;margin-top:6px">Your own picks. Mark the result when known; match-winner picks do not settle from a live lead. Full match means 90 minutes plus stoppage time.</div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred2Match" placeholder="France vs Italy"></div>
 <div><label for="pred2HomeSearch">Home team logo</label><input id="pred2HomeSearch" type="search" placeholder="Search team or league" autocomplete="off" aria-controls="pred2HomePreset"><select id="pred2HomePreset" class="predictionTeamSelect" aria-label="Prediction 2 home team" onchange="applyPredictionPreset(2,'Home',this.value)"><option value="">Choose team…</option></select><div id="pred2HomeSearchStatus" class="muted" role="status"></div><div class="predictionLogoTools"><div id="pred2HomeLogoPreview" class="predictionLogoPreview" aria-label="Home logo preview"></div><button type="button" class="secondary chip" onclick="clearPredictionLogo(2,'Home')">Clear logo</button></div><details><summary>Custom icon (optional)</summary><label for="pred2Icon">Flag, emoji or custom image</label><input id="pred2Icon" placeholder="⚽" oninput="refreshPredictionLogo(2,'Home')"></details></div>
@@ -101,23 +121,33 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Live status</label><input id="pred2Status" placeholder="86' • LIVE"></div>
 <div><label>Home score</label><input id="pred2HomeScore" type="number" min="0" step="1"></div>
 <div><label>Away score</label><input id="pred2AwayScore" type="number" min="0" step="1"></div>
-<div><label>Match statistic</label><select id="pred2Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
-<div><label>Analysis note</label><input id="pred2Pick" placeholder="Goal tracker or match commentary"></div>
-<div><label>Current</label><input id="pred2Current" type="number" step="0.1" min="0"></div>
-<div><label>Target</label><input id="pred2Target" type="number" step="0.1" min="0"></div>
-<div><label>Unit</label><input id="pred2Unit" placeholder="Goals"></div>
+<div id="pred2MarketLegacyBox"><label>Match statistic</label><select id="pred2Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
+<div id="pred2PickLegacyBox"><label>Analysis note</label><input id="pred2Pick" placeholder="Goal tracker or match commentary"></div>
+<div id="pred2CurrentLegacyBox"><label>Current</label><input id="pred2Current" type="number" step="0.1" min="0"></div>
+<div id="pred2TargetLegacyBox"><label>Target</label><input id="pred2Target" type="number" step="0.1" min="0"></div>
+<div id="pred2UnitLegacyBox"><label>Unit</label><input id="pred2Unit" placeholder="Goals"></div>
 
-<div><label>% override</label><input id="pred2Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
+<div id="pred2PercentLegacyBox"><label>% override</label><input id="pred2Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 
-<div class="predTools"><button type="button" onclick="predStep(2,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(2,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(2)">USE MAIN MATCH</button></div>
+<div class="predTools"><button type="button" id="pred2StepUp" onclick="predStep(2,1)">+1 CURRENT</button><button type="button" class="secondary" id="pred2StepDown" onclick="predStep(2,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(2)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred2Bar"></div></div>
 <div id="pred2Preview" class="muted" style="font-size:12px;margin-top:6px"></div>
 </div>
 <div class="predCard" id="predCard3">
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 3</div><label class="toggleRow"><input id="pred3Enabled" type="checkbox" style="width:auto"> Show</label></div>
+<div class="predGrid predictionPickPanel" style="margin-top:10px">
+<div><label for="pred3PickType">Prediction type</label><select id="pred3PickType" class="predictionTeamSelect"><option value="">Score / statistic tracker</option><option value="winner">Match winner</option><option value="double_chance">Double chance</option><option value="draw_no_bet">Draw no bet</option><option value="goals">Total goals</option><option value="btts">Both teams to score</option><option value="team_goals">Team total goals</option><option value="exact_score">Exact score</option><option value="clean_sheet">Team clean sheet</option><option value="corners">Total corners</option><option value="player_goal">Player to score</option><option value="custom">Custom outcome</option></select></div>
+<div id="pred3PickOutcomeBox" hidden><label for="pred3PickOutcome">Your outcome</label><select id="pred3PickOutcome" class="predictionTeamSelect"></select></div>
+<div id="pred3PickTeamBox" hidden><label for="pred3PickTeam">Team</label><select id="pred3PickTeam" class="predictionTeamSelect"><option value="home">Home team</option><option value="away">Away team</option></select></div>
+<div id="pred3PickLineBox" hidden><label for="pred3PickLine">Over / under line</label><input id="pred3PickLine" type="number" min="0" step="0.5" value="2.5"></div>
+<div id="pred3PickExactBox" hidden><label for="pred3PickExactHome">Exact home score</label><input id="pred3PickExactHome" type="number" min="0" max="99" step="1" value="0"><label for="pred3PickExactAway">Exact away score</label><input id="pred3PickExactAway" type="number" min="0" max="99" step="1" value="0"></div>
+<div id="pred3PickTextBox" hidden><label for="pred3PickText">Player name / custom outcome</label><input id="pred3PickText" maxlength="160" placeholder="Player name or your own outcome"></div>
+<div id="pred3PickPeriodBox" hidden><label for="pred3PickPeriod">Period</label><select id="pred3PickPeriod" class="predictionTeamSelect"><option value="full">90 minutes + stoppage</option><option value="first">First half</option><option value="second">Second half</option><option value="extra">Extra time only</option></select></div>
+<div><label for="pred3Result">Result</label><select id="pred3Result" class="predictionTeamSelect"><option value="AUTO">Auto tracker / Pending pick</option><option value="PENDING">Pending</option><option value="HIT">Won</option><option value="LOST">Lost</option><option value="VOID">Void</option></select></div>
+</div><div class="muted" style="font-size:12px;margin-top:6px">Your own picks. Mark the result when known; match-winner picks do not settle from a live lead. Full match means 90 minutes plus stoppage time.</div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred3Match" placeholder="France vs Italy"></div>
 <div><label for="pred3HomeSearch">Home team logo</label><input id="pred3HomeSearch" type="search" placeholder="Search team or league" autocomplete="off" aria-controls="pred3HomePreset"><select id="pred3HomePreset" class="predictionTeamSelect" aria-label="Prediction 3 home team" onchange="applyPredictionPreset(3,'Home',this.value)"><option value="">Choose team…</option></select><div id="pred3HomeSearchStatus" class="muted" role="status"></div><div class="predictionLogoTools"><div id="pred3HomeLogoPreview" class="predictionLogoPreview" aria-label="Home logo preview"></div><button type="button" class="secondary chip" onclick="clearPredictionLogo(3,'Home')">Clear logo</button></div><details><summary>Custom icon (optional)</summary><label for="pred3Icon">Flag, emoji or custom image</label><input id="pred3Icon" placeholder="⚽" oninput="refreshPredictionLogo(3,'Home')"></details></div>
@@ -125,23 +155,33 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Live status</label><input id="pred3Status" placeholder="86' • LIVE"></div>
 <div><label>Home score</label><input id="pred3HomeScore" type="number" min="0" step="1"></div>
 <div><label>Away score</label><input id="pred3AwayScore" type="number" min="0" step="1"></div>
-<div><label>Match statistic</label><select id="pred3Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
-<div><label>Analysis note</label><input id="pred3Pick" placeholder="Goal tracker or match commentary"></div>
-<div><label>Current</label><input id="pred3Current" type="number" step="0.1" min="0"></div>
-<div><label>Target</label><input id="pred3Target" type="number" step="0.1" min="0"></div>
-<div><label>Unit</label><input id="pred3Unit" placeholder="Goals"></div>
+<div id="pred3MarketLegacyBox"><label>Match statistic</label><select id="pred3Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
+<div id="pred3PickLegacyBox"><label>Analysis note</label><input id="pred3Pick" placeholder="Goal tracker or match commentary"></div>
+<div id="pred3CurrentLegacyBox"><label>Current</label><input id="pred3Current" type="number" step="0.1" min="0"></div>
+<div id="pred3TargetLegacyBox"><label>Target</label><input id="pred3Target" type="number" step="0.1" min="0"></div>
+<div id="pred3UnitLegacyBox"><label>Unit</label><input id="pred3Unit" placeholder="Goals"></div>
 
-<div><label>% override</label><input id="pred3Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
+<div id="pred3PercentLegacyBox"><label>% override</label><input id="pred3Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 
-<div class="predTools"><button type="button" onclick="predStep(3,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(3,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(3)">USE MAIN MATCH</button></div>
+<div class="predTools"><button type="button" id="pred3StepUp" onclick="predStep(3,1)">+1 CURRENT</button><button type="button" class="secondary" id="pred3StepDown" onclick="predStep(3,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(3)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred3Bar"></div></div>
 <div id="pred3Preview" class="muted" style="font-size:12px;margin-top:6px"></div>
 </div>
 <div class="predCard" id="predCard4">
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 4</div><label class="toggleRow"><input id="pred4Enabled" type="checkbox" style="width:auto"> Show</label></div>
+<div class="predGrid predictionPickPanel" style="margin-top:10px">
+<div><label for="pred4PickType">Prediction type</label><select id="pred4PickType" class="predictionTeamSelect"><option value="">Score / statistic tracker</option><option value="winner">Match winner</option><option value="double_chance">Double chance</option><option value="draw_no_bet">Draw no bet</option><option value="goals">Total goals</option><option value="btts">Both teams to score</option><option value="team_goals">Team total goals</option><option value="exact_score">Exact score</option><option value="clean_sheet">Team clean sheet</option><option value="corners">Total corners</option><option value="player_goal">Player to score</option><option value="custom">Custom outcome</option></select></div>
+<div id="pred4PickOutcomeBox" hidden><label for="pred4PickOutcome">Your outcome</label><select id="pred4PickOutcome" class="predictionTeamSelect"></select></div>
+<div id="pred4PickTeamBox" hidden><label for="pred4PickTeam">Team</label><select id="pred4PickTeam" class="predictionTeamSelect"><option value="home">Home team</option><option value="away">Away team</option></select></div>
+<div id="pred4PickLineBox" hidden><label for="pred4PickLine">Over / under line</label><input id="pred4PickLine" type="number" min="0" step="0.5" value="2.5"></div>
+<div id="pred4PickExactBox" hidden><label for="pred4PickExactHome">Exact home score</label><input id="pred4PickExactHome" type="number" min="0" max="99" step="1" value="0"><label for="pred4PickExactAway">Exact away score</label><input id="pred4PickExactAway" type="number" min="0" max="99" step="1" value="0"></div>
+<div id="pred4PickTextBox" hidden><label for="pred4PickText">Player name / custom outcome</label><input id="pred4PickText" maxlength="160" placeholder="Player name or your own outcome"></div>
+<div id="pred4PickPeriodBox" hidden><label for="pred4PickPeriod">Period</label><select id="pred4PickPeriod" class="predictionTeamSelect"><option value="full">90 minutes + stoppage</option><option value="first">First half</option><option value="second">Second half</option><option value="extra">Extra time only</option></select></div>
+<div><label for="pred4Result">Result</label><select id="pred4Result" class="predictionTeamSelect"><option value="AUTO">Auto tracker / Pending pick</option><option value="PENDING">Pending</option><option value="HIT">Won</option><option value="LOST">Lost</option><option value="VOID">Void</option></select></div>
+</div><div class="muted" style="font-size:12px;margin-top:6px">Your own picks. Mark the result when known; match-winner picks do not settle from a live lead. Full match means 90 minutes plus stoppage time.</div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred4Match" placeholder="France vs Italy"></div>
 <div><label for="pred4HomeSearch">Home team logo</label><input id="pred4HomeSearch" type="search" placeholder="Search team or league" autocomplete="off" aria-controls="pred4HomePreset"><select id="pred4HomePreset" class="predictionTeamSelect" aria-label="Prediction 4 home team" onchange="applyPredictionPreset(4,'Home',this.value)"><option value="">Choose team…</option></select><div id="pred4HomeSearchStatus" class="muted" role="status"></div><div class="predictionLogoTools"><div id="pred4HomeLogoPreview" class="predictionLogoPreview" aria-label="Home logo preview"></div><button type="button" class="secondary chip" onclick="clearPredictionLogo(4,'Home')">Clear logo</button></div><details><summary>Custom icon (optional)</summary><label for="pred4Icon">Flag, emoji or custom image</label><input id="pred4Icon" placeholder="⚽" oninput="refreshPredictionLogo(4,'Home')"></details></div>
@@ -149,23 +189,33 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Live status</label><input id="pred4Status" placeholder="86' • LIVE"></div>
 <div><label>Home score</label><input id="pred4HomeScore" type="number" min="0" step="1"></div>
 <div><label>Away score</label><input id="pred4AwayScore" type="number" min="0" step="1"></div>
-<div><label>Match statistic</label><select id="pred4Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
-<div><label>Analysis note</label><input id="pred4Pick" placeholder="Goal tracker or match commentary"></div>
-<div><label>Current</label><input id="pred4Current" type="number" step="0.1" min="0"></div>
-<div><label>Target</label><input id="pred4Target" type="number" step="0.1" min="0"></div>
-<div><label>Unit</label><input id="pred4Unit" placeholder="Goals"></div>
+<div id="pred4MarketLegacyBox"><label>Match statistic</label><select id="pred4Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
+<div id="pred4PickLegacyBox"><label>Analysis note</label><input id="pred4Pick" placeholder="Goal tracker or match commentary"></div>
+<div id="pred4CurrentLegacyBox"><label>Current</label><input id="pred4Current" type="number" step="0.1" min="0"></div>
+<div id="pred4TargetLegacyBox"><label>Target</label><input id="pred4Target" type="number" step="0.1" min="0"></div>
+<div id="pred4UnitLegacyBox"><label>Unit</label><input id="pred4Unit" placeholder="Goals"></div>
 
-<div><label>% override</label><input id="pred4Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
+<div id="pred4PercentLegacyBox"><label>% override</label><input id="pred4Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 
-<div class="predTools"><button type="button" onclick="predStep(4,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(4,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(4)">USE MAIN MATCH</button></div>
+<div class="predTools"><button type="button" id="pred4StepUp" onclick="predStep(4,1)">+1 CURRENT</button><button type="button" class="secondary" id="pred4StepDown" onclick="predStep(4,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(4)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred4Bar"></div></div>
 <div id="pred4Preview" class="muted" style="font-size:12px;margin-top:6px"></div>
 </div>
 <div class="predCard" id="predCard5">
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 5</div><label class="toggleRow"><input id="pred5Enabled" type="checkbox" style="width:auto"> Show</label></div>
+<div class="predGrid predictionPickPanel" style="margin-top:10px">
+<div><label for="pred5PickType">Prediction type</label><select id="pred5PickType" class="predictionTeamSelect"><option value="">Score / statistic tracker</option><option value="winner">Match winner</option><option value="double_chance">Double chance</option><option value="draw_no_bet">Draw no bet</option><option value="goals">Total goals</option><option value="btts">Both teams to score</option><option value="team_goals">Team total goals</option><option value="exact_score">Exact score</option><option value="clean_sheet">Team clean sheet</option><option value="corners">Total corners</option><option value="player_goal">Player to score</option><option value="custom">Custom outcome</option></select></div>
+<div id="pred5PickOutcomeBox" hidden><label for="pred5PickOutcome">Your outcome</label><select id="pred5PickOutcome" class="predictionTeamSelect"></select></div>
+<div id="pred5PickTeamBox" hidden><label for="pred5PickTeam">Team</label><select id="pred5PickTeam" class="predictionTeamSelect"><option value="home">Home team</option><option value="away">Away team</option></select></div>
+<div id="pred5PickLineBox" hidden><label for="pred5PickLine">Over / under line</label><input id="pred5PickLine" type="number" min="0" step="0.5" value="2.5"></div>
+<div id="pred5PickExactBox" hidden><label for="pred5PickExactHome">Exact home score</label><input id="pred5PickExactHome" type="number" min="0" max="99" step="1" value="0"><label for="pred5PickExactAway">Exact away score</label><input id="pred5PickExactAway" type="number" min="0" max="99" step="1" value="0"></div>
+<div id="pred5PickTextBox" hidden><label for="pred5PickText">Player name / custom outcome</label><input id="pred5PickText" maxlength="160" placeholder="Player name or your own outcome"></div>
+<div id="pred5PickPeriodBox" hidden><label for="pred5PickPeriod">Period</label><select id="pred5PickPeriod" class="predictionTeamSelect"><option value="full">90 minutes + stoppage</option><option value="first">First half</option><option value="second">Second half</option><option value="extra">Extra time only</option></select></div>
+<div><label for="pred5Result">Result</label><select id="pred5Result" class="predictionTeamSelect"><option value="AUTO">Auto tracker / Pending pick</option><option value="PENDING">Pending</option><option value="HIT">Won</option><option value="LOST">Lost</option><option value="VOID">Void</option></select></div>
+</div><div class="muted" style="font-size:12px;margin-top:6px">Your own picks. Mark the result when known; match-winner picks do not settle from a live lead. Full match means 90 minutes plus stoppage time.</div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred5Match" placeholder="France vs Italy"></div>
 <div><label for="pred5HomeSearch">Home team logo</label><input id="pred5HomeSearch" type="search" placeholder="Search team or league" autocomplete="off" aria-controls="pred5HomePreset"><select id="pred5HomePreset" class="predictionTeamSelect" aria-label="Prediction 5 home team" onchange="applyPredictionPreset(5,'Home',this.value)"><option value="">Choose team…</option></select><div id="pred5HomeSearchStatus" class="muted" role="status"></div><div class="predictionLogoTools"><div id="pred5HomeLogoPreview" class="predictionLogoPreview" aria-label="Home logo preview"></div><button type="button" class="secondary chip" onclick="clearPredictionLogo(5,'Home')">Clear logo</button></div><details><summary>Custom icon (optional)</summary><label for="pred5Icon">Flag, emoji or custom image</label><input id="pred5Icon" placeholder="⚽" oninput="refreshPredictionLogo(5,'Home')"></details></div>
@@ -173,23 +223,33 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Live status</label><input id="pred5Status" placeholder="86' • LIVE"></div>
 <div><label>Home score</label><input id="pred5HomeScore" type="number" min="0" step="1"></div>
 <div><label>Away score</label><input id="pred5AwayScore" type="number" min="0" step="1"></div>
-<div><label>Match statistic</label><select id="pred5Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
-<div><label>Analysis note</label><input id="pred5Pick" placeholder="Goal tracker or match commentary"></div>
-<div><label>Current</label><input id="pred5Current" type="number" step="0.1" min="0"></div>
-<div><label>Target</label><input id="pred5Target" type="number" step="0.1" min="0"></div>
-<div><label>Unit</label><input id="pred5Unit" placeholder="Goals"></div>
+<div id="pred5MarketLegacyBox"><label>Match statistic</label><select id="pred5Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
+<div id="pred5PickLegacyBox"><label>Analysis note</label><input id="pred5Pick" placeholder="Goal tracker or match commentary"></div>
+<div id="pred5CurrentLegacyBox"><label>Current</label><input id="pred5Current" type="number" step="0.1" min="0"></div>
+<div id="pred5TargetLegacyBox"><label>Target</label><input id="pred5Target" type="number" step="0.1" min="0"></div>
+<div id="pred5UnitLegacyBox"><label>Unit</label><input id="pred5Unit" placeholder="Goals"></div>
 
-<div><label>% override</label><input id="pred5Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
+<div id="pred5PercentLegacyBox"><label>% override</label><input id="pred5Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 
-<div class="predTools"><button type="button" onclick="predStep(5,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(5,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(5)">USE MAIN MATCH</button></div>
+<div class="predTools"><button type="button" id="pred5StepUp" onclick="predStep(5,1)">+1 CURRENT</button><button type="button" class="secondary" id="pred5StepDown" onclick="predStep(5,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(5)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred5Bar"></div></div>
 <div id="pred5Preview" class="muted" style="font-size:12px;margin-top:6px"></div>
 </div>
 <div class="predCard" id="predCard6">
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 6</div><label class="toggleRow"><input id="pred6Enabled" type="checkbox" style="width:auto"> Show</label></div>
+<div class="predGrid predictionPickPanel" style="margin-top:10px">
+<div><label for="pred6PickType">Prediction type</label><select id="pred6PickType" class="predictionTeamSelect"><option value="">Score / statistic tracker</option><option value="winner">Match winner</option><option value="double_chance">Double chance</option><option value="draw_no_bet">Draw no bet</option><option value="goals">Total goals</option><option value="btts">Both teams to score</option><option value="team_goals">Team total goals</option><option value="exact_score">Exact score</option><option value="clean_sheet">Team clean sheet</option><option value="corners">Total corners</option><option value="player_goal">Player to score</option><option value="custom">Custom outcome</option></select></div>
+<div id="pred6PickOutcomeBox" hidden><label for="pred6PickOutcome">Your outcome</label><select id="pred6PickOutcome" class="predictionTeamSelect"></select></div>
+<div id="pred6PickTeamBox" hidden><label for="pred6PickTeam">Team</label><select id="pred6PickTeam" class="predictionTeamSelect"><option value="home">Home team</option><option value="away">Away team</option></select></div>
+<div id="pred6PickLineBox" hidden><label for="pred6PickLine">Over / under line</label><input id="pred6PickLine" type="number" min="0" step="0.5" value="2.5"></div>
+<div id="pred6PickExactBox" hidden><label for="pred6PickExactHome">Exact home score</label><input id="pred6PickExactHome" type="number" min="0" max="99" step="1" value="0"><label for="pred6PickExactAway">Exact away score</label><input id="pred6PickExactAway" type="number" min="0" max="99" step="1" value="0"></div>
+<div id="pred6PickTextBox" hidden><label for="pred6PickText">Player name / custom outcome</label><input id="pred6PickText" maxlength="160" placeholder="Player name or your own outcome"></div>
+<div id="pred6PickPeriodBox" hidden><label for="pred6PickPeriod">Period</label><select id="pred6PickPeriod" class="predictionTeamSelect"><option value="full">90 minutes + stoppage</option><option value="first">First half</option><option value="second">Second half</option><option value="extra">Extra time only</option></select></div>
+<div><label for="pred6Result">Result</label><select id="pred6Result" class="predictionTeamSelect"><option value="AUTO">Auto tracker / Pending pick</option><option value="PENDING">Pending</option><option value="HIT">Won</option><option value="LOST">Lost</option><option value="VOID">Void</option></select></div>
+</div><div class="muted" style="font-size:12px;margin-top:6px">Your own picks. Mark the result when known; match-winner picks do not settle from a live lead. Full match means 90 minutes plus stoppage time.</div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred6Match" placeholder="France vs Italy"></div>
 <div><label for="pred6HomeSearch">Home team logo</label><input id="pred6HomeSearch" type="search" placeholder="Search team or league" autocomplete="off" aria-controls="pred6HomePreset"><select id="pred6HomePreset" class="predictionTeamSelect" aria-label="Prediction 6 home team" onchange="applyPredictionPreset(6,'Home',this.value)"><option value="">Choose team…</option></select><div id="pred6HomeSearchStatus" class="muted" role="status"></div><div class="predictionLogoTools"><div id="pred6HomeLogoPreview" class="predictionLogoPreview" aria-label="Home logo preview"></div><button type="button" class="secondary chip" onclick="clearPredictionLogo(6,'Home')">Clear logo</button></div><details><summary>Custom icon (optional)</summary><label for="pred6Icon">Flag, emoji or custom image</label><input id="pred6Icon" placeholder="⚽" oninput="refreshPredictionLogo(6,'Home')"></details></div>
@@ -197,23 +257,33 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Live status</label><input id="pred6Status" placeholder="86' • LIVE"></div>
 <div><label>Home score</label><input id="pred6HomeScore" type="number" min="0" step="1"></div>
 <div><label>Away score</label><input id="pred6AwayScore" type="number" min="0" step="1"></div>
-<div><label>Match statistic</label><select id="pred6Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
-<div><label>Analysis note</label><input id="pred6Pick" placeholder="Goal tracker or match commentary"></div>
-<div><label>Current</label><input id="pred6Current" type="number" step="0.1" min="0"></div>
-<div><label>Target</label><input id="pred6Target" type="number" step="0.1" min="0"></div>
-<div><label>Unit</label><input id="pred6Unit" placeholder="Goals"></div>
+<div id="pred6MarketLegacyBox"><label>Match statistic</label><select id="pred6Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
+<div id="pred6PickLegacyBox"><label>Analysis note</label><input id="pred6Pick" placeholder="Goal tracker or match commentary"></div>
+<div id="pred6CurrentLegacyBox"><label>Current</label><input id="pred6Current" type="number" step="0.1" min="0"></div>
+<div id="pred6TargetLegacyBox"><label>Target</label><input id="pred6Target" type="number" step="0.1" min="0"></div>
+<div id="pred6UnitLegacyBox"><label>Unit</label><input id="pred6Unit" placeholder="Goals"></div>
 
-<div><label>% override</label><input id="pred6Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
+<div id="pred6PercentLegacyBox"><label>% override</label><input id="pred6Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 
-<div class="predTools"><button type="button" onclick="predStep(6,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(6,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(6)">USE MAIN MATCH</button></div>
+<div class="predTools"><button type="button" id="pred6StepUp" onclick="predStep(6,1)">+1 CURRENT</button><button type="button" class="secondary" id="pred6StepDown" onclick="predStep(6,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(6)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred6Bar"></div></div>
 <div id="pred6Preview" class="muted" style="font-size:12px;margin-top:6px"></div>
 </div>
 <div class="predCard" id="predCard7">
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 7</div><label class="toggleRow"><input id="pred7Enabled" type="checkbox" style="width:auto"> Show</label></div>
+<div class="predGrid predictionPickPanel" style="margin-top:10px">
+<div><label for="pred7PickType">Prediction type</label><select id="pred7PickType" class="predictionTeamSelect"><option value="">Score / statistic tracker</option><option value="winner">Match winner</option><option value="double_chance">Double chance</option><option value="draw_no_bet">Draw no bet</option><option value="goals">Total goals</option><option value="btts">Both teams to score</option><option value="team_goals">Team total goals</option><option value="exact_score">Exact score</option><option value="clean_sheet">Team clean sheet</option><option value="corners">Total corners</option><option value="player_goal">Player to score</option><option value="custom">Custom outcome</option></select></div>
+<div id="pred7PickOutcomeBox" hidden><label for="pred7PickOutcome">Your outcome</label><select id="pred7PickOutcome" class="predictionTeamSelect"></select></div>
+<div id="pred7PickTeamBox" hidden><label for="pred7PickTeam">Team</label><select id="pred7PickTeam" class="predictionTeamSelect"><option value="home">Home team</option><option value="away">Away team</option></select></div>
+<div id="pred7PickLineBox" hidden><label for="pred7PickLine">Over / under line</label><input id="pred7PickLine" type="number" min="0" step="0.5" value="2.5"></div>
+<div id="pred7PickExactBox" hidden><label for="pred7PickExactHome">Exact home score</label><input id="pred7PickExactHome" type="number" min="0" max="99" step="1" value="0"><label for="pred7PickExactAway">Exact away score</label><input id="pred7PickExactAway" type="number" min="0" max="99" step="1" value="0"></div>
+<div id="pred7PickTextBox" hidden><label for="pred7PickText">Player name / custom outcome</label><input id="pred7PickText" maxlength="160" placeholder="Player name or your own outcome"></div>
+<div id="pred7PickPeriodBox" hidden><label for="pred7PickPeriod">Period</label><select id="pred7PickPeriod" class="predictionTeamSelect"><option value="full">90 minutes + stoppage</option><option value="first">First half</option><option value="second">Second half</option><option value="extra">Extra time only</option></select></div>
+<div><label for="pred7Result">Result</label><select id="pred7Result" class="predictionTeamSelect"><option value="AUTO">Auto tracker / Pending pick</option><option value="PENDING">Pending</option><option value="HIT">Won</option><option value="LOST">Lost</option><option value="VOID">Void</option></select></div>
+</div><div class="muted" style="font-size:12px;margin-top:6px">Your own picks. Mark the result when known; match-winner picks do not settle from a live lead. Full match means 90 minutes plus stoppage time.</div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred7Match" placeholder="France vs Italy"></div>
 <div><label for="pred7HomeSearch">Home team logo</label><input id="pred7HomeSearch" type="search" placeholder="Search team or league" autocomplete="off" aria-controls="pred7HomePreset"><select id="pred7HomePreset" class="predictionTeamSelect" aria-label="Prediction 7 home team" onchange="applyPredictionPreset(7,'Home',this.value)"><option value="">Choose team…</option></select><div id="pred7HomeSearchStatus" class="muted" role="status"></div><div class="predictionLogoTools"><div id="pred7HomeLogoPreview" class="predictionLogoPreview" aria-label="Home logo preview"></div><button type="button" class="secondary chip" onclick="clearPredictionLogo(7,'Home')">Clear logo</button></div><details><summary>Custom icon (optional)</summary><label for="pred7Icon">Flag, emoji or custom image</label><input id="pred7Icon" placeholder="⚽" oninput="refreshPredictionLogo(7,'Home')"></details></div>
@@ -221,23 +291,33 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Live status</label><input id="pred7Status" placeholder="86' • LIVE"></div>
 <div><label>Home score</label><input id="pred7HomeScore" type="number" min="0" step="1"></div>
 <div><label>Away score</label><input id="pred7AwayScore" type="number" min="0" step="1"></div>
-<div><label>Match statistic</label><select id="pred7Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
-<div><label>Analysis note</label><input id="pred7Pick" placeholder="Goal tracker or match commentary"></div>
-<div><label>Current</label><input id="pred7Current" type="number" step="0.1" min="0"></div>
-<div><label>Target</label><input id="pred7Target" type="number" step="0.1" min="0"></div>
-<div><label>Unit</label><input id="pred7Unit" placeholder="Goals"></div>
+<div id="pred7MarketLegacyBox"><label>Match statistic</label><select id="pred7Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
+<div id="pred7PickLegacyBox"><label>Analysis note</label><input id="pred7Pick" placeholder="Goal tracker or match commentary"></div>
+<div id="pred7CurrentLegacyBox"><label>Current</label><input id="pred7Current" type="number" step="0.1" min="0"></div>
+<div id="pred7TargetLegacyBox"><label>Target</label><input id="pred7Target" type="number" step="0.1" min="0"></div>
+<div id="pred7UnitLegacyBox"><label>Unit</label><input id="pred7Unit" placeholder="Goals"></div>
 
-<div><label>% override</label><input id="pred7Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
+<div id="pred7PercentLegacyBox"><label>% override</label><input id="pred7Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 
-<div class="predTools"><button type="button" onclick="predStep(7,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(7,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(7)">USE MAIN MATCH</button></div>
+<div class="predTools"><button type="button" id="pred7StepUp" onclick="predStep(7,1)">+1 CURRENT</button><button type="button" class="secondary" id="pred7StepDown" onclick="predStep(7,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(7)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred7Bar"></div></div>
 <div id="pred7Preview" class="muted" style="font-size:12px;margin-top:6px"></div>
 </div>
 <div class="predCard" id="predCard8">
 <div class="predHead"><div class="sectionTitle" style="margin:0">Prediction 8</div><label class="toggleRow"><input id="pred8Enabled" type="checkbox" style="width:auto"> Show</label></div>
+<div class="predGrid predictionPickPanel" style="margin-top:10px">
+<div><label for="pred8PickType">Prediction type</label><select id="pred8PickType" class="predictionTeamSelect"><option value="">Score / statistic tracker</option><option value="winner">Match winner</option><option value="double_chance">Double chance</option><option value="draw_no_bet">Draw no bet</option><option value="goals">Total goals</option><option value="btts">Both teams to score</option><option value="team_goals">Team total goals</option><option value="exact_score">Exact score</option><option value="clean_sheet">Team clean sheet</option><option value="corners">Total corners</option><option value="player_goal">Player to score</option><option value="custom">Custom outcome</option></select></div>
+<div id="pred8PickOutcomeBox" hidden><label for="pred8PickOutcome">Your outcome</label><select id="pred8PickOutcome" class="predictionTeamSelect"></select></div>
+<div id="pred8PickTeamBox" hidden><label for="pred8PickTeam">Team</label><select id="pred8PickTeam" class="predictionTeamSelect"><option value="home">Home team</option><option value="away">Away team</option></select></div>
+<div id="pred8PickLineBox" hidden><label for="pred8PickLine">Over / under line</label><input id="pred8PickLine" type="number" min="0" step="0.5" value="2.5"></div>
+<div id="pred8PickExactBox" hidden><label for="pred8PickExactHome">Exact home score</label><input id="pred8PickExactHome" type="number" min="0" max="99" step="1" value="0"><label for="pred8PickExactAway">Exact away score</label><input id="pred8PickExactAway" type="number" min="0" max="99" step="1" value="0"></div>
+<div id="pred8PickTextBox" hidden><label for="pred8PickText">Player name / custom outcome</label><input id="pred8PickText" maxlength="160" placeholder="Player name or your own outcome"></div>
+<div id="pred8PickPeriodBox" hidden><label for="pred8PickPeriod">Period</label><select id="pred8PickPeriod" class="predictionTeamSelect"><option value="full">90 minutes + stoppage</option><option value="first">First half</option><option value="second">Second half</option><option value="extra">Extra time only</option></select></div>
+<div><label for="pred8Result">Result</label><select id="pred8Result" class="predictionTeamSelect"><option value="AUTO">Auto tracker / Pending pick</option><option value="PENDING">Pending</option><option value="HIT">Won</option><option value="LOST">Lost</option><option value="VOID">Void</option></select></div>
+</div><div class="muted" style="font-size:12px;margin-top:6px">Your own picks. Mark the result when known; match-winner picks do not settle from a live lead. Full match means 90 minutes plus stoppage time.</div>
 <div class="predGrid" style="margin-top:10px">
 <div><label>Match</label><input id="pred8Match" placeholder="France vs Italy"></div>
 <div><label for="pred8HomeSearch">Home team logo</label><input id="pred8HomeSearch" type="search" placeholder="Search team or league" autocomplete="off" aria-controls="pred8HomePreset"><select id="pred8HomePreset" class="predictionTeamSelect" aria-label="Prediction 8 home team" onchange="applyPredictionPreset(8,'Home',this.value)"><option value="">Choose team…</option></select><div id="pred8HomeSearchStatus" class="muted" role="status"></div><div class="predictionLogoTools"><div id="pred8HomeLogoPreview" class="predictionLogoPreview" aria-label="Home logo preview"></div><button type="button" class="secondary chip" onclick="clearPredictionLogo(8,'Home')">Clear logo</button></div><details><summary>Custom icon (optional)</summary><label for="pred8Icon">Flag, emoji or custom image</label><input id="pred8Icon" placeholder="⚽" oninput="refreshPredictionLogo(8,'Home')"></details></div>
@@ -245,17 +325,17 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <div><label>Live status</label><input id="pred8Status" placeholder="86' • LIVE"></div>
 <div><label>Home score</label><input id="pred8HomeScore" type="number" min="0" step="1"></div>
 <div><label>Away score</label><input id="pred8AwayScore" type="number" min="0" step="1"></div>
-<div><label>Match statistic</label><select id="pred8Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
-<div><label>Analysis note</label><input id="pred8Pick" placeholder="Goal tracker or match commentary"></div>
-<div><label>Current</label><input id="pred8Current" type="number" step="0.1" min="0"></div>
-<div><label>Target</label><input id="pred8Target" type="number" step="0.1" min="0"></div>
-<div><label>Unit</label><input id="pred8Unit" placeholder="Goals"></div>
+<div id="pred8MarketLegacyBox"><label>Match statistic</label><select id="pred8Market" style="width:100%;padding:12px;background:#07110b;border:1px solid #335c43;color:white;border-radius:9px"><option>Total Goals</option><option>Team to Win</option><option>Win or Draw</option><option>Both Teams to Score</option><option>Team Total Goals</option><option>Player to Score</option><option>Corners</option><option>Custom</option></select></div>
+<div id="pred8PickLegacyBox"><label>Analysis note</label><input id="pred8Pick" placeholder="Goal tracker or match commentary"></div>
+<div id="pred8CurrentLegacyBox"><label>Current</label><input id="pred8Current" type="number" step="0.1" min="0"></div>
+<div id="pred8TargetLegacyBox"><label>Target</label><input id="pred8Target" type="number" step="0.1" min="0"></div>
+<div id="pred8UnitLegacyBox"><label>Unit</label><input id="pred8Unit" placeholder="Goals"></div>
 
-<div><label>% override</label><input id="pred8Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
+<div id="pred8PercentLegacyBox"><label>% override</label><input id="pred8Percent" type="number" min="0" max="100" step="1" placeholder="Auto"></div>
 </div>
 <div class="grid" style="margin-top:8px">
 
-<div class="predTools"><button type="button" onclick="predStep(8,1)">+1 CURRENT</button><button type="button" class="secondary" onclick="predStep(8,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(8)">USE MAIN MATCH</button></div>
+<div class="predTools"><button type="button" id="pred8StepUp" onclick="predStep(8,1)">+1 CURRENT</button><button type="button" class="secondary" id="pred8StepDown" onclick="predStep(8,-1)">-1 CURRENT</button><button type="button" class="blue" onclick="copyMainMatch(8)">USE MAIN MATCH</button></div>
 </div>
 <div class="predProgress"><div id="pred8Bar"></div></div>
 <div id="pred8Preview" class="muted" style="font-size:12px;margin-top:6px"></div>
@@ -344,7 +424,9 @@ label{font-size:12px;color:#b7c8bd;display:block;margin:2px 0 5px}.sectionTitle{
 <p class="muted">TikTok overlay URL:<br><a id="u" style="color:#39ff7a;overflow-wrap:anywhere" href="/overlay.html" target="_blank" rel="noopener noreferrer"></a></p>
 <p class="muted">Twitch overlay URL (1920 × 1080):<br><a id="twitchUrl" href="/twitch.html" target="_blank" rel="noopener noreferrer" style="color:#39ff7a;overflow-wrap:anywhere">Open Twitch overlay</a></p></div>
 </main>
+<script src="prediction-picks.js"></script>
 <script src="team-selector.js"></script>
+<script src="prediction-pick-controller.js"></script>
 <script>
 let s={};const fields=['homeTeam','awayTeam','homeLogo','awayLogo','clock',
 'match1Home','match1Away','match1Status','match2Home','match2Away','match2Status','match3Home','match3Away','match3Status','match4Home','match4Away','match4Status','match5Home','match5Away','match5Status',
@@ -359,18 +441,18 @@ function pickLogo(fileInput,targetId,previewId){
  reader.readAsDataURL(file);
 }
 function clearLogo(targetId,previewId,fileId){document.getElementById(targetId).value='';document.getElementById(fileId).value='';previewLogo(targetId,previewId)}
-function predStatus(i){const cur=+(document.getElementById('pred'+i+'Current').value||0),tar=+(document.getElementById('pred'+i+'Target').value||0);return tar>0&&cur>=tar?'TARGET REACHED':'TRACKING'}
-function updatePredPreview(i){const cur=+(document.getElementById('pred'+i+'Current').value||0),tar=+(document.getElementById('pred'+i+'Target').value||0),unit=document.getElementById('pred'+i+'Unit').value||'',st=predStatus(i),pct=tar>0?Math.max(0,Math.min(100,cur/tar*100)):0;document.getElementById('pred'+i+'Bar').style.width=(st==='TARGET REACHED'?100:pct)+'%';document.getElementById('pred'+i+'Preview').textContent=(document.getElementById('pred'+i+'Pick').value||'Pick')+' • '+cur+'/'+tar+' '+unit+' • '+st}
-function drawForm(){fields.forEach(k=>{const el=document.getElementById(k);if(el&&document.activeElement!==el)el.value=s[k]??''});for(let i=1;i<=8;i++){const cb=document.getElementById('pred'+i+'Enabled');if(cb&&document.activeElement!==cb)cb.checked=!!s['pred'+i+'Enabled'];updatePredPreview(i)}u.textContent=location.origin+'/overlay.html';u.href=location.origin+'/overlay.html';const tw=document.getElementById('twitchUrl');tw.textContent=location.origin+'/twitch.html';tw.href=location.origin+'/twitch.html';previewLogo('homeLogo','homeLogoPreview');previewLogo('awayLogo','awayLogoPreview');refreshPredictionLogos()}
+function predStatus(i){return PredictionPicks.result(pickElement(i,'Result').value,readPredictionPick(i),pickElement(i,'Current').value,pickElement(i,'Target').value)}
+function updatePredPreview(i){refreshPickLabels(i);const pick=readPredictionPick(i),cur=+(pickElement(i,'Current').value||0),tar=+(pickElement(i,'Target').value||0),st=predStatus(i),pct=tar>0?Math.max(0,Math.min(100,cur/tar*100)):0;pickElement(i,'Bar').style.width=(st==='HIT'?100:pick?0:pct)+'%';pickElement(i,'Preview').textContent=pick?PredictionPicks.describe(pick)+' • '+PredictionPicks.periods[pick.period]+' • '+PredictionPicks.resultLabel(st):(pickElement(i,'Pick').value||'Pick')+' • '+cur+'/'+tar+' '+pickElement(i,'Unit').value+' • '+PredictionPicks.resultLabel(st)}
+function drawForm(){fields.forEach(k=>{const el=document.getElementById(k);if(el&&document.activeElement!==el)el.value=s[k]??''});for(let i=1;i<=8;i++){const cb=document.getElementById('pred'+i+'Enabled');if(cb&&document.activeElement!==cb)cb.checked=!!s['pred'+i+'Enabled'];drawPredictionPick(i,s['pred'+i+'Selection'],s['pred'+i+'Result'])}u.textContent=location.origin+'/overlay.html';u.href=location.origin+'/overlay.html';const tw=document.getElementById('twitchUrl');tw.textContent=location.origin+'/twitch.html';tw.href=location.origin+'/twitch.html';previewLogo('homeLogo','homeLogoPreview');previewLogo('awayLogo','awayLogoPreview');refreshPredictionLogos()}
 function drawLive(){hs.textContent=s.homeScore??0;as.textContent=s.awayScore??0;phs.textContent=s.penaltyHome??0;pas.textContent=s.penaltyAway??0;clock.value=s.clock||'00:00';clockBig.textContent=(s.matchStatus&&s.matchStatus!=='LIVE'&&s.matchStatus!=='PRE'?s.matchStatus+' • ':'')+(s.clock||'00:00');clockModeLabel.textContent=s.clockMode==='extra'?'EXTRA TIME • 90–120 MIN':(s.matchStatus||'PRE')+' • STANDARD 90 MIN';penaltyToggle.textContent=s.penaltyMode?'DISABLE PENALTIES':'ENABLE PENALTIES';penaltyToggle.classList.toggle('activeMode',!!s.penaltyMode);for(let i=1;i<=5;i++){document.getElementById('m'+i+'hs').textContent=s['match'+i+'HomeScore']??0;document.getElementById('m'+i+'as').textContent=s['match'+i+'AwayScore']??0}}
 async function post(x){status.textContent='● Saving changes…';try{const response=await fetch('/api/state',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(x)});if(!response.ok)throw new Error('Server returned '+response.status);s=await response.json();drawForm();drawLive();status.textContent='● Saved — Twitch and TikTok overlays will refresh automatically';}catch(e){status.textContent='● Save failed: '+e.message;console.error(e)}}
 async function clockAction(action){try{s=await fetch('/api/clock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action})}).then(r=>r.json());drawLive();status.textContent='● Clock updated'}catch(e){status.textContent='Clock error'}}
-function saveAll(){const x={};for(const k of fields){if(k==='clock')continue;const el=document.getElementById(k);if(el)x[k]=el.value;}for(let i=1;i<=8;i++){const cb=document.getElementById('pred'+i+'Enabled');if(cb)x['pred'+i+'Enabled']=cb.checked;}post(x)}
+function saveAll(){const x={};for(const k of fields){if(k==='clock')continue;const el=document.getElementById(k);if(el)x[k]=el.value;}for(let i=1;i<=8;i++){const cb=document.getElementById('pred'+i+'Enabled');if(cb)x['pred'+i+'Enabled']=cb.checked;}if(!collectPredictionPicks(x))return;post(x)}
 function goal(k,d){post({[k]:Math.max(0,(+s[k]||0)+d)})}
 function miniGoal(i,side,d){const k='match'+i+side+'Score';post({[k]:Math.max(0,(+s[k]||0)+d)})}
 function predStep(i,d){const el=document.getElementById('pred'+i+'Current');el.value=Math.max(0,(+el.value||0)+d);updatePredPreview(i)}
-function copyMainMatch(i){document.getElementById('pred'+i+'Match').value=(document.getElementById('homeTeam').value||'HOME')+' vs '+(document.getElementById('awayTeam').value||'AWAY');document.getElementById('pred'+i+'Icon').value=document.getElementById('homeLogo').value;document.getElementById('pred'+i+'Icon2').value=document.getElementById('awayLogo').value;refreshPredictionLogo(i,'Home');refreshPredictionLogo(i,'Away')}
-function initPredListeners(){for(let i=1;i<=8;i++){['Current','Target','Pick','Unit','Percent','Market'].forEach(sfx=>{const el=document.getElementById('pred'+i+sfx);if(el)el.addEventListener('input',()=>updatePredPreview(i))})}}
+function copyMainMatch(i){document.getElementById('pred'+i+'Match').value=(document.getElementById('homeTeam').value||'HOME')+' vs '+(document.getElementById('awayTeam').value||'AWAY');document.getElementById('pred'+i+'Icon').value=document.getElementById('homeLogo').value;document.getElementById('pred'+i+'Icon2').value=document.getElementById('awayLogo').value;refreshPredictionLogo(i,'Home');refreshPredictionLogo(i,'Away');predictionPickChanged(i)}
+function initPredListeners(){for(let i=1;i<=8;i++){['Current','Target','Pick','Unit','Percent','Market','Match'].forEach(sfx=>{const el=document.getElementById('pred'+i+sfx);if(el)el.addEventListener('input',()=>updatePredPreview(i))})}}
 function setStatus(v){post({matchStatus:v})}
 function togglePenalty(){post({penaltyMode:!s.penaltyMode})}
 function penaltyGoal(side,d){const k='penalty'+side;post({[k]:Math.max(0,(+s[k]||0)+d),penaltyMode:true})}
@@ -380,5 +462,5 @@ function refreshTemplates(){const sel=document.getElementById('templateSelect');
 function saveTemplate(){status.textContent='Templates are currently stored through your controller values.'}
 function loadTemplate(){status.textContent='Use UPDATE OVERLAY after loading your saved controller values.'}
 function deleteTemplate(){status.textContent='No saved template selected.'}
-initPredListeners();initTeamSelectors();refreshTemplates();load();setInterval(pollLive,1000);
+initPredListeners();initPickListeners();initTeamSelectors();refreshTemplates();load();setInterval(pollLive,1000);
 </script></body></html>

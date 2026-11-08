@@ -31,6 +31,10 @@ state={
 "pred7Icon":"","pred7Icon2":"","pred7Status":"","pred7HomeScore":0,"pred7AwayScore":0,"pred7Percent":"","pred7Enabled":False,"pred7Match":"MATCH 7","pred7Market":"Total Goals","pred7Pick":"Over 1.5","pred7Current":0,"pred7Target":2,"pred7Unit":"Goals","pred7Result":"AUTO","pred7Odds":"",
 "pred8Icon":"","pred8Icon2":"","pred8Status":"","pred8HomeScore":0,"pred8AwayScore":0,"pred8Percent":"","pred8Enabled":False,"pred8Match":"MATCH 8","pred8Market":"Total Goals","pred8Pick":"Over 1.5","pred8Current":0,"pred8Target":2,"pred8Unit":"Goals","pred8Result":"AUTO","pred8Odds":""
 }
+# Optional structured picks reuse the existing row and result fields.
+for prediction_index in range(1, 9):
+    state[f"pred{prediction_index}Selection"] = None
+
 def _elapsed_now():
     elapsed=float(state.get("clockElapsed",0) or 0)
     if state.get("clockRunning") and state.get("clockLastStarted"):
