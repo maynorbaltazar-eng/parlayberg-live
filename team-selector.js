@@ -89,6 +89,7 @@ function applyPredictionPreset(i, side, name) {
   if (nextName && (!match.value.trim() || /^MATCH\s*\d+$/i.test(match.value.trim()) || match.value === previousName)) match.value = nextName;
   refreshPredictionLogo(i, side);
   document.getElementById('status').textContent = 'Prediction logo selected — click UPDATE OVERLAY';
+  if (typeof predictionPickChanged === 'function') predictionPickChanged(i);
 }
 function refreshPredictionLogo(i, side) {
   const prefix = 'pred' + i + side;
@@ -104,6 +105,7 @@ function refreshPredictionLogo(i, side) {
     image.src = value;
     preview.appendChild(image);
   } else preview.textContent = value || '⚽';
+  if (typeof readPredictionPick === 'function') updatePredPreview(i);
 }
 function clearPredictionLogo(i, side) {
   document.getElementById(predictionIconId(i, side)).value = '';

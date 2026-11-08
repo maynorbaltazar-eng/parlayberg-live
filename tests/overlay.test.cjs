@@ -3,13 +3,16 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const vm=require('node:vm');
 const path=require('node:path');
+const pickContext={};
+vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../prediction-picks.js'),'utf8'),pickContext);
+const PredictionPicks=pickContext.PredictionPicks;
 const script=fs.readFileSync(path.join(__dirname,'../overlay.html'),'utf8').match(/<script>([\s\S]*?)<\/script>/)[1];
 test('TikTok overlay executes, fetches saved state and refreshes team names/logos',async()=>{
  const elements={};
  const get=id=>elements[id]??=( {textContent:'',style:{},children:[],classList:{add(){},remove(){}},removeAttribute(k){delete this[k]},appendChild(c){this.children.push(c)}} );
  let state={homeTeam:'Manchester United',awayTeam:'Barcelona',homeLogo:'/assets/teams/16.png',awayLogo:'/assets/teams/15.png',homeScore:2,awayScore:1,pred1Enabled:true,pred1Icon:'/assets/teams/16.png',pred1Icon2:'https://example.com/logo.png'};
  let refresh;let requested;
- const context={document:{getElementById:get,createElement:()=>({})},fetch:async url=>{requested=url;return {json:async()=>state}},setInterval:fn=>{refresh=fn},Date};
+ const context={PredictionPicks,document:{getElementById:get,createElement:()=>({})},fetch:async url=>{requested=url;return {json:async()=>state}},setInterval:fn=>{refresh=fn},Date};
  vm.runInNewContext(script,context);
  await new Promise(resolve=>setImmediate(resolve));
  assert(requested.startsWith('/api/state?'));
@@ -25,6 +28,20 @@ test('TikTok overlay executes, fetches saved state and refreshes team names/logo
  assert.equal(get('h').textContent,'Arsenal');
  assert.equal(get('homeLogoImg').src,state.homeLogo);
  assert.equal(get('hs').textContent,3);
+ state={...state,pred1Selection:{market:'winner',outcome:'home',period:'full',homeName:'Arsenal',awayName:'Barcelona'},pred1Result:'AUTO',pred1Current:99,pred1Target:1};
+ await refresh();
+ let row=get('sportsRows').children.at(-1).innerHTML;
+ assert(row.includes('Arsenal to win'));
+ assert(row.includes('PENDING'));
+ assert(row.includes('display:none'));
+ state={...state,pred1Result:'HIT'};await refresh();
+ assert(get('sportsRows').children.at(-1).innerHTML.includes('WON'));
+ assert.equal(get('slipCount').textContent,'1 / 1 WON');
+ state={...state,pred1Result:'VOID',pred1Selection:{...state.pred1Selection,homeName:'<script>alert(1)</script>'}};
+ await refresh();row=get('sportsRows').children.at(-1).innerHTML;
+ assert(row.includes('VOID'));
+ assert(row.includes('&lt;script&gt;'));
+ assert(!row.includes('<script>'));
 });
 test('Twitch renders bundled prediction logos, legacy emoji and failed-image fallback',async()=>{
  const script=fs.readFileSync(path.join(__dirname,'../twitch.html'),'utf8').match(/<script>([\s\S]*?)<\/script>/)[1];
@@ -32,7 +49,7 @@ test('Twitch renders bundled prediction logos, legacy emoji and failed-image fal
  const create=()=>({textContent:'',style:{},children:[],replaceChildren(){this.children=[];this.textContent=''},appendChild(c){this.children.push(c)}});
  const get=id=>elements[id]??=create();
  const state={homeLogo:'/assets/teams/18.png',pred1Enabled:true,pred1Icon:'/assets/teams/18.png',pred1Icon2:'/assets/teams/15.png',pred2Enabled:true,pred2Icon:'🇭🇳',pred2Icon2:'https://example.com/manual.png'};
- const context={document:{getElementById:get,createElement:create},fetch:async()=>({ok:true,json:async()=>state}),innerWidth:1920,innerHeight:1080,addEventListener(){},setInterval(){},Date,console};
+ const context={PredictionPicks,document:{getElementById:get,createElement:create},fetch:async()=>({ok:true,json:async()=>state}),innerWidth:1920,innerHeight:1080,addEventListener(){},setInterval(){},Date,console};
  vm.runInNewContext(script,context);
  await new Promise(resolve=>setImmediate(resolve));
  const rows=get('matches').children;
@@ -44,5 +61,15 @@ test('Twitch renders bundled prediction logos, legacy emoji and failed-image fal
  assert.equal(custom.children[0].src,'https://example.com/manual.png');
  custom.children[0].onerror();
  assert.equal(custom.textContent,'⚽');
+ state.pred1Selection={market:'btts',outcome:'no',period:'first',homeName:'Arsenal',awayName:'Barcelona'};
+ state.pred1Result='AUTO';state.pred1Current=9;state.pred1Target=1;
+ await context.refresh();
+ let details=get('matches').children[0].children[1];
+ assert.equal(details.children[1].children[0].textContent,'PENDING');
+ assert(details.children[2].textContent.includes('Both teams to score — No'));
+ assert(details.children[2].textContent.includes('First half'));
+ state.pred1Result='LOST';await context.refresh();
+ details=get('matches').children[0].children[1];
+ assert.equal(details.children[1].children[0].textContent,'LOST');
 });
 

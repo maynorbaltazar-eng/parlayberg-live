@@ -33,6 +33,7 @@
 .empty{color:#badac3;font-size:19px;text-align:center;margin:auto}
 .footer{margin-top:17px;height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:16px;letter-spacing:1px;color:var(--mint)}
 .footer strong{color:#fff}
+ .predictionResult{font-size:12px;color:var(--mint);margin-left:8px}
 </style></head><body>
 <div id="stage">
 <header class="top panel">
@@ -54,6 +55,7 @@
 </div>
 <footer class="footer panel"><span><strong>BERGPICK</strong> • Live soccer discussion</span><span>Scores and commentary updated manually • No match footage</span></footer>
 </div>
+<script src="prediction-picks.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 function resize(){const scale=Math.min(innerWidth/1920,innerHeight/1080);$('stage').style.transform='scale('+scale+')';$('stage').style.left=Math.max(0,(innerWidth-1920*scale)/2)+'px';$('stage').style.top=Math.max(0,(innerHeight-1080*scale)/2)+'px'}
@@ -75,12 +77,13 @@ const pageCount=Math.max(1,Math.ceil(active.length/4));const page=Math.floor(Dat
 const selected=active.slice(page*4,page*4+4);const root=$('matches');root.replaceChildren();
 if(!selected.length){const d=document.createElement('div');d.className='empty';d.textContent='Add matches from the controller';root.appendChild(d)}
 for(const i of selected){
+const selection=s['pred'+i+'Selection'],result=PredictionPicks.result(s['pred'+i+'Result']||'AUTO',selection,s['pred'+i+'Current'],s['pred'+i+'Target']);
 const row=document.createElement('article');row.className='match';
 const home=document.createElement('div');flag(home,s['pred'+i+'Icon']);row.appendChild(home);
 const details=document.createElement('div');details.className='details';
 const name=document.createElement('div');name.className='matchName';name.textContent=s['pred'+i+'Match']||'MATCH '+i;details.appendChild(name);
-const score=document.createElement('div');score.className='smallScore';score.textContent=(s['pred'+i+'HomeScore']??0)+' – '+(s['pred'+i+'AwayScore']??0);details.appendChild(score);
-const note=document.createElement('div');note.className='note';note.textContent=[s['pred'+i+'Market'],s['pred'+i+'Pick'],s['pred'+i+'Status']].filter(Boolean).join(' • ');details.appendChild(note);row.appendChild(details);
+const score=document.createElement('div');score.className='smallScore';score.textContent=(s['pred'+i+'HomeScore']??0)+' – '+(s['pred'+i+'AwayScore']??0);if(PredictionPicks.isPick(selection)){const badge=document.createElement('span');badge.className='predictionResult';badge.textContent=PredictionPicks.resultLabel(result);score.appendChild(badge)}details.appendChild(score);
+const note=document.createElement('div');note.className='note';note.textContent=(PredictionPicks.isPick(selection)?[PredictionPicks.describe(selection),PredictionPicks.periods[selection.period],s['pred'+i+'Status']]:[s['pred'+i+'Market'],s['pred'+i+'Pick'],s['pred'+i+'Status']]).filter(Boolean).join(' • ');details.appendChild(note);row.appendChild(details);
 const away=document.createElement('div');flag(away,s['pred'+i+'Icon2']||'⚽');row.appendChild(away);
 root.appendChild(row);
 }
