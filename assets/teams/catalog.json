@@ -1,0 +1,184 @@
+[
+  {
+    "name": "Argentina",
+    "aliases": "",
+    "kind": "National team",
+    "source": "https://flagcdn.com/w160/ar.png",
+    "logo": "/assets/teams/0.png"
+  },
+  {
+    "name": "Brazil",
+    "aliases": "",
+    "kind": "National team",
+    "source": "https://flagcdn.com/w160/br.png",
+    "logo": "/assets/teams/1.png"
+  },
+  {
+    "name": "Mexico",
+    "aliases": "",
+    "kind": "National team",
+    "source": "https://flagcdn.com/w160/mx.png",
+    "logo": "/assets/teams/2.png"
+  },
+  {
+    "name": "Honduras",
+    "aliases": "",
+    "kind": "National team",
+    "source": "https://flagcdn.com/w160/hn.png",
+    "logo": "/assets/teams/3.png"
+  },
+  {
+    "name": "USA",
+    "aliases": "United States USMNT",
+    "kind": "National team",
+    "source": "https://flagcdn.com/w160/us.png",
+    "logo": "/assets/teams/4.png"
+  },
+  {
+    "name": "Spain",
+    "aliases": "",
+    "kind": "National team",
+    "source": "https://flagcdn.com/w160/es.png",
+    "logo": "/assets/teams/5.png"
+  },
+  {
+    "name": "France",
+    "aliases": "",
+    "kind": "National team",
+    "source": "https://flagcdn.com/w160/fr.png",
+    "logo": "/assets/teams/6.png"
+  },
+  {
+    "name": "England",
+    "aliases": "",
+    "kind": "National team",
+    "source": "https://flagcdn.com/w160/gb-eng.png",
+    "logo": "/assets/teams/7.png"
+  },
+  {
+    "name": "Portugal",
+    "aliases": "",
+    "kind": "National team",
+    "source": "https://flagcdn.com/w160/pt.png",
+    "logo": "/assets/teams/8.png"
+  },
+  {
+    "name": "Germany",
+    "aliases": "",
+    "kind": "National team",
+    "source": "https://flagcdn.com/w160/de.png",
+    "logo": "/assets/teams/9.png"
+  },
+  {
+    "name": "Italy",
+    "aliases": "",
+    "kind": "National team",
+    "source": "https://flagcdn.com/w160/it.png",
+    "logo": "/assets/teams/10.png"
+  },
+  {
+    "name": "Netherlands",
+    "aliases": "Holland",
+    "kind": "National team",
+    "source": "https://flagcdn.com/w160/nl.png",
+    "logo": "/assets/teams/11.png"
+  },
+  {
+    "name": "Colombia",
+    "aliases": "",
+    "kind": "National team",
+    "source": "https://flagcdn.com/w160/co.png",
+    "logo": "/assets/teams/12.png"
+  },
+  {
+    "name": "Uruguay",
+    "aliases": "",
+    "kind": "National team",
+    "source": "https://flagcdn.com/w160/uy.png",
+    "logo": "/assets/teams/13.png"
+  },
+  {
+    "name": "Real Madrid",
+    "aliases": "",
+    "kind": "Club",
+    "source": "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+    "logo": "/assets/teams/14.png"
+  },
+  {
+    "name": "Barcelona",
+    "aliases": "Barça Barca FC Barcelona",
+    "kind": "Club",
+    "source": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
+    "logo": "/assets/teams/15.png"
+  },
+  {
+    "name": "Manchester United",
+    "aliases": "Man Utd Man United",
+    "kind": "Club",
+    "source": "https://a.espncdn.com/i/teamlogos/soccer/500/360.png",
+    "logo": "/assets/teams/16.png"
+  },
+  {
+    "name": "Manchester City",
+    "aliases": "Man City",
+    "kind": "Club",
+    "source": "https://a.espncdn.com/i/teamlogos/soccer/500/382.png",
+    "logo": "/assets/teams/17.png"
+  },
+  {
+    "name": "Arsenal",
+    "aliases": "",
+    "kind": "Club",
+    "source": "https://a.espncdn.com/i/teamlogos/soccer/500/359.png",
+    "logo": "/assets/teams/18.png"
+  },
+  {
+    "name": "Chelsea",
+    "aliases": "",
+    "kind": "Club",
+    "source": "https://a.espncdn.com/i/teamlogos/soccer/500/363.png",
+    "logo": "/assets/teams/19.png"
+  },
+  {
+    "name": "Liverpool",
+    "aliases": "",
+    "kind": "Club",
+    "source": "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
+    "logo": "/assets/teams/20.png"
+  },
+  {
+    "name": "Bayern Munich",
+    "aliases": "Bayern München",
+    "kind": "Club",
+    "source": "https://a.espncdn.com/i/teamlogos/soccer/500/132.png",
+    "logo": "/assets/teams/21.png"
+  },
+  {
+    "name": "Inter Milan",
+    "aliases": "Internazionale",
+    "kind": "Club",
+    "source": "https://a.espncdn.com/i/teamlogos/soccer/500/110.png",
+    "logo": "/assets/teams/22.png"
+  },
+  {
+    "name": "AC Milan",
+    "aliases": "Milan",
+    "kind": "Club",
+    "source": "https://a.espncdn.com/i/teamlogos/soccer/500/103.png",
+    "logo": "/assets/teams/23.png"
+  },
+  {
+    "name": "PSG",
+    "aliases": "Paris Saint-Germain",
+    "kind": "Club",
+    "source": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
+    "logo": "/assets/teams/24.png"
+  },
+  {
+    "name": "Juventus",
+    "aliases": "",
+    "kind": "Club",
+    "source": "https://a.espncdn.com/i/teamlogos/soccer/500/111.png",
+    "logo": "/assets/teams/25.png"
+  }
+]
