@@ -1,9 +1,19 @@
 // Bundled crests/flags keep live selection independent of external services.
 let soccerTeams = [];
 const normalizeTeam = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const leagueAliases = {
+  'Premier League': 'EPL English Premier League',
+  'La Liga': 'LaLiga Spanish Primera Division',
+  'Serie A': 'SerieA Italian',
+  'Ligue 1': 'Ligue1 League1 French',
+  'Bundesliga': 'German'
+};
 function filterTeams(query) {
   const words = normalizeTeam(query).split(' ').filter(Boolean);
-  return soccerTeams.filter(team => words.every(word => normalizeTeam(team.name + ' ' + team.aliases).includes(word)));
+  return soccerTeams.filter(team => {
+    const searchable = [team.name, team.aliases, team.league, leagueAliases[team.league]].filter(Boolean).join(' ');
+    return words.every(word => normalizeTeam(searchable).includes(word));
+  }).sort((a, b) => a.name.localeCompare(b.name));
 }
 function renderTeamOptions(side) {
   const select = document.getElementById(side + 'Preset');
@@ -16,14 +26,14 @@ function renderTeamOptions(side) {
   matches.forEach(team => {
     const option = document.createElement('option');
     option.value = team.name;
-    option.textContent = team.name + ' — ' + team.kind;
+    option.textContent = team.name + ' — ' + (team.league || team.kind);
     select.appendChild(option);
   });
   document.getElementById(side + 'SearchStatus').textContent = matches.length ? matches.length + ' teams. Select one, then UPDATE OVERLAY.' : 'Use a custom team name and logo URL or upload below.';
 }
 async function initTeamSelectors() {
   try {
-    const response = await fetch('/assets/teams/catalog.json');
+    const response = await fetch('/assets/teams/catalog.json', {cache: 'no-store'});
     if (!response.ok) throw new Error('Catalog unavailable');
     soccerTeams = await response.json();
     for (const side of ['home', 'away']) {
