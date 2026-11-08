@@ -44,8 +44,21 @@ async function initTeamSelectors() {
       document.getElementById(side + 'Search').addEventListener('input', () => renderTeamOptions(side));
       renderTeamOptions(side);
     }
+    for (let i = 1; i <= 8; i++) for (const side of ['Home', 'Away']) {
+      const prefix = 'pred' + i + side;
+      document.getElementById(prefix + 'Search').addEventListener('input', () => {
+        renderTeamOptions(prefix);
+        refreshPredictionLogo(i, side);
+      });
+      renderTeamOptions(prefix);
+    }
+    refreshPredictionLogos();
   } catch (error) {
     for (const side of ['home', 'away']) document.getElementById(side + 'SearchStatus').textContent = 'Team list unavailable. Enter a team name and logo URL or upload below.';
+    for (let i = 1; i <= 8; i++) for (const side of ['Home', 'Away']) {
+      document.getElementById('pred' + i + side + 'SearchStatus').textContent = 'Team list unavailable. Your saved icons are kept; use Custom icon below.';
+    }
+    refreshPredictionLogos();
   }
 }
 function applyPreset(side, name) {
@@ -56,4 +69,47 @@ function applyPreset(side, name) {
   document.getElementById(side + 'LogoFile').value = '';
   previewLogo(side + 'Logo', side + 'LogoPreview');
   document.getElementById('status').textContent = 'Team and logo selected — click UPDATE OVERLAY';
+}
+function predictionIconId(i, side) {
+  return 'pred' + i + (side === 'Home' ? 'Icon' : 'Icon2');
+}
+function predictionMatchName(i) {
+  const home = soccerTeams.find(team => team.logo === document.getElementById('pred' + i + 'Icon').value);
+  const away = soccerTeams.find(team => team.logo === document.getElementById('pred' + i + 'Icon2').value);
+  return home && away ? home.name + ' vs ' + away.name : '';
+}
+function applyPredictionPreset(i, side, name) {
+  if (!Number.isInteger(i) || i < 1 || i > 8 || !['Home', 'Away'].includes(side)) return;
+  const team = soccerTeams.find(team => team.name === name);
+  if (!team) return;
+  const previousName = predictionMatchName(i);
+  const match = document.getElementById('pred' + i + 'Match');
+  document.getElementById(predictionIconId(i, side)).value = team.logo;
+  const nextName = predictionMatchName(i);
+  if (nextName && (!match.value.trim() || /^MATCH\s*\d+$/i.test(match.value.trim()) || match.value === previousName)) match.value = nextName;
+  refreshPredictionLogo(i, side);
+  document.getElementById('status').textContent = 'Prediction logo selected — click UPDATE OVERLAY';
+}
+function refreshPredictionLogo(i, side) {
+  const prefix = 'pred' + i + side;
+  const value = document.getElementById(predictionIconId(i, side)).value;
+  const preview = document.getElementById(prefix + 'LogoPreview');
+  const team = soccerTeams.find(team => team.logo === value);
+  document.getElementById(prefix + 'Preset').value = team ? team.name : '';
+  preview.replaceChildren();
+  if (/^(https?:\/\/|\/assets\/teams\/|data:image\/)/i.test(value)) {
+    const image = document.createElement('img');
+    image.alt = team ? team.name : 'Custom prediction logo';
+    image.onerror = () => { preview.replaceChildren(); preview.textContent = '⚽'; };
+    image.src = value;
+    preview.appendChild(image);
+  } else preview.textContent = value || '⚽';
+}
+function clearPredictionLogo(i, side) {
+  document.getElementById(predictionIconId(i, side)).value = '';
+  refreshPredictionLogo(i, side);
+  document.getElementById('status').textContent = 'Prediction logo cleared — click UPDATE OVERLAY';
+}
+function refreshPredictionLogos() {
+  for (let i = 1; i <= 8; i++) for (const side of ['Home', 'Away']) refreshPredictionLogo(i, side);
 }

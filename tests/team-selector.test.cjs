@@ -47,6 +47,59 @@ test('search aliases, accents, no matches and explicit selection',async()=>{
  assert(!('clock' in t.posts[0]));
  assert.equal(t.elements.hs.textContent,2);
 });
+test('prediction selectors share the full catalog, save both icons in all eight rows and preserve custom match labels',async()=>{
+ const t=setup();await settle();
+ for(let i=1;i<=8;i++){
+  assert.equal(t.elements['pred'+i+'HomePreset'].children.length,195);
+  assert.equal(t.elements['pred'+i+'AwayPreset'].children.length,195);
+  t.elements['pred'+i+'Match'].value='MATCH '+i;
+  t.run('applyPredictionPreset('+i+',"Home","Arsenal");applyPredictionPreset('+i+',"Away","Barcelona")');
+  assert.equal(t.elements['pred'+i+'Match'].value,'Arsenal vs Barcelona');
+  assert.equal(t.elements['pred'+i+'HomeLogoPreview'].children[0].src,'/assets/teams/18.png');
+ }
+ assert.equal(t.posts.length,0);
+ await t.run('pollLive()');
+ assert.equal(t.elements.pred8Icon.value,'/assets/teams/18.png');
+ await t.run('saveAll()');await settle();
+ for(let i=1;i<=8;i++){
+  assert.equal(t.posts[0]['pred'+i+'Icon'],'/assets/teams/18.png');
+  assert.equal(t.posts[0]['pred'+i+'Icon2'],'/assets/teams/15.png');
+  assert.equal(t.elements['pred'+i+'HomePreset'].value,'Arsenal');
+ }
+ t.elements.pred8Icon.value='';
+ await t.run('load()');
+ assert.equal(t.elements.pred8Icon.value,'/assets/teams/18.png');
+ assert.equal(t.elements.pred8HomePreset.value,'Arsenal');
+ assert.equal(t.elements.homeTeam.value,'Original');
+ t.elements.pred1Match.value='My custom derby';
+ t.run('applyPredictionPreset(1,"Home","Guadalajara")');
+ assert.equal(t.elements.pred1Match.value,'My custom derby');
+ t.run('applyPredictionPreset(8,"Home","Liverpool")');
+ assert.equal(t.elements.pred8Match.value,'Liverpool vs Barcelona');
+ assert.equal(t.elements.pred7Match.value,'Arsenal vs Barcelona');
+});
+test('prediction search does not change icons; manual emoji, saved images, clearing and main-match copying work',async()=>{
+ const t=setup();await settle();
+ t.elements.pred1HomeSearch.value='Liga MX';t.elements.pred1HomeSearch.input();
+ assert.equal(t.elements.pred1HomePreset.children.length,19);
+ assert.equal(t.elements.pred1Icon.value,'');
+ t.elements.pred1Icon.value='🇭🇳';t.run('refreshPredictionLogo(1,"Home")');
+ assert.equal(t.elements.pred1HomeLogoPreview.textContent,'🇭🇳');
+ t.elements.pred1Icon2.value='https://example.com/logo.png';t.run('refreshPredictionLogo(1,"Away")');
+ assert.equal(t.elements.pred1AwayLogoPreview.children[0].src,'https://example.com/logo.png');
+ t.elements.pred1AwayLogoPreview.children[0].onerror();
+ assert.equal(t.elements.pred1AwayLogoPreview.textContent,'⚽');
+ t.run('clearPredictionLogo(1,"Home")');
+ assert.equal(t.elements.pred1Icon.value,'');
+ assert.equal(t.elements.pred1Icon2.value,'https://example.com/logo.png');
+ t.run('applyPreset("home","Arsenal");applyPreset("away","Barcelona");copyMainMatch(2)');
+ assert.equal(t.elements.pred2Match.value,'Arsenal vs Barcelona');
+ assert.equal(t.elements.pred2Icon.value,'/assets/teams/18.png');
+ assert.equal(t.elements.pred2Icon2.value,'/assets/teams/15.png');
+ await t.run('saveAll()');await settle();
+ assert.equal(t.posts[0].pred1Icon,'');
+ assert.equal(t.posts[0].pred1Icon2,'https://example.com/logo.png');
+});
 test('manual URLs, upload, removal and image failure remain usable',async()=>{
  const t=setup();await settle();
  t.elements.homeLogo.value='https://example.com/custom.png';

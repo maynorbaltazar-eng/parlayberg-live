@@ -26,4 +26,23 @@ test('TikTok overlay executes, fetches saved state and refreshes team names/logo
  assert.equal(get('homeLogoImg').src,state.homeLogo);
  assert.equal(get('hs').textContent,3);
 });
+test('Twitch renders bundled prediction logos, legacy emoji and failed-image fallback',async()=>{
+ const script=fs.readFileSync(path.join(__dirname,'../twitch.html'),'utf8').match(/<script>([\s\S]*?)<\/script>/)[1];
+ const elements={};
+ const create=()=>({textContent:'',style:{},children:[],replaceChildren(){this.children=[];this.textContent=''},appendChild(c){this.children.push(c)}});
+ const get=id=>elements[id]??=create();
+ const state={homeLogo:'/assets/teams/18.png',pred1Enabled:true,pred1Icon:'/assets/teams/18.png',pred1Icon2:'/assets/teams/15.png',pred2Enabled:true,pred2Icon:'🇭🇳',pred2Icon2:'https://example.com/manual.png'};
+ const context={document:{getElementById:get,createElement:create},fetch:async()=>({ok:true,json:async()=>state}),innerWidth:1920,innerHeight:1080,addEventListener(){},setInterval(){},Date,console};
+ vm.runInNewContext(script,context);
+ await new Promise(resolve=>setImmediate(resolve));
+ const rows=get('matches').children;
+ assert.equal(get('homeLogoBox').children[0].src,'/assets/teams/18.png');
+ assert.equal(rows[0].children[0].children[0].children[0].src,'/assets/teams/18.png');
+ assert.equal(rows[0].children[2].children[0].children[0].src,'/assets/teams/15.png');
+ assert.equal(rows[1].children[0].children[0].textContent,'🇭🇳');
+ const custom=rows[1].children[2].children[0];
+ assert.equal(custom.children[0].src,'https://example.com/manual.png');
+ custom.children[0].onerror();
+ assert.equal(custom.textContent,'⚽');
+});
 
