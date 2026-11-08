@@ -59,8 +59,8 @@ const $=id=>document.getElementById(id);
 function resize(){const scale=Math.min(innerWidth/1920,innerHeight/1080);$('stage').style.transform='scale('+scale+')';$('stage').style.left=Math.max(0,(innerWidth-1920*scale)/2)+'px';$('stage').style.top=Math.max(0,(innerHeight-1080*scale)/2)+'px'}
 addEventListener('resize',resize);resize();
 function txt(id,value){$(id).textContent=value??''}
-function logo(id,url){const box=$(id);box.replaceChildren();if(typeof url==='string'&&/^(https?:\/\/|data:image\/)/i.test(url)){const img=document.createElement('img');img.className='teamLogo';img.alt='Team logo';img.src=url;img.onerror=()=>{box.replaceChildren();box.className='logoFallback';box.textContent='⚽'};box.className='';box.appendChild(img)}else{box.className='logoFallback';box.textContent='⚽'}}
-function flag(node,value){const div=document.createElement('div');div.className='flag';if(typeof value==='string'&&/^https?:\/\//i.test(value)){const img=document.createElement('img');img.alt='Flag';img.src=value;div.appendChild(img)}else{div.textContent=value||'⚽'}node.appendChild(div)}
+function logo(id,url){const box=$(id);box.replaceChildren();if(typeof url==='string'&&/^(https?:\/\/|\/assets\/teams\/|data:image\/)/i.test(url)){const img=document.createElement('img');img.className='teamLogo';img.alt='Team logo';img.src=url;img.onerror=()=>{box.replaceChildren();box.className='logoFallback';box.textContent='⚽'};box.className='';box.appendChild(img)}else{box.className='logoFallback';box.textContent='⚽'}}
+function flag(node,value){const div=document.createElement('div');div.className='flag';if(typeof value==='string'&&/^(https?:\/\/|\/assets\/teams\/|data:image\/)/i.test(value)){const img=document.createElement('img');img.alt='Team icon';img.onerror=()=>{div.replaceChildren();div.textContent='⚽'};img.src=value;div.appendChild(img)}else{div.textContent=value||'⚽'}node.appendChild(div)}
 function cards(y,r){return (+y?'🟨 '+y+'  ':'')+(+r?'🟥 '+r:'')}
 async function refresh(){try{
 const response=await fetch('/api/state?t='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('State unavailable');
