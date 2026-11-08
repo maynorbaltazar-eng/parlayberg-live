@@ -1,0 +1,29 @@
+const {test}=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const path=require('node:path');
+const script=fs.readFileSync(path.join(__dirname,'../overlay.html'),'utf8').match(/<script>([\s\S]*?)<\/script>/)[1];
+test('TikTok overlay executes, fetches saved state and refreshes team names/logos',async()=>{
+ const elements={};
+ const get=id=>elements[id]??=( {textContent:'',style:{},children:[],classList:{add(){},remove(){}},removeAttribute(k){delete this[k]},appendChild(c){this.children.push(c)}} );
+ let state={homeTeam:'Manchester United',awayTeam:'Barcelona',homeLogo:'/assets/teams/16.png',awayLogo:'/assets/teams/15.png',homeScore:2,awayScore:1,pred1Enabled:true,pred1Icon:'/assets/teams/16.png',pred1Icon2:'https://example.com/logo.png'};
+ let refresh;let requested;
+ const context={document:{getElementById:get,createElement:()=>({})},fetch:async url=>{requested=url;return {json:async()=>state}},setInterval:fn=>{refresh=fn},Date};
+ vm.runInNewContext(script,context);
+ await new Promise(resolve=>setImmediate(resolve));
+ assert(requested.startsWith('/api/state?'));
+ assert.equal(get('h').textContent,'Manchester United');
+ assert.equal(get('a').textContent,'Barcelona');
+ assert.equal(get('homeLogoImg').src,state.homeLogo);
+ assert.equal(get('awayLogoImg').src,state.awayLogo);
+ assert.equal(get('hs').textContent,2);
+ assert(get('sportsRows').children[0].innerHTML.includes('<img src="/assets/teams/16.png"'));
+ assert(get('sportsRows').children[0].innerHTML.includes('<img src="https://example.com/logo.png"'));
+ state={...state,homeTeam:'Arsenal',homeLogo:'/assets/teams/18.png',homeScore:3};
+ await refresh();
+ assert.equal(get('h').textContent,'Arsenal');
+ assert.equal(get('homeLogoImg').src,state.homeLogo);
+ assert.equal(get('hs').textContent,3);
+});
+
