@@ -6,7 +6,11 @@ const leagueAliases = {
   'La Liga': 'LaLiga Spanish Primera Division',
   'Serie A': 'SerieA Italian',
   'Ligue 1': 'Ligue1 League1 French',
-  'Bundesliga': 'German'
+  'Bundesliga': 'German',
+  'Eredivisie': 'Eredivise Dutch Netherlands Holland',
+  'Liga Portugal': 'Portugal Liga Primeira Liga Portuguese Betclic',
+  'MLS': 'Major League Soccer USA Canada',
+  'Liga MX': 'LigaMX Mexico Mexican Apertura Clausura'
 };
 function filterTeams(query) {
   const words = normalizeTeam(query).split(' ').filter(Boolean);

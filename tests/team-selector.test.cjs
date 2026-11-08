@@ -77,13 +77,13 @@ test('all curated assets are local PNGs, unique and nonempty',()=>{
   assert(data.readUInt32BE(16)>0 && data.readUInt32BE(20)>0,team.name);
  }
 });
-test('all five 2026–27 leagues are complete and original saved logo paths remain valid',()=>{
- const counts={'Premier League':20,'La Liga':20,'Serie A':20,'Ligue 1':18,'Bundesliga':18};
- assert.equal(catalog.length,110);
+test('all nine leagues are complete and original saved logo paths remain valid',()=>{
+ const counts={'Premier League':20,'La Liga':20,'Serie A':20,'Ligue 1':18,'Bundesliga':18,'Eredivisie':18,'Liga Portugal':18,'MLS':30,'Liga MX':18};
+ assert.equal(catalog.length,194);
  for(const [league,count] of Object.entries(counts)){
   const teams=catalog.filter(t=>t.league===league);
   assert.equal(teams.length,count,league);
-  assert(teams.every(t=>t.kind==='Club' && t.season==='2026-27'));
+  assert(teams.every(t=>t.kind==='Club' && t.season===(league==='MLS'?'2026':'2026-27')));
  }
  assert.equal(catalog.filter(t=>t.kind==='National team').length,14);
  const original=['Argentina','Brazil','Mexico','Honduras','USA','Spain','France','England','Portugal','Germany','Italy','Netherlands','Colombia','Uruguay','Real Madrid','Barcelona','Manchester United','Manchester City','Arsenal','Chelsea','Liverpool','Bayern Munich','Inter Milan','AC Milan','PSG','Juventus'];
@@ -92,11 +92,11 @@ test('all five 2026–27 leagues are complete and original saved logo paths rema
 });
 test('league search, common nicknames and accented club names work',async()=>{
  const t=setup();await settle();
- for(const [query,count] of [['EPL',20],['Premier League',20],['LaLiga',20],['Serie A',20],['SerieA',20],['Ligue1',18],['League1',18],['Bundesliga',18]]){
+ for(const [query,count] of [['EPL',20],['Premier League',20],['LaLiga',20],['Serie A',20],['SerieA',20],['Ligue1',18],['League1',18],['Bundesliga',18],['Eredivisie',18],['Eredivise',18],['Liga Portugal',18],['Portugal Liga',18],['Primeira Liga',18],['MLS',30],['Major League Soccer',30],['LigaMX',18],['Liga MX',18]]){
   t.elements.homeSearch.value=query;t.elements.homeSearch.input();
   assert.equal(t.elements.homePreset.children.length-1,count,query);
  }
- for(const [query,name] of [['Spurs','Tottenham Hotspur'],['Gladbach','Borussia Mönchengladbach'],['malaga','Málaga'],['Atleti','Atlético Madrid'],['Serie A Napoli','Napoli'],['EPL Arsenal','Arsenal'],['Argentina','Argentina']]){
+ for(const [query,name] of [['Spurs','Tottenham Hotspur'],['Gladbach','Borussia Mönchengladbach'],['malaga','Málaga'],['Atleti','Atlético Madrid'],['Serie A Napoli','Napoli'],['EPL Arsenal','Arsenal'],['Chivas','Guadalajara'],['America','Club América'],['Pumas','Pumas UNAM'],['LAFC','Los Angeles FC'],['NYRB','Red Bull New York'],['Sporting Lisbon','Sporting CP'],['PSV','PSV Eindhoven'],['montreal','CF Montréal'],['Argentina','Argentina']]){
   t.elements.homeSearch.value=query;t.elements.homeSearch.input();
   assert(t.elements.homePreset.children.some(o=>o.value===name),query);
  }
@@ -104,6 +104,13 @@ test('league search, common nicknames and accented club names work',async()=>{
  assert(option.textContent.includes('National team'));
  t.elements.homeSearch.value='Serie A';t.elements.homeSearch.input();
  assert(t.elements.homePreset.children[1].textContent.includes('Serie A'));
+});
+test('all previous 110 name/logo pairs are preserved and current new clubs are covered',()=>{
+ const previous=JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/previous-team-paths.json'),'utf8'));
+ assert.equal(Object.keys(previous).length,110);
+ for(const [name,logo] of Object.entries(previous)) assert.equal(catalog.find(t=>t.name===name)?.logo,logo,name);
+ for(const name of ['Atlante','San Diego FC','Red Bull New York','ADO Den Haag','Cambuur','Willem II','Académico de Viseu','Marítimo']) assert(catalog.some(t=>t.name===name),name);
+ assert(!catalog.some(t=>t.name==='Mazatlán'),'Mazatlán was replaced by Atlante in the current Liga MX roster');
 });
 test('every club selects and saves its own bundled logo without changing the other side',async()=>{
  const t=setup();await settle();

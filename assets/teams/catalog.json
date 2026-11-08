@@ -960,5 +960,761 @@
     "season": "2026-27",
     "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Villarreal%20CF.png",
     "logo": "/assets/teams/villarreal.png"
+  },
+  {
+    "name": "ADO Den Haag",
+    "aliases": "ADO",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/ADO%20Den%20Haag.png",
+    "logo": "/assets/teams/ado-den-haag.png"
+  },
+  {
+    "name": "AZ Alkmaar",
+    "aliases": "AZ",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/AZ%20Alkmaar.png",
+    "logo": "/assets/teams/az-alkmaar.png"
+  },
+  {
+    "name": "Ajax",
+    "aliases": "Ajax Amsterdam",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/Ajax%20Amsterdam.png",
+    "logo": "/assets/teams/ajax.png"
+  },
+  {
+    "name": "Excelsior",
+    "aliases": "Excelsior Rotterdam",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/Excelsior%20Rotterdam.png",
+    "logo": "/assets/teams/excelsior.png"
+  },
+  {
+    "name": "Groningen",
+    "aliases": "FC Groningen",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/FC%20Groningen.png",
+    "logo": "/assets/teams/groningen.png"
+  },
+  {
+    "name": "Twente",
+    "aliases": "FC Twente Enschede",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/FC%20Twente%20Enschede.png",
+    "logo": "/assets/teams/twente.png"
+  },
+  {
+    "name": "Utrecht",
+    "aliases": "FC Utrecht",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/FC%20Utrecht.png",
+    "logo": "/assets/teams/utrecht.png"
+  },
+  {
+    "name": "Feyenoord",
+    "aliases": "Feyenoord Rotterdam",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/Feyenoord%20Rotterdam.png",
+    "logo": "/assets/teams/feyenoord.png"
+  },
+  {
+    "name": "Fortuna Sittard",
+    "aliases": "Fortuna Sittard",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/Fortuna%20Sittard.png",
+    "logo": "/assets/teams/fortuna-sittard.png"
+  },
+  {
+    "name": "Go Ahead Eagles",
+    "aliases": "Go Ahead Eagles",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/Go%20Ahead%20Eagles.png",
+    "logo": "/assets/teams/go-ahead-eagles.png"
+  },
+  {
+    "name": "NEC Nijmegen",
+    "aliases": "N.E.C. NEC",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/NEC%20Nijmegen.png",
+    "logo": "/assets/teams/nec-nijmegen.png"
+  },
+  {
+    "name": "PEC Zwolle",
+    "aliases": "PEC Zwolle",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/PEC%20Zwolle.png",
+    "logo": "/assets/teams/pec-zwolle.png"
+  },
+  {
+    "name": "PSV Eindhoven",
+    "aliases": "PSV",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/PSV%20Eindhoven.png",
+    "logo": "/assets/teams/psv-eindhoven.png"
+  },
+  {
+    "name": "Cambuur",
+    "aliases": "SC Cambuur Leeuwarden",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/SC%20Cambuur%20Leeuwarden.png",
+    "logo": "/assets/teams/cambuur.png"
+  },
+  {
+    "name": "Heerenveen",
+    "aliases": "SC Heerenveen",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/SC%20Heerenveen.png",
+    "logo": "/assets/teams/heerenveen.png"
+  },
+  {
+    "name": "Telstar",
+    "aliases": "SC Telstar",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/SC%20Telstar.png",
+    "logo": "/assets/teams/telstar.png"
+  },
+  {
+    "name": "Sparta Rotterdam",
+    "aliases": "Sparta Rotterdam",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/Sparta%20Rotterdam.png",
+    "logo": "/assets/teams/sparta-rotterdam.png"
+  },
+  {
+    "name": "Willem II",
+    "aliases": "Willem II Tilburg",
+    "kind": "Club",
+    "league": "Eredivisie",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Netherlands%20-%20Eredivisie/Willem%20II%20Tilburg.png",
+    "logo": "/assets/teams/willem-ii.png"
+  },
+  {
+    "name": "Académico de Viseu",
+    "aliases": "Academico Viseu FC",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/Acad%C3%A9mico%20Viseu%20FC.png",
+    "logo": "/assets/teams/academico-de-viseu.png"
+  },
+  {
+    "name": "Nacional",
+    "aliases": "CD Nacional Madeira",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/CD%20Nacional.png",
+    "logo": "/assets/teams/nacional.png"
+  },
+  {
+    "name": "Santa Clara",
+    "aliases": "CD Santa Clara",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/CD%20Santa%20Clara.png",
+    "logo": "/assets/teams/santa-clara.png"
+  },
+  {
+    "name": "Estrela da Amadora",
+    "aliases": "CF Estrela Amadora",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/CF%20Estrela%20Amadora.png",
+    "logo": "/assets/teams/estrela-da-amadora.png"
+  },
+  {
+    "name": "Marítimo",
+    "aliases": "CS Maritimo",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/CS%20Mar%C3%ADtimo.png",
+    "logo": "/assets/teams/maritimo.png"
+  },
+  {
+    "name": "Casa Pia",
+    "aliases": "Casa Pia AC",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/Casa%20Pia%20AC.png",
+    "logo": "/assets/teams/casa-pia.png"
+  },
+  {
+    "name": "Alverca",
+    "aliases": "FC Alverca",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/FC%20Alverca.png",
+    "logo": "/assets/teams/alverca.png"
+  },
+  {
+    "name": "Arouca",
+    "aliases": "FC Arouca",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/FC%20Arouca.png",
+    "logo": "/assets/teams/arouca.png"
+  },
+  {
+    "name": "Famalicão",
+    "aliases": "FC Famalicao",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/FC%20Famalic%C3%A3o.png",
+    "logo": "/assets/teams/famalicao.png"
+  },
+  {
+    "name": "Porto",
+    "aliases": "FC Porto Oporto",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/FC%20Porto.png",
+    "logo": "/assets/teams/porto.png"
+  },
+  {
+    "name": "Estoril Praia",
+    "aliases": "GD Estoril",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/GD%20Estoril%20Praia.png",
+    "logo": "/assets/teams/estoril-praia.png"
+  },
+  {
+    "name": "Gil Vicente",
+    "aliases": "Gil Vicente FC",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/Gil%20Vicente%20FC.png",
+    "logo": "/assets/teams/gil-vicente.png"
+  },
+  {
+    "name": "Moreirense",
+    "aliases": "Moreirense FC",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/Moreirense%20FC.png",
+    "logo": "/assets/teams/moreirense.png"
+  },
+  {
+    "name": "Rio Ave",
+    "aliases": "Rio Ave FC",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/Rio%20Ave%20FC.png",
+    "logo": "/assets/teams/rio-ave.png"
+  },
+  {
+    "name": "Braga",
+    "aliases": "SC Braga Sporting Braga",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/SC%20Braga.png",
+    "logo": "/assets/teams/braga.png"
+  },
+  {
+    "name": "Benfica",
+    "aliases": "SL Benfica",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/SL%20Benfica.png",
+    "logo": "/assets/teams/benfica.png"
+  },
+  {
+    "name": "Sporting CP",
+    "aliases": "Sporting Lisbon Sporting Clube de Portugal",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/Sporting%20CP.png",
+    "logo": "/assets/teams/sporting-cp.png"
+  },
+  {
+    "name": "Vitória de Guimarães",
+    "aliases": "Vitoria Guimaraes SC",
+    "kind": "Club",
+    "league": "Liga Portugal",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Portugal%20-%20Liga%20Portugal/Vit%C3%B3ria%20Guimar%C3%A3es%20SC.png",
+    "logo": "/assets/teams/vitoria-de-guimaraes.png"
+  },
+  {
+    "name": "Atlanta United",
+    "aliases": "Atlanta United FC",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/atlanta_united.png",
+    "logo": "/assets/teams/atlanta-united.png"
+  },
+  {
+    "name": "Austin FC",
+    "aliases": "Austin FC",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/austin_fc.png",
+    "logo": "/assets/teams/austin-fc.png"
+  },
+  {
+    "name": "Charlotte FC",
+    "aliases": "Charlotte FC",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/charlotte_fc.png",
+    "logo": "/assets/teams/charlotte-fc.png"
+  },
+  {
+    "name": "Chicago Fire FC",
+    "aliases": "Chicago Fire",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/chicago_fire.png",
+    "logo": "/assets/teams/chicago-fire-fc.png"
+  },
+  {
+    "name": "FC Cincinnati",
+    "aliases": "Cincinnati",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/fc_cincinnati.png",
+    "logo": "/assets/teams/fc-cincinnati.png"
+  },
+  {
+    "name": "Colorado Rapids",
+    "aliases": "Colorado Rapids",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/colorado_rapids.png",
+    "logo": "/assets/teams/colorado-rapids.png"
+  },
+  {
+    "name": "Columbus Crew",
+    "aliases": "Columbus Crew",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/columbus_crew.png",
+    "logo": "/assets/teams/columbus-crew.png"
+  },
+  {
+    "name": "D.C. United",
+    "aliases": "DC United Washington",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/dc_united.png",
+    "logo": "/assets/teams/d-c-united.png"
+  },
+  {
+    "name": "FC Dallas",
+    "aliases": "Dallas",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/fc_dallas.png",
+    "logo": "/assets/teams/fc-dallas.png"
+  },
+  {
+    "name": "Houston Dynamo FC",
+    "aliases": "Houston Dynamo",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/houston_dynamo.png",
+    "logo": "/assets/teams/houston-dynamo-fc.png"
+  },
+  {
+    "name": "Inter Miami CF",
+    "aliases": "Inter Miami",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/inter_miami_cf.png",
+    "logo": "/assets/teams/inter-miami-cf.png"
+  },
+  {
+    "name": "LA Galaxy",
+    "aliases": "Los Angeles Galaxy",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/la_galaxy.png",
+    "logo": "/assets/teams/la-galaxy.png"
+  },
+  {
+    "name": "Los Angeles FC",
+    "aliases": "LAFC Los Angeles Football Club",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/lafc.png",
+    "logo": "/assets/teams/los-angeles-fc.png"
+  },
+  {
+    "name": "Minnesota United FC",
+    "aliases": "Minnesota United",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/minnesota_united.png",
+    "logo": "/assets/teams/minnesota-united-fc.png"
+  },
+  {
+    "name": "CF Montréal",
+    "aliases": "CF Montreal Montreal Impact",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/cf_montreal.png",
+    "logo": "/assets/teams/cf-montreal.png"
+  },
+  {
+    "name": "Nashville SC",
+    "aliases": "Nashville SC",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/nashville_sc.png",
+    "logo": "/assets/teams/nashville-sc.png"
+  },
+  {
+    "name": "New England Revolution",
+    "aliases": "Revs",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/new_england_revolution.png",
+    "logo": "/assets/teams/new-england-revolution.png"
+  },
+  {
+    "name": "New York City FC",
+    "aliases": "NYCFC New York City Football Club",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/new_york_city_fc.png",
+    "logo": "/assets/teams/new-york-city-fc.png"
+  },
+  {
+    "name": "Red Bull New York",
+    "aliases": "New York Red Bulls NYRB RBNY",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/new_york_red_bulls.png",
+    "logo": "/assets/teams/red-bull-new-york.png"
+  },
+  {
+    "name": "Orlando City SC",
+    "aliases": "Orlando City",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/orlando_city.png",
+    "logo": "/assets/teams/orlando-city-sc.png"
+  },
+  {
+    "name": "Philadelphia Union",
+    "aliases": "Philadelphia Union",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/philadelphia_union.png",
+    "logo": "/assets/teams/philadelphia-union.png"
+  },
+  {
+    "name": "Portland Timbers",
+    "aliases": "Portland Timbers",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/portland_timbers.png",
+    "logo": "/assets/teams/portland-timbers.png"
+  },
+  {
+    "name": "Real Salt Lake",
+    "aliases": "RSL",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/real_salt_lake.png",
+    "logo": "/assets/teams/real-salt-lake.png"
+  },
+  {
+    "name": "San Diego FC",
+    "aliases": "San Diego",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/san_diego_fc.png",
+    "logo": "/assets/teams/san-diego-fc.png"
+  },
+  {
+    "name": "San Jose Earthquakes",
+    "aliases": "San Jose Quakes",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/san_jose_earthquakes.png",
+    "logo": "/assets/teams/san-jose-earthquakes.png"
+  },
+  {
+    "name": "Seattle Sounders FC",
+    "aliases": "Seattle Sounders",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/seattle_sounders.png",
+    "logo": "/assets/teams/seattle-sounders-fc.png"
+  },
+  {
+    "name": "Sporting Kansas City",
+    "aliases": "Sporting KC SKC",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/sporting_kc.png",
+    "logo": "/assets/teams/sporting-kansas-city.png"
+  },
+  {
+    "name": "St. Louis CITY SC",
+    "aliases": "St Louis City Saint Louis",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/st_louis_city.png",
+    "logo": "/assets/teams/st-louis-city-sc.png"
+  },
+  {
+    "name": "Toronto FC",
+    "aliases": "Toronto FC",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/toronto_fc.png",
+    "logo": "/assets/teams/toronto-fc.png"
+  },
+  {
+    "name": "Vancouver Whitecaps FC",
+    "aliases": "Vancouver Whitecaps",
+    "kind": "Club",
+    "league": "MLS",
+    "season": "2026",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/vancouver_whitecaps.png",
+    "logo": "/assets/teams/vancouver-whitecaps-fc.png"
+  },
+  {
+    "name": "Club América",
+    "aliases": "America Aguilas",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_club-america.png",
+    "logo": "/assets/teams/club-america.png"
+  },
+  {
+    "name": "Atlas",
+    "aliases": "Atlas",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_atlas.png",
+    "logo": "/assets/teams/atlas.png"
+  },
+  {
+    "name": "Atlético San Luis",
+    "aliases": "Atletico de San Luis",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_atletico-san-luis.png",
+    "logo": "/assets/teams/atletico-san-luis.png"
+  },
+  {
+    "name": "Cruz Azul",
+    "aliases": "Cruz Azul",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_cruz-azul.png",
+    "logo": "/assets/teams/cruz-azul.png"
+  },
+  {
+    "name": "FC Juárez",
+    "aliases": "Juarez Bravos",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_Juarez.png",
+    "logo": "/assets/teams/fc-juarez.png"
+  },
+  {
+    "name": "Guadalajara",
+    "aliases": "Chivas CD Guadalajara",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_chivas.png",
+    "logo": "/assets/teams/guadalajara.png"
+  },
+  {
+    "name": "León",
+    "aliases": "Club Leon",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_leon.png",
+    "logo": "/assets/teams/leon.png"
+  },
+  {
+    "name": "Monterrey",
+    "aliases": "Rayados",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_monterrey.png",
+    "logo": "/assets/teams/monterrey.png"
+  },
+  {
+    "name": "Necaxa",
+    "aliases": "Necaxa",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_necaxa.png",
+    "logo": "/assets/teams/necaxa.png"
+  },
+  {
+    "name": "Pachuca",
+    "aliases": "Pachuca",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_pachua.png",
+    "logo": "/assets/teams/pachuca.png"
+  },
+  {
+    "name": "Puebla",
+    "aliases": "Puebla",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_puebla.png",
+    "logo": "/assets/teams/puebla.png"
+  },
+  {
+    "name": "Pumas UNAM",
+    "aliases": "Universidad Nacional Pumas",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_pumas.png",
+    "logo": "/assets/teams/pumas-unam.png"
+  },
+  {
+    "name": "Querétaro",
+    "aliases": "Queretaro Gallos Blancos",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_queretaro.png",
+    "logo": "/assets/teams/queretaro.png"
+  },
+  {
+    "name": "Santos Laguna",
+    "aliases": "Santos Laguna",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_santos-laguna.png",
+    "logo": "/assets/teams/santos-laguna.png"
+  },
+  {
+    "name": "Tigres UANL",
+    "aliases": "Tigres de la UANL",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_tigres.png",
+    "logo": "/assets/teams/tigres-uanl.png"
+  },
+  {
+    "name": "Tijuana",
+    "aliases": "Club Tijuana Xolos",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_tijuana.png",
+    "logo": "/assets/teams/tijuana.png"
+  },
+  {
+    "name": "Toluca",
+    "aliases": "Toluca",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/Sachawd/wc26-assets/blob/678d8838fb1e3e89e830ad02da55cd44d1fa5eb9/club-logos/club_toluca.png",
+    "logo": "/assets/teams/toluca.png"
+  },
+  {
+    "name": "Atlante",
+    "aliases": "Atlante FC Potros de Hierro",
+    "kind": "Club",
+    "league": "Liga MX",
+    "season": "2026-27",
+    "source": "https://github.com/JoseArroyave/football-logos/blob/5ab11fed47427b3003f4b276554491fe683387b1/logos/mexico/Atlante_FC.svg",
+    "logo": "/assets/teams/atlante.png"
   }
 ]
