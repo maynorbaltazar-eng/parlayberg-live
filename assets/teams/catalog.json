@@ -99,86 +99,866 @@
   },
   {
     "name": "Real Madrid",
-    "aliases": "",
+    "aliases": "Real Madrid",
     "kind": "Club",
     "source": "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
-    "logo": "/assets/teams/14.png"
+    "logo": "/assets/teams/14.png",
+    "league": "La Liga",
+    "season": "2026-27"
   },
   {
     "name": "Barcelona",
-    "aliases": "Barça Barca FC Barcelona",
+    "aliases": "Barça Barca FC Barcelona Barça Barca FC Barcelona",
     "kind": "Club",
     "source": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
-    "logo": "/assets/teams/15.png"
+    "logo": "/assets/teams/15.png",
+    "league": "La Liga",
+    "season": "2026-27"
   },
   {
     "name": "Manchester United",
-    "aliases": "Man Utd Man United",
+    "aliases": "Man Utd Man United Manchester United",
     "kind": "Club",
     "source": "https://a.espncdn.com/i/teamlogos/soccer/500/360.png",
-    "logo": "/assets/teams/16.png"
+    "logo": "/assets/teams/16.png",
+    "league": "Premier League",
+    "season": "2026-27"
   },
   {
     "name": "Manchester City",
-    "aliases": "Man City",
+    "aliases": "Man City Manchester City",
     "kind": "Club",
     "source": "https://a.espncdn.com/i/teamlogos/soccer/500/382.png",
-    "logo": "/assets/teams/17.png"
+    "logo": "/assets/teams/17.png",
+    "league": "Premier League",
+    "season": "2026-27"
   },
   {
     "name": "Arsenal",
-    "aliases": "",
+    "aliases": "Gunners",
     "kind": "Club",
     "source": "https://a.espncdn.com/i/teamlogos/soccer/500/359.png",
-    "logo": "/assets/teams/18.png"
+    "logo": "/assets/teams/18.png",
+    "league": "Premier League",
+    "season": "2026-27"
   },
   {
     "name": "Chelsea",
-    "aliases": "",
+    "aliases": "Blues",
     "kind": "Club",
     "source": "https://a.espncdn.com/i/teamlogos/soccer/500/363.png",
-    "logo": "/assets/teams/19.png"
+    "logo": "/assets/teams/19.png",
+    "league": "Premier League",
+    "season": "2026-27"
   },
   {
     "name": "Liverpool",
-    "aliases": "",
+    "aliases": "Reds",
     "kind": "Club",
     "source": "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
-    "logo": "/assets/teams/20.png"
+    "logo": "/assets/teams/20.png",
+    "league": "Premier League",
+    "season": "2026-27"
   },
   {
     "name": "Bayern Munich",
-    "aliases": "Bayern München",
+    "aliases": "Bayern München Bayern München FC Bayern",
     "kind": "Club",
     "source": "https://a.espncdn.com/i/teamlogos/soccer/500/132.png",
-    "logo": "/assets/teams/21.png"
+    "logo": "/assets/teams/21.png",
+    "league": "Bundesliga",
+    "season": "2026-27"
   },
   {
     "name": "Inter Milan",
-    "aliases": "Internazionale",
+    "aliases": "Internazionale Inter Milan",
     "kind": "Club",
     "source": "https://a.espncdn.com/i/teamlogos/soccer/500/110.png",
-    "logo": "/assets/teams/22.png"
+    "logo": "/assets/teams/22.png",
+    "league": "Serie A",
+    "season": "2026-27"
   },
   {
     "name": "AC Milan",
-    "aliases": "Milan",
+    "aliases": "Milan AC Milan",
     "kind": "Club",
     "source": "https://a.espncdn.com/i/teamlogos/soccer/500/103.png",
-    "logo": "/assets/teams/23.png"
+    "logo": "/assets/teams/23.png",
+    "league": "Serie A",
+    "season": "2026-27"
   },
   {
     "name": "PSG",
-    "aliases": "Paris Saint-Germain",
+    "aliases": "Paris Saint-Germain Paris Saint Germain Paris Saint-Germain",
     "kind": "Club",
     "source": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
-    "logo": "/assets/teams/24.png"
+    "logo": "/assets/teams/24.png",
+    "league": "Ligue 1",
+    "season": "2026-27"
   },
   {
     "name": "Juventus",
-    "aliases": "",
+    "aliases": "Juve",
     "kind": "Club",
     "source": "https://a.espncdn.com/i/teamlogos/soccer/500/111.png",
-    "logo": "/assets/teams/25.png"
+    "logo": "/assets/teams/25.png",
+    "league": "Serie A",
+    "season": "2026-27"
+  },
+  {
+    "name": "Bournemouth",
+    "aliases": "AFC Bournemouth Cherries",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/AFC%20Bournemouth.png",
+    "logo": "/assets/teams/bournemouth.png"
+  },
+  {
+    "name": "Aston Villa",
+    "aliases": "Aston Villa",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/Aston%20Villa.png",
+    "logo": "/assets/teams/aston-villa.png"
+  },
+  {
+    "name": "Brentford",
+    "aliases": "Bees",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/Brentford%20FC.png",
+    "logo": "/assets/teams/brentford.png"
+  },
+  {
+    "name": "Brighton & Hove Albion",
+    "aliases": "Brighton Seagulls",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/Brighton%20%26%20Hove%20Albion.png",
+    "logo": "/assets/teams/brighton-hove-albion.png"
+  },
+  {
+    "name": "Coventry City",
+    "aliases": "Coventry Sky Blues",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/Coventry%20City.png",
+    "logo": "/assets/teams/coventry-city.png"
+  },
+  {
+    "name": "Crystal Palace",
+    "aliases": "Crystal Palace",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/Crystal%20Palace.png",
+    "logo": "/assets/teams/crystal-palace.png"
+  },
+  {
+    "name": "Everton",
+    "aliases": "Toffees",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/Everton%20FC.png",
+    "logo": "/assets/teams/everton.png"
+  },
+  {
+    "name": "Fulham",
+    "aliases": "Cottagers",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/Fulham%20FC.png",
+    "logo": "/assets/teams/fulham.png"
+  },
+  {
+    "name": "Hull City",
+    "aliases": "Hull Tigers",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/Hull%20City.png",
+    "logo": "/assets/teams/hull-city.png"
+  },
+  {
+    "name": "Ipswich Town",
+    "aliases": "Ipswich Tractor Boys",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/Ipswich%20Town.png",
+    "logo": "/assets/teams/ipswich-town.png"
+  },
+  {
+    "name": "Leeds United",
+    "aliases": "Leeds",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/Leeds%20United.png",
+    "logo": "/assets/teams/leeds-united.png"
+  },
+  {
+    "name": "Newcastle United",
+    "aliases": "Newcastle Magpies",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/Newcastle%20United.png",
+    "logo": "/assets/teams/newcastle-united.png"
+  },
+  {
+    "name": "Nottingham Forest",
+    "aliases": "Nottm Forest",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/Nottingham%20Forest.png",
+    "logo": "/assets/teams/nottingham-forest.png"
+  },
+  {
+    "name": "Sunderland",
+    "aliases": "Black Cats",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/Sunderland%20AFC.png",
+    "logo": "/assets/teams/sunderland.png"
+  },
+  {
+    "name": "Tottenham Hotspur",
+    "aliases": "Spurs Tottenham",
+    "kind": "Club",
+    "league": "Premier League",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/England%20-%20Premier%20League/Tottenham%20Hotspur.png",
+    "logo": "/assets/teams/tottenham-hotspur.png"
+  },
+  {
+    "name": "Auxerre",
+    "aliases": "AJ Auxerre",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/AJ%20Auxerre.png",
+    "logo": "/assets/teams/auxerre.png"
+  },
+  {
+    "name": "Monaco",
+    "aliases": "AS Monaco",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/AS%20Monaco.png",
+    "logo": "/assets/teams/monaco.png"
+  },
+  {
+    "name": "Angers",
+    "aliases": "Angers SCO",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/Angers%20SCO.png",
+    "logo": "/assets/teams/angers.png"
+  },
+  {
+    "name": "Troyes",
+    "aliases": "ESTAC Troyes",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/ESTAC%20Troyes.png",
+    "logo": "/assets/teams/troyes.png"
+  },
+  {
+    "name": "Lorient",
+    "aliases": "FC Lorient",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/FC%20Lorient.png",
+    "logo": "/assets/teams/lorient.png"
+  },
+  {
+    "name": "Toulouse",
+    "aliases": "Toulouse FC",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/FC%20Toulouse.png",
+    "logo": "/assets/teams/toulouse.png"
+  },
+  {
+    "name": "Lille",
+    "aliases": "LOSC Lille",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/LOSC%20Lille.png",
+    "logo": "/assets/teams/lille.png"
+  },
+  {
+    "name": "Le Havre",
+    "aliases": "Le Havre AC HAC",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/Le%20Havre%20AC.png",
+    "logo": "/assets/teams/le-havre.png"
+  },
+  {
+    "name": "Le Mans",
+    "aliases": "Le Mans FC",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/Le%20Mans%20FC.png",
+    "logo": "/assets/teams/le-mans.png"
+  },
+  {
+    "name": "Nice",
+    "aliases": "OGC Nice",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/OGC%20Nice.png",
+    "logo": "/assets/teams/nice.png"
+  },
+  {
+    "name": "Lyon",
+    "aliases": "Olympique Lyonnais OL",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/Olympique%20Lyon.png",
+    "logo": "/assets/teams/lyon.png"
+  },
+  {
+    "name": "Marseille",
+    "aliases": "Olympique de Marseille OM",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/Olympique%20Marseille.png",
+    "logo": "/assets/teams/marseille.png"
+  },
+  {
+    "name": "Paris FC",
+    "aliases": "Paris FC",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/Paris%20FC.png",
+    "logo": "/assets/teams/paris-fc.png"
+  },
+  {
+    "name": "Lens",
+    "aliases": "RC Lens",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/RC%20Lens.png",
+    "logo": "/assets/teams/lens.png"
+  },
+  {
+    "name": "Strasbourg",
+    "aliases": "RC Strasbourg Alsace",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/RC%20Strasbourg%20Alsace.png",
+    "logo": "/assets/teams/strasbourg.png"
+  },
+  {
+    "name": "Brest",
+    "aliases": "Stade Brestois 29",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/Stade%20Brestois%2029.png",
+    "logo": "/assets/teams/brest.png"
+  },
+  {
+    "name": "Rennes",
+    "aliases": "Stade Rennais FC",
+    "kind": "Club",
+    "league": "Ligue 1",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/France%20-%20Ligue%201/Stade%20Rennais%20FC.png",
+    "logo": "/assets/teams/rennes.png"
+  },
+  {
+    "name": "FC Köln",
+    "aliases": "1. FC Köln Cologne Koln",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/1.FC%20K%C3%B6ln.png",
+    "logo": "/assets/teams/fc-koln.png"
+  },
+  {
+    "name": "Union Berlin",
+    "aliases": "1. FC Union Berlin",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/1.FC%20Union%20Berlin.png",
+    "logo": "/assets/teams/union-berlin.png"
+  },
+  {
+    "name": "Mainz 05",
+    "aliases": "1. FSV Mainz",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/1.FSV%20Mainz%2005.png",
+    "logo": "/assets/teams/mainz-05.png"
+  },
+  {
+    "name": "Bayer Leverkusen",
+    "aliases": "Bayer 04 Leverkusen",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/Bayer%2004%20Leverkusen.png",
+    "logo": "/assets/teams/bayer-leverkusen.png"
+  },
+  {
+    "name": "Borussia Dortmund",
+    "aliases": "Borussia Dortmund",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/Borussia%20Dortmund.png",
+    "logo": "/assets/teams/borussia-dortmund.png"
+  },
+  {
+    "name": "Borussia Mönchengladbach",
+    "aliases": "Gladbach Borussia Monchengladbach",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/Borussia%20M%C3%B6nchengladbach.png",
+    "logo": "/assets/teams/borussia-monchengladbach.png"
+  },
+  {
+    "name": "Eintracht Frankfurt",
+    "aliases": "Eintracht Frankfurt",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/Eintracht%20Frankfurt.png",
+    "logo": "/assets/teams/eintracht-frankfurt.png"
+  },
+  {
+    "name": "Augsburg",
+    "aliases": "FC Augsburg",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/FC%20Augsburg.png",
+    "logo": "/assets/teams/augsburg.png"
+  },
+  {
+    "name": "Schalke 04",
+    "aliases": "FC Schalke",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/FC%20Schalke%2004.png",
+    "logo": "/assets/teams/schalke-04.png"
+  },
+  {
+    "name": "Hamburger SV",
+    "aliases": "Hamburg HSV",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/Hamburger%20SV.png",
+    "logo": "/assets/teams/hamburger-sv.png"
+  },
+  {
+    "name": "RB Leipzig",
+    "aliases": "RB Leipzig",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/RB%20Leipzig.png",
+    "logo": "/assets/teams/rb-leipzig.png"
+  },
+  {
+    "name": "Freiburg",
+    "aliases": "SC Freiburg",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/SC%20Freiburg.png",
+    "logo": "/assets/teams/freiburg.png"
+  },
+  {
+    "name": "Paderborn",
+    "aliases": "SC Paderborn 07",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/SC%20Paderborn%2007.png",
+    "logo": "/assets/teams/paderborn.png"
+  },
+  {
+    "name": "Elversberg",
+    "aliases": "SV Elversberg SV 07 Elversberg",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/SV%2007%20Elversberg.png",
+    "logo": "/assets/teams/elversberg.png"
+  },
+  {
+    "name": "Werder Bremen",
+    "aliases": "SV Werder Bremen",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/SV%20Werder%20Bremen.png",
+    "logo": "/assets/teams/werder-bremen.png"
+  },
+  {
+    "name": "Hoffenheim",
+    "aliases": "TSG 1899 Hoffenheim",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/TSG%201899%20Hoffenheim.png",
+    "logo": "/assets/teams/hoffenheim.png"
+  },
+  {
+    "name": "Stuttgart",
+    "aliases": "VfB Stuttgart",
+    "kind": "Club",
+    "league": "Bundesliga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Germany%20-%20Bundesliga/VfB%20Stuttgart.png",
+    "logo": "/assets/teams/stuttgart.png"
+  },
+  {
+    "name": "Monza",
+    "aliases": "AC Monza",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/AC%20Monza.png",
+    "logo": "/assets/teams/monza.png"
+  },
+  {
+    "name": "Fiorentina",
+    "aliases": "ACF Fiorentina Viola",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/ACF%20Fiorentina.png",
+    "logo": "/assets/teams/fiorentina.png"
+  },
+  {
+    "name": "Roma",
+    "aliases": "AS Roma",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/AS%20Roma.png",
+    "logo": "/assets/teams/roma.png"
+  },
+  {
+    "name": "Atalanta",
+    "aliases": "Atalanta BC",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/Atalanta%20BC.png",
+    "logo": "/assets/teams/atalanta.png"
+  },
+  {
+    "name": "Bologna",
+    "aliases": "Bologna FC 1909",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/Bologna%20FC%201909.png",
+    "logo": "/assets/teams/bologna.png"
+  },
+  {
+    "name": "Cagliari",
+    "aliases": "Cagliari Calcio",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/Cagliari%20Calcio.png",
+    "logo": "/assets/teams/cagliari.png"
+  },
+  {
+    "name": "Como",
+    "aliases": "Como 1907",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/Como%201907.png",
+    "logo": "/assets/teams/como.png"
+  },
+  {
+    "name": "Frosinone",
+    "aliases": "Frosinone Calcio",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/Frosinone%20Calcio.png",
+    "logo": "/assets/teams/frosinone.png"
+  },
+  {
+    "name": "Genoa",
+    "aliases": "Genoa CFC",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/Genoa%20CFC.png",
+    "logo": "/assets/teams/genoa.png"
+  },
+  {
+    "name": "Parma",
+    "aliases": "Parma Calcio 1913",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/Parma%20Calcio%201913.png",
+    "logo": "/assets/teams/parma.png"
+  },
+  {
+    "name": "Lazio",
+    "aliases": "SS Lazio",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/SS%20Lazio.png",
+    "logo": "/assets/teams/lazio.png"
+  },
+  {
+    "name": "Napoli",
+    "aliases": "SSC Napoli Naples",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/SSC%20Napoli.png",
+    "logo": "/assets/teams/napoli.png"
+  },
+  {
+    "name": "Torino",
+    "aliases": "Torino FC Turin",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/Torino%20FC.png",
+    "logo": "/assets/teams/torino.png"
+  },
+  {
+    "name": "Lecce",
+    "aliases": "US Lecce",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/US%20Lecce.png",
+    "logo": "/assets/teams/lecce.png"
+  },
+  {
+    "name": "Sassuolo",
+    "aliases": "US Sassuolo",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/US%20Sassuolo.png",
+    "logo": "/assets/teams/sassuolo.png"
+  },
+  {
+    "name": "Udinese",
+    "aliases": "Udinese Calcio",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/Udinese%20Calcio.png",
+    "logo": "/assets/teams/udinese.png"
+  },
+  {
+    "name": "Venezia",
+    "aliases": "Venezia FC Venice",
+    "kind": "Club",
+    "league": "Serie A",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Italy%20-%20Serie%20A/Venezia%20FC.png",
+    "logo": "/assets/teams/venezia.png"
+  },
+  {
+    "name": "Athletic Club",
+    "aliases": "Athletic Bilbao",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Athletic%20Bilbao.png",
+    "logo": "/assets/teams/athletic-club.png"
+  },
+  {
+    "name": "Atlético Madrid",
+    "aliases": "Atletico Atletico de Madrid Atleti",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Atl%C3%A9tico%20de%20Madrid.png",
+    "logo": "/assets/teams/atletico-madrid.png"
+  },
+  {
+    "name": "Osasuna",
+    "aliases": "CA Osasuna",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/CA%20Osasuna.png",
+    "logo": "/assets/teams/osasuna.png"
+  },
+  {
+    "name": "Celta Vigo",
+    "aliases": "Celta de Vigo",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Celta%20de%20Vigo.png",
+    "logo": "/assets/teams/celta-vigo.png"
+  },
+  {
+    "name": "Deportivo La Coruña",
+    "aliases": "Deportivo A Coruña RC Deportivo Depor",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Deportivo%20A%20Coru%C3%B1a.png",
+    "logo": "/assets/teams/deportivo-la-coruna.png"
+  },
+  {
+    "name": "Alavés",
+    "aliases": "Deportivo Alaves",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Deportivo%20Alav%C3%A9s.png",
+    "logo": "/assets/teams/alaves.png"
+  },
+  {
+    "name": "Elche",
+    "aliases": "Elche CF",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Elche%20CF.png",
+    "logo": "/assets/teams/elche.png"
+  },
+  {
+    "name": "Getafe",
+    "aliases": "Getafe CF",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Getafe%20CF.png",
+    "logo": "/assets/teams/getafe.png"
+  },
+  {
+    "name": "Levante",
+    "aliases": "Levante UD",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Levante%20UD.png",
+    "logo": "/assets/teams/levante.png"
+  },
+  {
+    "name": "Málaga",
+    "aliases": "Malaga CF",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/M%C3%A1laga%20CF.png",
+    "logo": "/assets/teams/malaga.png"
+  },
+  {
+    "name": "Espanyol",
+    "aliases": "RCD Espanyol",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/RCD%20Espanyol%20Barcelona.png",
+    "logo": "/assets/teams/espanyol.png"
+  },
+  {
+    "name": "Racing Santander",
+    "aliases": "Racing Club Real Racing Club",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Racing%20Santander.png",
+    "logo": "/assets/teams/racing-santander.png"
+  },
+  {
+    "name": "Rayo Vallecano",
+    "aliases": "Rayo Vallecano",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Rayo%20Vallecano.png",
+    "logo": "/assets/teams/rayo-vallecano.png"
+  },
+  {
+    "name": "Real Betis",
+    "aliases": "Betis Balompie",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Real%20Betis%20Balompi%C3%A9.png",
+    "logo": "/assets/teams/real-betis.png"
+  },
+  {
+    "name": "Real Sociedad",
+    "aliases": "Real Sociedad",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Real%20Sociedad.png",
+    "logo": "/assets/teams/real-sociedad.png"
+  },
+  {
+    "name": "Sevilla",
+    "aliases": "Sevilla FC",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Sevilla%20FC.png",
+    "logo": "/assets/teams/sevilla.png"
+  },
+  {
+    "name": "Valencia",
+    "aliases": "Valencia CF",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Valencia%20CF.png",
+    "logo": "/assets/teams/valencia.png"
+  },
+  {
+    "name": "Villarreal",
+    "aliases": "Villarreal CF Yellow Submarine",
+    "kind": "Club",
+    "league": "La Liga",
+    "season": "2026-27",
+    "source": "https://github.com/luukhopman/football-logos/blob/2a3978f0b4730645c205d855a4bda54c161183e9/logos/Spain%20-%20LaLiga/Villarreal%20CF.png",
+    "logo": "/assets/teams/villarreal.png"
   }
 ]

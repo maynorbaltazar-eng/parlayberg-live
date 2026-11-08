@@ -71,8 +71,50 @@ test('catalog failure leaves manual controls usable',async()=>{
 test('all curated assets are local PNGs, unique and nonempty',()=>{
  assert.equal(new Set(catalog.map(t=>t.name)).size,catalog.length);
  for(const team of catalog){
+  assert.match(team.logo,/^\/assets\/teams\/[a-z0-9-]+\.png$/);
   const data=fs.readFileSync(path.join(root,team.logo));
   assert.equal(data.subarray(0,8).toString('hex'),'89504e470d0a1a0a',team.name);
   assert(data.readUInt32BE(16)>0 && data.readUInt32BE(20)>0,team.name);
+ }
+});
+test('all five 2026–27 leagues are complete and original saved logo paths remain valid',()=>{
+ const counts={'Premier League':20,'La Liga':20,'Serie A':20,'Ligue 1':18,'Bundesliga':18};
+ assert.equal(catalog.length,110);
+ for(const [league,count] of Object.entries(counts)){
+  const teams=catalog.filter(t=>t.league===league);
+  assert.equal(teams.length,count,league);
+  assert(teams.every(t=>t.kind==='Club' && t.season==='2026-27'));
+ }
+ assert.equal(catalog.filter(t=>t.kind==='National team').length,14);
+ const original=['Argentina','Brazil','Mexico','Honduras','USA','Spain','France','England','Portugal','Germany','Italy','Netherlands','Colombia','Uruguay','Real Madrid','Barcelona','Manchester United','Manchester City','Arsenal','Chelsea','Liverpool','Bayern Munich','Inter Milan','AC Milan','PSG','Juventus'];
+ original.forEach((name,i)=>assert.equal(catalog.find(t=>t.name===name)?.logo,'/assets/teams/'+i+'.png',name));
+ for(const name of ['Coventry City','Hull City','Ipswich Town','Málaga','Racing Santander','Deportivo La Coruña','Frosinone','Monza','Venezia','Troyes','Le Mans','Schalke 04','Elversberg','Paderborn']) assert(catalog.some(t=>t.name===name),name);
+});
+test('league search, common nicknames and accented club names work',async()=>{
+ const t=setup();await settle();
+ for(const [query,count] of [['EPL',20],['Premier League',20],['LaLiga',20],['Serie A',20],['SerieA',20],['Ligue1',18],['League1',18],['Bundesliga',18]]){
+  t.elements.homeSearch.value=query;t.elements.homeSearch.input();
+  assert.equal(t.elements.homePreset.children.length-1,count,query);
+ }
+ for(const [query,name] of [['Spurs','Tottenham Hotspur'],['Gladbach','Borussia Mönchengladbach'],['malaga','Málaga'],['Atleti','Atlético Madrid'],['Serie A Napoli','Napoli'],['EPL Arsenal','Arsenal'],['Argentina','Argentina']]){
+  t.elements.homeSearch.value=query;t.elements.homeSearch.input();
+  assert(t.elements.homePreset.children.some(o=>o.value===name),query);
+ }
+ const option=t.elements.homePreset.children[1];
+ assert(option.textContent.includes('National team'));
+ t.elements.homeSearch.value='Serie A';t.elements.homeSearch.input();
+ assert(t.elements.homePreset.children[1].textContent.includes('Serie A'));
+});
+test('every club selects and saves its own bundled logo without changing the other side',async()=>{
+ const t=setup();await settle();
+ t.run("applyPreset('away','Barcelona')");
+ const awayLogo=t.elements.awayLogo.value;
+ for(const team of catalog.filter(t=>t.kind==='Club')){
+  t.run('applyPreset("home",'+JSON.stringify(team.name)+')');
+  await t.run('saveAll()');await settle();
+  assert.equal(t.posts.at(-1).homeTeam,team.name);
+  assert.equal(t.posts.at(-1).homeLogo,team.logo);
+  assert.equal(t.posts.at(-1).awayLogo,awayLogo);
+  assert.equal(t.elements.homeLogoPreview.src,team.logo);
  }
 });
